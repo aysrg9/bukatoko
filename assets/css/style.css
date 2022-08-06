@@ -8,6 +8,10 @@ body {
   color: gray;
 }
 
+#text-info a:hover {
+  color: #0d6efd;
+}
+
 .input-search {
   width: 400px;
 }
@@ -37,6 +41,9 @@ body {
   .input-search {
     width: 150px;
   }
+  .card-customer {
+    width: 100%;
+  }
 }
 
 @media screen and (max-width: 600px) {
@@ -44,7 +51,8 @@ body {
     display: none;
   }
   #carousel {
-    padding-top: 115px;
+    padding-top: 90px;
+    padding-bottom: 25px;
   }
 }
 
