@@ -99,13 +99,13 @@
             <div class="pt-3 pb-4 ps-3 pe-3">
                 <h3 class="text-primary">For Egyditya</h3>
                 <div class="card mt-3 d-inline-block" style="width: 17rem;">
-                    <div class="card-body bg-primary text-white">
+                    <div class="card-body bg-primary text-white rounded">
                         <h5 class="card-title">Cashback 50%</h5>
                         <p class="card-text">Check Bukatoko Birthday Surprise for your first purchase.</p>
                     </div>
                 </div>
                 <div class="card mt-3 d-inline-block ms-2" style="width: 17rem;">
-                    <div class="card-body bg-primary text-white">
+                    <div class="card-body bg-primary text-white rounded">
                         <h5 class="card-title">Free Shipping</h5>
                         <p class="card-text">Free shipping for the island of Java.</p>
                     </div>
@@ -118,38 +118,38 @@
     <!-- Product -->
     <section id="product" class="container">
         <div class="shadow" style="background-color: #ffffff;">
-            <h3 class="pt-2 pb-2 text-center text-primary">Recommendation</h3>
+            <h3 class="pt-2 pb-2 text-center text-primary">Recommendation Product</h3>
         </div>
         <div class="row row-cols-2 row-cols-lg-6 g-2 g-lg-3 mt-3">
             <div class="col">
-                <div class="p-3 border bg-light">Row column</div>
+                <div class="p-3 shadow-sm bg-white">Row column</div>
             </div>
             <div class="col">
-                <div class="p-3 border bg-light">Row column</div>
+                <div class="p-3 shadow-sm bg-white">Row column</div>
             </div>
             <div class="col">
-                <div class="p-3 border bg-light">Row column</div>
+                <div class="p-3 shadow-sm bg-white">Row column</div>
             </div>
             <div class="col">
-                <div class="p-3 border bg-light">Row column</div>
+                <div class="p-3 shadow-sm bg-white">Row column</div>
             </div>
             <div class="col">
-                <div class="p-3 border bg-light">Row column</div>
+                <div class="p-3 shadow-sm bg-white">Row column</div>
             </div>
             <div class="col">
-                <div class="p-3 border bg-light">Row column</div>
+                <div class="p-3 shadow-sm bg-white">Row column</div>
             </div>
             <div class="col">
-                <div class="p-3 border bg-light">Row column</div>
+                <div class="p-3 shadow-sm bg-white">Row column</div>
             </div>
             <div class="col">
-                <div class="p-3 border bg-light">Row column</div>
+                <div class="p-3 shadow-sm bg-white">Row column</div>
             </div>
             <div class="col">
-                <div class="p-3 border bg-light">Row column</div>
+                <div class="p-3 shadow-sm bg-white">Row column</div>
             </div>
             <div class="col">
-                <div class="p-3 border bg-light">Row column</div>
+                <div class="p-3 shadow-sm bg-white">Row column</div>
             </div>
         </div>
     </section>
