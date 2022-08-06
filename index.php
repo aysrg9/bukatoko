@@ -46,7 +46,7 @@
                 </form>
                 <div id="button-navbar">
                     <a class="btn btn-primary fw-bold">LOGIN</a>
-                    <a class="btn btn-primary fw-bold">REGISTER</a>
+                    <a href="./buyer/register.php" class="btn btn-primary fw-bold">REGISTER</a>
                 </div>
             </div>
         </nav>
@@ -54,10 +54,10 @@
     <section id="nav-bottom">
         <nav class="nav-icon navbar fixed-bottom">
             <div class="container">
-                <a href="#"><i class="bi bi-house text-primary"></i></a>
-                <a href="#"><i class="bi bi-heart text-primary"></i></i></a>
-                <a href="#"><i class="bi bi-cart3 text-primary"></i></a>
-                <a href="#"><i class="bi bi-person-circle text-primary"></i></a>
+                <a href="#"><i class="bi bi-house"></i></a>
+                <a href="#"><i class="bi bi-heart"></i></i></a>
+                <a href="#"><i class="bi bi-cart3"></i></a>
+                <a href="#"><i class="bi bi-person-circle"></i></a>
             </div>
         </nav>
     </section>
