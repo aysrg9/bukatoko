@@ -34,6 +34,19 @@ body {
   margin-bottom: 50px;
 }
 
+#nav-bottom {
+  display: none;
+}
+
+.nav-icon a {
+  float: left;
+  width: 30%;
+  text-align: center;
+  transition: all 0.3s ease;
+  color: black;
+  font-size: 27px;
+}
+
 /* Responsive */
 @media screen and (max-width: 991px) {
   .input-search {
@@ -72,5 +85,8 @@ body {
   }
   .carousel-item img {
     height: 300px;
+  }
+  #nav-bottom {
+    display: contents;
   }
 }
