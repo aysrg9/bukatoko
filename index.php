@@ -52,9 +52,10 @@
         </nav>
     </section>
     <section id="nav-bottom">
-        <nav class="nav-icon navbar fixed-bottom bg-white">
+        <nav class="nav-icon navbar fixed-bottom">
             <div class="container">
                 <a href="#"><i class="bi bi-house text-primary"></i></a>
+                <a href="#"><i class="bi bi-heart text-primary"></i></i></a>
                 <a href="#"><i class="bi bi-cart3 text-primary"></i></a>
                 <a href="#"><i class="bi bi-person-circle text-primary"></i></a>
             </div>
