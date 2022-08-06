@@ -17,7 +17,7 @@ body {
 }
 
 #carousel {
-  padding-top: 150px;
+  padding-top: 156px;
   padding-bottom: 50px;
 }
 
@@ -28,6 +28,10 @@ body {
 
 .card-customer {
   width: 17rem;
+}
+
+#info-customer {
+  margin-bottom: 50px;
 }
 
 /* Responsive */
@@ -51,8 +55,11 @@ body {
     display: none;
   }
   #carousel {
-    padding-top: 90px;
+    padding-top: 89px;
     padding-bottom: 25px;
+  }
+  #banner-recomend {
+    margin-top: -25px;
   }
 }
 

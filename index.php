@@ -37,7 +37,8 @@
         </div>
         <nav class="navbar shadow" style="background-color: #fff;">
             <div class="container">
-                <a class="navbar-brand fs-2 text-primary" href="" style="font-family: 'Kanit', sans-serif;">Bukatoko</a>
+                <a class="navbar-brand fs-2 text-primary fw-bold" href=""
+                    style="font-family: 'Kanit', sans-serif;">Bukatoko</a>
                 <form class="d-flex" role="search">
                     <input class="input-search form-control me-2" type="search" placeholder="Search"
                         aria-label="Search">
@@ -91,20 +92,20 @@
     <!-- End Carousel -->
 
     <!-- Info -->
-    <section id="info-customer" class="container mb-5">
+    <section id="info-customer" class="container">
         <div class="shadow" style="background-color: #ffffff;">
             <div class="pt-3 pb-4 ps-3 pe-3">
-                <h3 class="text-primary">For Egyditya</h3>
+                <h3 class="text-primary fw-bold">For Egyditya</h3>
                 <div class="card-customer card mt-3 d-inline-block">
                     <div class="card-body bg-primary text-white rounded">
-                        <h5 class="card-title">Cashback 50%</h5>
+                        <h5 class="card-title fw-bold">Cashback 50%</h5>
                         <p class="card-text">Check Bukatoko Birthday Surprise for your first purchase.</p>
                     </div>
                 </div>
                 <div class="card-customer card mt-3 d-inline-block">
                     <div class="card-body bg-primary text-white rounded">
-                        <h5 class="card-title">Free Shipping</h5>
-                        <p class="card-text">Free shipping for the island of Java.</p>
+                        <h5 class="card-title fw-bold">Free Shipping</h5>
+                        <p class="card-text">Free shipping for the island of Java. Checkout now!.</p>
                     </div>
                 </div>
             </div>
@@ -114,8 +115,8 @@
 
     <!-- Product -->
     <section id="product" class="container">
-        <div class="shadow" style="background-color: #ffffff;">
-            <h3 class="pt-2 pb-2 text-center text-primary">Recommendation Product</h3>
+        <div id="banner-recomend" class="shadow" style="background-color: #ffffff;">
+            <h3 class="pt-2 pb-2 text-center text-primary fw-bold">Recommendation Product</h3>
         </div>
         <div class="row row-cols-2 row-cols-lg-5 g-2 g-sm-2 mt-3">
             <div class="col">
