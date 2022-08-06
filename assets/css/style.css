@@ -7,3 +7,55 @@ body {
   text-decoration: none;
   color: gray;
 }
+
+.input-search {
+  width: 400px;
+}
+
+#carousel {
+  padding-top: 150px;
+  padding-bottom: 50px;
+}
+
+.carousel-item img {
+  width: 100%;
+  height: 400px;
+}
+
+.card-customer {
+  width: 17rem;
+}
+
+/* Responsive */
+@media screen and (max-width: 991px) {
+  .input-search {
+    width: 250px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .input-search {
+    width: 150px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  #text-info {
+    display: none;
+  }
+  #carousel {
+    padding-top: 115px;
+  }
+}
+
+@media screen and (max-width: 484px) {
+  #button-navbar {
+    display: none;
+  }
+  .input-search {
+    width: 200px;
+  }
+  .carousel-item img {
+    height: 300px;
+  }
+}
