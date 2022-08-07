@@ -31,15 +31,15 @@
             </h3>
             <div class="mb-3">
                 <input type="text" class="form-control" id="username" placeholder="Username">
-                <div id="usernameHelp" class="form-text">For example: aysrg9</div>
+                <div id="usernameHelp" class="form-text">For example : aysrg9</div>
             </div>
             <div class="mb-3">
                 <input type="text" class="form-control" id="name" placeholder="Your Name">
-                <div id="nameHelp" class="form-text">For example: Egyditya</div>
+                <div id="nameHelp" class="form-text">For example : Egyditya</div>
             </div>
             <div class="mb-3">
                 <input type="email" class="form-control" id="email" placeholder="Your Email">
-                <div id="emailHelp" class="form-text">For example: name@email.com</div>
+                <div id="emailHelp" class="form-text">For example : name@email.com</div>
             </div>
             <div class="mb-3">
                 <input type="password" class="form-control" id="password" placeholder="Password">
