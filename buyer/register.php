@@ -21,13 +21,14 @@
 
 <body>
     <!-- Form Register -->
-    <h1 class="fw-bold text-primary text-center"
-        style="font-family: 'Kanit', sans-serif; padding-top: 50px; padding-bottom: 50px;">
+    <h1 class="fw-bold text-primary text-center head-brand" style="padding-top: 40px; padding-bottom:40px;">
         Bukatoko
     </h1>
-    <section id="container-form" class="container shadow rounded">
+    <section id="container-form" class="container shadow rounded"
+        style="border: 3px solid gainsboro; margin-bottom: 50px;">
         <form action="">
-            <h3 class="text-center" style="padding-bottom: 50px;">Register first, come on!</h3>
+            <h3 class="text-center header-form" style="padding-top: 35px; padding-bottom:35px;">Register first, come on!
+            </h3>
             <div class="mb-3">
                 <input type="text" class="form-control" id="username" placeholder="Username">
                 <div id="usernameHelp" class="form-text">For example: aysrg9</div>
@@ -50,6 +51,7 @@
             <div class="d-grid gap-2">
                 <button type="submit" class="btn btn-primary fw-bold">Register</button>
             </div>
+
             <hr>
 
             <p class="text-center">Already have an account? <a class="text-primary" href="login.php"
