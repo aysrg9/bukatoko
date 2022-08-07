@@ -33,6 +33,10 @@ body {
   margin-bottom: 50px;
 }
 
+#col-product:hover {
+  border: 2px solid #0d6efd;
+}
+
 #nav-bottom {
   display: none;
 }
@@ -76,6 +80,10 @@ body {
   margin-bottom: 50px;
 }
 
+#detail-product {
+  padding-top: 156px;
+}
+
 /* Responsive */
 @media screen and (max-width: 991px) {
   .input-search {
@@ -100,11 +108,14 @@ body {
     display: none;
   }
   #carousel {
-    padding-top: 89px;
+    padding-top: 91px;
     padding-bottom: 25px;
   }
   #banner-recomend {
     margin-top: -25px;
+  }
+  #detail-product {
+    padding-top: 91px;
   }
 }
 

@@ -128,8 +128,8 @@
             <h3 class="pt-2 pb-2 text-center text-primary fw-bold">Recommendation Product</h3>
         </div>
         <div class="row row-cols-2 row-cols-sm-3 row-cols-lg-5 g-2 g-sm-3 mt-3">
-            <a href="" style="text-decoration: none;">
-                <div class="col">
+            <a href="./buyer/view.php" style="text-decoration: none;">
+                <div id="col-product" class="col">
                     <div class="p-3 shadow-sm bg-white">
                         <div style="width: auto;">
                             <img src="./assets/images/product/62bb3f4a6be9a.png" class="card-img-top" alt="...">
