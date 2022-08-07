@@ -25,7 +25,7 @@
         style="font-family: 'Kanit', sans-serif; padding-top: 50px; padding-bottom: 50px;">
         Bukatoko
     </h1>
-    <section id="register" class="container shadow rounded">
+    <section id="container-form" class="container shadow rounded">
         <form action="">
             <h3 class="text-center" style="padding-bottom: 50px;">Register first, come on!</h3>
             <div class="mb-3">
@@ -52,7 +52,7 @@
             </div>
             <hr>
 
-            <p class="text-center">Already have an account? <a class="text-primary" href=""
+            <p class="text-center">Already have an account? <a class="text-primary" href="login.php"
                     style="text-decoration: none;">Login</a></p>
         </form>
     </section>

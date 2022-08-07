@@ -40,8 +40,7 @@
                 <a class="navbar-brand fs-2 text-primary fw-bold" href=""
                     style="font-family: 'Kanit', sans-serif;">Bukatoko</a>
                 <form class="d-flex" role="search">
-                    <input class="input-search form-control me-2" type="search" placeholder="Search"
-                        aria-label="Search">
+                    <input class="input-search form-control" type="search" placeholder="Search" aria-label="Search">
                     <button class="btn btn-outline-primary d-none" type="submit"><i class="bi bi-search"></i></button>
                 </form>
                 <div id="button-navbar">
