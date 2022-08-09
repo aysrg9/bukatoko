@@ -131,12 +131,10 @@
             <a href="./buyer/view.php" style="text-decoration: none;">
                 <div id="col-product" class="col">
                     <div class="p-3 shadow-sm bg-white">
-                        <div style="width: auto;">
-                            <img src="./assets/images/product/62bb3f4a6be9a.png" class="card-img-top" alt="...">
-                            <div class="card-body pt-3">
-                                <p class="card-title text-truncate text-dark">Prosesor Intel® Core™ i3-12100F</p>
-                                <p class="card-title pt-2 fw-bold text-dark">Rp 1.399.000</p>
-                            </div>
+                        <img src="./assets/images/product/62bb3f4a6be9a.png" class="card-img-top" alt="...">
+                        <div class="card-body pt-3">
+                            <p class="card-title text-truncate text-dark">Prosesor Intel® Core™ i3-12100F</p>
+                            <p class="card-title pt-2 fw-bold text-dark">Rp 1.399.000</p>
                         </div>
                     </div>
                 </div>

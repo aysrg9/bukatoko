@@ -20,12 +20,6 @@
 
     <!-- My CSS -->
     <link rel="stylesheet" href="../assets/css/style.css">
-
-    <style>
-    body {
-        height: 200vh;
-    }
-    </style>
 </head>
 
 <body>
@@ -59,7 +53,7 @@
     <section id="nav-bottom">
         <nav class="nav-icon navbar fixed-bottom">
             <div class="container">
-                <a href="#"><i class="bi bi-house"></i></a>
+                <a href="#" onclick="history.go(-1);"><i class="bi bi-arrow-90deg-left"></i></a>
                 <a href="#"><i class="bi bi-heart"></i></i></a>
                 <a href="#"><i class="bi bi-cart3"></i></a>
                 <a href="#"><i class="bi bi-person-circle"></i></a>
@@ -69,11 +63,7 @@
     <!-- End Navbar -->
 
     <!-- Detail Product -->
-    <section class="container" id="detail-product">
-        <div class="shadow" style="background-color: #ffffff;">
-            <h1>Hello World!</h1>
-        </div>
-    </section>
+    
     <!-- End Detail Product -->
 
     <!-- JS Bootstrap -->
