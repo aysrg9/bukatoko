@@ -50,16 +50,18 @@
             </div>
         </nav>
     </section>
+    <!-- Navbar Bottom -->
     <section id="nav-bottom">
         <nav class="nav-icon navbar fixed-bottom">
             <div class="container">
                 <a href="#"><i class="bi bi-house"></i></a>
-                <a href="#"><i class="bi bi-heart"></i></i></a>
+                <a href="#"><i class="bi bi-heart"></i></a>
                 <a href="#"><i class="bi bi-cart3"></i></a>
                 <a href="#"><i class="bi bi-person-circle"></i></a>
             </div>
         </nav>
     </section>
+    <!-- End Navbar Bottom -->
     <!-- End Navbar -->
 
     <!-- Carousel -->

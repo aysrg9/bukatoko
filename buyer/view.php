@@ -20,11 +20,17 @@
 
     <!-- My CSS -->
     <link rel="stylesheet" href="../assets/css/style.css">
+
+    <style>
+    body {
+        height: 100vh;
+    }
+    </style>
 </head>
 
 <body>
     <!-- Start Navbar -->
-    <section id="navbar" class="fixed-top">
+    <section id="navbar" class="fixed-top ">
         <div style="background-color: #F3F4F5;">
             <div id="text-info" class="container pt-1 pb-1">
                 <a href="" class="me-3">About Bukatoko</a>
@@ -63,7 +69,30 @@
     <!-- End Navbar -->
 
     <!-- Detail Product -->
-    
+    <!-- Mobile View -->
+    <section id="mobile-view">
+        <div class="container-sm bg-white shadow">
+            <img class="image-product" src="../assets/images/product/62bc18e6e5998.png" alt="Product">
+            <h1 class="fw-bold pt-2 d-inline-block">Rp1.399.999,00</h1>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni, assumenda?</p>
+            <div class="pb-3 rounded">
+                <a class="btn btn-primary text-white fw-bold" href="">ADD TO CART</a>
+                <a class="btn btn-primary text-white fw-bold" href="">BUY NOW</a>
+            </div>
+        </div>
+        <div class="container-sm bg-white shadow mt-3">
+            <h1 class="fw-bold pt-3">Product Description</h1>
+            <p class="pb-3">Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Consequuntur libero consectetur ut
+                illum nihil pariatur, minima veniam accusantium eligendi est eius velit assumenda eum? Quaerat,
+                repellendus expedita dolores nulla ut unde! Libero repellat voluptate aliquam praesentium molestias,
+                vero doloremque veritatis eligendi ullam sit eaque provident, asperiores sequi ut adipisci sapiente.</p>
+        </div>
+        <div style="margin-top: 42px;">
+            <h1>margin</h1>
+        </div>
+    </section>
+    <!-- End Mobile View -->
     <!-- End Detail Product -->
 
     <!-- JS Bootstrap -->
