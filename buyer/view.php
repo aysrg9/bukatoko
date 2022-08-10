@@ -20,17 +20,11 @@
 
     <!-- My CSS -->
     <link rel="stylesheet" href="../assets/css/style.css">
-
-    <style>
-    body {
-        height: 100vh;
-    }
-    </style>
 </head>
 
 <body>
     <!-- Start Navbar -->
-    <section id="navbar" class="fixed-top ">
+    <section id="navbar" class="fixed-top">
         <div style="background-color: #F3F4F5;">
             <div id="text-info" class="container pt-1 pb-1">
                 <a href="" class="me-3">About Bukatoko</a>
@@ -69,10 +63,41 @@
     <!-- End Navbar -->
 
     <!-- Detail Product -->
+    <!-- Dekstop View -->
+    <section class="container" id="dekstop-view">
+        <div class="mb-3 bg-white card shadow" style="max-width: auto;">
+            <div class="row g-0">
+                <div class="col-md-4" style="height: 300px; width: 300px;">
+                    <img id="image-view-product" src="../assets/images/product/62bb3f4a6be9a.png"
+                        class="img-fluid rounded-start" alt="Image Product">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h5 class="card-title fw-bold">Prosesor Intel® Core™ i3 Generasi ke-12</h5>
+                        <h3 class="card-title fw-bold">Rp 1.399.200,00</h3>
+                        <p class="card-text testimonial">The products sold at the <b>Bukatoko</b> have been confirmed to
+                            be 100%
+                            original and have an official guarantee, for a warranty claim, you just have to come to our
+                            store. Thank you.</p>
+                        <p class="card-text"><small class="text-muted">Stock 5</small></p>
+                        <p class="card-text"><small class="text-muted">NOTE Minimum Purchase 1</small>
+                        </p>
+                        <input type="number" value="1" min="1" style="width: 100px;">
+                        <div class="d-block pt-3">
+                            <button type="submit" class="btn btn-primary btn-sm fw-bold rounded">ADD TO
+                                CART</button>
+                            <button type="submit" class="btn btn-primary btn-sm fw-bold rounded">BUY NOW</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End Dekstop View -->
     <!-- Mobile View -->
     <section id="mobile-view">
         <div class="container-sm bg-white shadow">
-            <img class="image-product" src="../assets/images/product/62bc18e6e5998.png" alt="Product">
+            <img class="image-product" src="../assets/images/product/62bb3f4a6be9a.png" alt="Product">
             <h1 class="fw-bold pt-2 d-inline-block">Rp1.399.999,00</h1>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni, assumenda?</p>
             <div class="pb-3 rounded">
@@ -82,14 +107,14 @@
         </div>
         <div class="container-sm bg-white shadow mt-3">
             <h1 class="fw-bold pt-3">Product Description</h1>
-            <p class="pb-3">Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Consequuntur libero consectetur ut
-                illum nihil pariatur, minima veniam accusantium eligendi est eius velit assumenda eum? Quaerat,
-                repellendus expedita dolores nulla ut unde! Libero repellat voluptate aliquam praesentium molestias,
-                vero doloremque veritatis eligendi ullam sit eaque provident, asperiores sequi ut adipisci sapiente.</p>
+            <p class="pb-3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus tempore maxime error
+                aliquid? A quia rerum sunt exercitationem optio veritatis ducimus, nesciunt est nostrum enim dignissimos
+                alias, dicta nisi unde architecto dolores eius necessitatibus consectetur non incidunt. Quibusdam,
+                blanditiis accusantium officiis eius molestias illo ducimus, obcaecati expedita officia aspernatur nemo.
+            </p>
         </div>
-        <div style="margin-top: 42px;">
-            <h1>margin</h1>
+        <div style="margin-top: 35px;">
+            <h1 class="text-center text-white">margin</h1>
         </div>
     </section>
     <!-- End Mobile View -->

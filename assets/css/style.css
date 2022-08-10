@@ -73,7 +73,13 @@ body {
   height: 350px;
   margin-top: 70px;
 }
-
+#mobile-view {
+  display: none;
+}
+#dekstop-view {
+  padding-top: 156px;
+  padding-bottom: 50px;
+}
 /* End View Product */
 /* End Product */
 
@@ -137,6 +143,10 @@ body {
   #detail-product {
     padding-top: 91px;
   }
+  #dekstop-view {
+    padding-top: 116px;
+    padding-bottom: 50px;
+  }
 }
 
 /* Mobile Device */
@@ -153,6 +163,9 @@ body {
   #nav-bottom {
     display: contents;
   }
+  #mobile-view {
+    display: contents;
+  }
   #image-product-view {
     width: 150px;
     height: 150px;
@@ -162,6 +175,9 @@ body {
     padding-top: 0px;
   }
   .delivery-text {
+    display: none;
+  }
+  #dekstop-view {
     display: none;
   }
 }
