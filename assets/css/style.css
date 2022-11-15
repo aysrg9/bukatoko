@@ -38,6 +38,7 @@ body {
 .nav-icon a:hover {
   color: black;
 }
+
 /* End Navbar */
 
 /* Carousel */
@@ -50,6 +51,7 @@ body {
   width: 100%;
   height: 400px;
 }
+
 /* End Carousel */
 
 /* Info Promo */
@@ -61,25 +63,75 @@ body {
 #info-customer {
   margin-bottom: 50px;
 }
+
 /* End Info Promo */
 
 /* Product */
+.picture-product {
+  width: 100%;
+  height: 160px;
+}
+
+#product {
+  margin-bottom: 50px;
+}
+
 #col-product:hover {
   border: 2px solid #0d6efd;
 }
+
 /* View Product */
 .image-product {
   width: 100%;
   height: 350px;
   margin-top: 70px;
 }
+
+#quantity {
+  font-weight: bold;
+  -moz-appearance: textfield;
+  text-align: center;
+  font-size: 20px;
+  border: none;
+  background-color: #ffffff;
+  color: #202030;
+  outline: none;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.plus-minus {
+  font-weight: bold;
+  color: #fff;
+  background-color: #3264fe;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+#decrement {
+  padding: 10px 10px 15px 25px;
+  border-radius: 45px 0 0 45px;
+}
+
+#increment {
+  padding: 10px 25px 15px 10px;
+  border-radius: 0 45px 45px 0;
+}
+
 #mobile-view {
   display: none;
 }
+
 #dekstop-view {
   padding-top: 156px;
-  padding-bottom: 50px;
+  padding-bottom: 49px;
 }
+
 /* End View Product */
 /* End Product */
 
@@ -103,6 +155,7 @@ body {
   background-color: #ffffff;
   margin-bottom: 50px;
 }
+
 /* End Login & Regitser Form */
 
 /* Responsive */
@@ -116,12 +169,15 @@ body {
   .input-search {
     width: 150px;
   }
+
   .card-customer {
     width: 100%;
   }
+
   #container-form {
     width: 350px;
   }
+
   #image-product-view {
     width: 150px;
     height: 150px;
@@ -133,16 +189,20 @@ body {
   #text-info {
     display: none;
   }
+
   #carousel {
     padding-top: 91px;
     padding-bottom: 25px;
   }
+
   #banner-recomend {
     margin-top: -25px;
   }
+
   #detail-product {
     padding-top: 91px;
   }
+
   #dekstop-view {
     padding-top: 116px;
     padding-bottom: 50px;
@@ -151,34 +211,47 @@ body {
 
 /* Mobile Device */
 @media screen and (max-width: 484px) {
+  #product {
+    margin-bottom: 84px;
+  }
+
   #button-navbar {
     display: none;
   }
+
   .input-search {
     width: 200px;
   }
+
   .carousel-item img {
     height: 300px;
   }
+
   #nav-bottom {
     display: contents;
   }
+
   #mobile-view {
     display: contents;
   }
+
   #image-product-view {
     width: 150px;
     height: 150px;
   }
+
   #desc-view-product {
     padding-left: 0px;
     padding-top: 0px;
   }
+
   .delivery-text {
     display: none;
   }
+
   #dekstop-view {
     display: none;
   }
 }
+
 /* End Responsive */

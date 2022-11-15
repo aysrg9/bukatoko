@@ -1,3 +1,20 @@
+<?php
+
+session_start();
+
+// koneksi
+require '../functions.php';
+
+// query data product
+$product = query("SELECT * FROM product");
+
+// ambil data di url 
+$id_product = $_GET["id_product"];
+
+//query data product berdasarkan id
+$prdct = query("SELECT * FROM product WHERE id_product = $id_product")[0];
+?>
+
 <!doctype html>
 <html lang="en">
 
@@ -37,15 +54,15 @@
         </div>
         <nav class="navbar shadow" style="background-color: #fff;">
             <div class="container">
-                <a class="navbar-brand fs-2 text-primary fw-bold" href=""
+                <a href="../index.php" class="navbar-brand fs-2 text-primary fw-bold"
                     style="font-family: 'Kanit', sans-serif;">Bukatoko</a>
                 <form class="d-flex" role="search">
                     <input class="input-search form-control" type="search" placeholder="Search" aria-label="Search">
                     <button class="btn btn-outline-primary d-none" type="submit"><i class="bi bi-search"></i></button>
                 </form>
                 <div id="button-navbar">
-                    <a href="./buyer/login.php" class="btn btn-primary fw-bold">LOGIN</a>
-                    <a href="./buyer/register.php" class="btn btn-primary fw-bold">REGISTER</a>
+                    <a href="login.php" class="btn btn-primary fw-bold">LOGIN</a>
+                    <a href="register.php" class="btn btn-primary fw-bold">REGISTER</a>
                 </div>
             </div>
         </nav>
@@ -66,41 +83,63 @@
     <!-- Dekstop View -->
     <section class="container" id="dekstop-view">
         <div class="mb-3 bg-white card shadow" style="max-width: auto;">
-            <div class="row g-0">
+            <div class="row g-0 mt-3 mb-3">
                 <div class="col-md-4" style="height: 300px; width: 300px;">
-                    <img id="image-view-product" src="../assets/images/product/62bb3f4a6be9a.png"
+                    <img id="image-view-product" src="../assets/images/product/<?= $prdct["picture"] ?>"
                         class="img-fluid rounded-start" alt="Image Product">
                 </div>
                 <div class="col-md-8">
                     <div class="card-body">
-                        <h5 class="card-title fw-bold">Prosesor Intel® Core™ i3 Generasi ke-12</h5>
-                        <h3 class="card-title fw-bold">Rp 1.399.200,00</h3>
-                        <p class="card-text testimonial">The products sold at the <b>Bukatoko</b> have been confirmed to
+                        <h5 class="card-title fw-bold"><?= $prdct["product_name"] ?></h5>
+                        <h3 class="card-title fw-bold"><?= rupiah($prdct["price"]) ?></h3>
+                        <p class="card-text">The products sold at the <b>Bukatoko</b> have been confirmed to
                             be 100%
                             original and have an official guarantee, for a warranty claim, you just have to come to our
                             store. Thank you.</p>
-                        <p class="card-text"><small class="text-muted">Stock 5</small></p>
-                        <p class="card-text"><small class="text-muted">NOTE Minimum Purchase 1</small>
+                        <p class="card-text"><small class="text-muted">Stock <?= $prdct["stock"] ?></small></p>
+                        <p class="card-text"><small class="text-muted">NOTE Minimum Purchase 1, Maximum Purchase
+                                50</small>
                         </p>
-                        <input type="number" value="1" min="1" style="width: 100px;">
+
+                        <button class="plus-minus" id="decrement" onclick="stepper(this)"> - </button>
+                        <input type="number" min="0" max="50" step="1" value="1" id="quantity">
+                        <button class="plus-minus" id="increment" onclick="stepper(this)"> + </button>
+
                         <div class="d-block pt-3">
-                            <button type="submit" class="btn btn-primary btn-sm fw-bold rounded">ADD TO
+                            <button type="submit" class="btn btn-primary btn fw-bold rounded">ADD TO
                                 CART</button>
-                            <button type="submit" class="btn btn-primary btn-sm fw-bold rounded">BUY NOW</button>
+                            <button type="submit" class="btn btn-primary btn fw-bold rounded">BUY NOW</button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        <div class="container-sm card bg-white shadow mt-3">
+            <h2 class="fw-bold pt-4">Product Description</h2>
+            <p class="pb-3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus tempore maxime error
+                aliquid? A quia rerum sunt exercitationem optio veritatis ducimus, nesciunt est nostrum enim dignissimos
+                alias, dicta nisi unde architecto dolores eius necessitatibus consectetur non incidunt. Quibusdam,
+                blanditiis accusantium officiis eius molestias illo ducimus, obcaecati expedita officia aspernatur nemo.
+            </p>
+        </div>
     </section>
     <!-- End Dekstop View -->
+
     <!-- Mobile View -->
     <section id="mobile-view">
         <div class="container-sm bg-white shadow">
-            <img class="image-product" src="../assets/images/product/62bb3f4a6be9a.png" alt="Product">
-            <h1 class="fw-bold pt-2 d-inline-block">Rp1.399.999,00</h1>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni, assumenda?</p>
-            <div class="pb-3 rounded">
+            <img class="image-product" src="../assets/images/product/<?= $prdct["picture"] ?>" alt="Product">
+            <h1 class="fw-bold pt-2 d-inline-block"><?= rupiah($prdct["price"]) ?></h1>
+            <p style="font-size: 20px;"><?= $prdct["product_name"] ?></p>
+            <p><small class="text-muted">Stock <?= $prdct["stock"] ?></small></p>
+            <p><small class="text-muted">NOTE Minimum Purchase 1, Maximum Purchase
+                    50</small></p>
+
+            <button class="plus-minus" id="decrement" onclick="stepper(this)"> - </button>
+            <input type="number" min="0" max="50" step="1" value="1" id="quantity">
+            <button class="plus-minus" id="increment" onclick="stepper(this)"> + </button>
+
+            <div class="pb-3 pt-3 rounded">
                 <a class="btn btn-primary text-white fw-bold" href="">ADD TO CART</a>
                 <a class="btn btn-primary text-white fw-bold" href="">BUY NOW</a>
             </div>
@@ -119,6 +158,9 @@
     </section>
     <!-- End Mobile View -->
     <!-- End Detail Product -->
+
+    <!-- Input Stepper -->
+    <script src="../assets/js/quantity.js"></script>
 
     <!-- JS Bootstrap -->
     <script src=" https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"

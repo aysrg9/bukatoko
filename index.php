@@ -1,3 +1,12 @@
+<?php
+
+// Connect
+require 'functions.php';
+
+// query data product
+$product = query("SELECT * FROM product");
+
+?>
 <!doctype html>
 <html lang="en">
 
@@ -126,120 +135,39 @@
 
     <!-- Product -->
     <section id="product" class="container">
+
         <div id="banner-recomend" class="shadow" style="background-color: #ffffff;">
             <h3 class="pt-2 pb-2 text-center text-primary fw-bold">Recommendation Product</h3>
         </div>
+
         <div class="row row-cols-2 row-cols-sm-3 row-cols-lg-5 g-2 g-sm-3 mt-3">
-            <a href="./buyer/view.php" style="text-decoration: none;">
-                <div id="col-product" class="col">
+
+            <?php $i = 1; ?>
+            <?php foreach ($product as $row) : ?>
+
+            <a href="./buyer/view.php?id_product=<?= $row["id_product"] ?>" style="text-decoration: none;">
+
+                <div id="col-product" class="col shadow">
+
                     <div class="p-3 shadow-sm bg-white">
-                        <img src="./assets/images/product/62bb3f4a6be9a.png" class="card-img-top" alt="...">
+
+                        <img src="./assets/images/product/<?= $row["picture"] ?>" class="card-img-top picture-product"
+                            alt="...">
+
                         <div class="card-body pt-3">
-                            <p class="card-title text-truncate text-dark">Prosesor Intel® Core™ i3-12100F</p>
-                            <p class="card-title pt-2 fw-bold text-dark">Rp 1.399.000</p>
+                            <p class="card-title text-truncate text-dark"><?= $row["product_name"] ?></p>
+                            <p class="card-title pt-2 fw-bold text-dark"><?= rupiah($row["price"]) ?></p>
                         </div>
+
                     </div>
+
                 </div>
+
             </a>
-            <div class="col">
-                <div class="p-3 shadow-sm bg-white">
-                    <div style="width: auto;">
-                        <img src="./assets/images/product/62bb3f4a6be9a.png" class="card-img-top" alt="...">
-                        <div class="card-body pt-3">
-                            <p class="card-title text-truncate ">Prosesor Intel® Core™ i3-12100F</p>
-                            <p class="card-title pt-2 fw-bold">Rp 1.399.000</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="p-3 shadow-sm bg-white">
-                    <div style="width: auto;">
-                        <img src="./assets/images/product/62bb3f4a6be9a.png" class="card-img-top" alt="...">
-                        <div class="card-body pt-3">
-                            <p class="card-title text-truncate ">Prosesor Intel® Core™ i3-12100F</p>
-                            <p class="card-title pt-2 fw-bold">Rp 1.399.000</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="p-3 shadow-sm bg-white">
-                    <div style="width: auto;">
-                        <img src="./assets/images/product/62bb3f4a6be9a.png" class="card-img-top" alt="...">
-                        <div class="card-body pt-3">
-                            <p class="card-title text-truncate ">Prosesor Intel® Core™ i3-12100F</p>
-                            <p class="card-title pt-2 fw-bold">Rp 1.399.000</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="p-3 shadow-sm bg-white">
-                    <div style="width: auto;">
-                        <img src="./assets/images/product/62bb3f4a6be9a.png" class="card-img-top" alt="...">
-                        <div class="card-body pt-3">
-                            <p class="card-title text-truncate ">Prosesor Intel® Core™ i3-12100F</p>
-                            <p class="card-title pt-2 fw-bold">Rp 1.399.000</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="p-3 shadow-sm bg-white">
-                    <div style="width: auto;">
-                        <img src="./assets/images/product/62bb3f4a6be9a.png" class="card-img-top" alt="...">
-                        <div class="card-body pt-3">
-                            <p class="card-title text-truncate ">Prosesor Intel® Core™ i3-12100F</p>
-                            <p class="card-title pt-2 fw-bold">Rp 1.399.000</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="p-3 shadow-sm bg-white">
-                    <div style="width: auto;">
-                        <img src="./assets/images/product/62bb3f4a6be9a.png" class="card-img-top" alt="...">
-                        <div class="card-body pt-3">
-                            <p class="card-title text-truncate ">Prosesor Intel® Core™ i3-12100F</p>
-                            <p class="card-title pt-2 fw-bold">Rp 1.399.000</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="p-3 shadow-sm bg-white">
-                    <div style="width: auto;">
-                        <img src="./assets/images/product/62bb3f4a6be9a.png" class="card-img-top" alt="...">
-                        <div class="card-body pt-3">
-                            <p class="card-title text-truncate ">Prosesor Intel® Core™ i3-12100F</p>
-                            <p class="card-title pt-2 fw-bold">Rp 1.399.000</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="p-3 shadow-sm bg-white">
-                    <div style="width: auto;">
-                        <img src="./assets/images/product/62bb3f4a6be9a.png" class="card-img-top" alt="...">
-                        <div class="card-body pt-3">
-                            <p class="card-title text-truncate ">Prosesor Intel® Core™ i3-12100F</p>
-                            <p class="card-title pt-2 fw-bold">Rp 1.399.000</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="p-3 shadow-sm bg-white">
-                    <div style="width: auto;">
-                        <img src="./assets/images/product/62bb3f4a6be9a.png" class="card-img-top" alt="...">
-                        <div class="card-body pt-3">
-                            <p class="card-title text-truncate">Prosesor Intel® Core™ i3-12100F</p>
-                            <p class="card-title pt-2 fw-bold">Rp 1.399.000</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+
+            <?php $i++ ?>
+            <?php endforeach; ?>
+
         </div>
     </section>
     <!-- End Product -->
