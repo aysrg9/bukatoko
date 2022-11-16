@@ -1,5 +1,6 @@
 <?php
 
+// session start
 session_start();
 
 // koneksi
@@ -17,6 +18,39 @@ $prdct = query("SELECT * FROM product WHERE id_product = $id_product")[0];
 // waktu 
 date_default_timezone_set('Asia/Jakarta');
 $time = date("Y-m-d H:i:s");
+
+// add to cart
+if (isset($_POST['addtocart'])) {
+    // cek apakah user sudah login
+    if (!isset($_SESSION['login'])) {
+        // apabila belom login
+        header('Location: login.php');
+    }
+
+    // proses ambil data
+    // apabila sudah login, ambil id dari session
+    $id_user = $_SESSION['id_user'];
+    $id_product = $_GET['id_product'];
+    $quantity = $_POST['quantity'];
+    $stock_product = $prdct['stock'];
+    $select_cart = mysqli_query($db, "SELECT * FROM `cart` WHERE id_product = '$id_product' AND id_user = '$id_user'") or
+        die('query failed');
+
+    // cek stock
+    if ($quantity > $stock_product) {
+        // jika stock tidak cukup
+        $error[] = ' Sorry, not enough stock!';
+    } else {
+        // cek apakah product sudah ada dicart atau belum
+        if (mysqli_num_rows($select_cart) > 0) {
+            $error[] = 'Product already added to cart!';
+        } else {
+            // jika stock cukup
+            mysqli_query($db, "INSERT INTO `cart`(id_user, id_product, quantity) VALUES('$id_user', $id_product, '$quantity')") or die('query failed');
+            $message[] = 'Product added to cart!';
+        }
+    }
+}
 ?>
 <!doctype html>
 <html lang="en">
@@ -65,6 +99,8 @@ $time = date("Y-m-d H:i:s");
                     <button class="btn btn-outline-primary d-none" type="submit"><i class="bi bi-search"
                             name="search"></i></button>
                 </form>
+
+                <!-- Cek user login -->
                 <?php if (isset($_SESSION['login'])) : ?>
 
                 <div id="button-navbar">
@@ -82,6 +118,8 @@ $time = date("Y-m-d H:i:s");
             </div>
         </nav>
     </section>
+    <!-- Start Navbar bottom -->
+    <!-- Navbar bottom untuk mobile display -->
     <section id="nav-bottom">
         <nav class="nav-icon navbar fixed-bottom">
             <div class="container">
@@ -101,87 +139,125 @@ $time = date("Y-m-d H:i:s");
             </div>
         </nav>
     </section>
+    <!-- End Navbar bottom -->
     <!-- End Navbar -->
 
-    <!-- Detail Product -->
-    <!-- Dekstop View -->
-    <section class="container" id="dekstop-view">
-        <div class="mb-3 bg-white card shadow" style="max-width: auto;">
-            <div class="row g-0 mt-3 mb-3">
-                <div class="col-md-4" style="height: 300px; width: 300px;">
-                    <img id="image-view-product" src="../assets/images/product/<?= $prdct["picture"] ?>"
-                        class="img-fluid rounded-start" alt="Image Product">
-                </div>
-                <div class="col-md-8">
-                    <div class="card-body">
-                        <h5 class="card-title fw-bold"><?= $prdct["product_name"] ?></h5>
-                        <h3 class="card-title fw-bold"><?= rupiah($prdct["price"]) ?></h3>
-                        <p class="card-text">The products sold at the <b>Bukatoko</b> have been confirmed to
-                            be 100%
-                            original and have an official guarantee, for a warranty claim, you just have to come to our
-                            store. Thank you.</p>
-                        <p class="card-text"><small class="text-muted">Stock <?= $prdct["stock"] ?></small></p>
-                        <p class="card-text"><small class="text-muted">NOTE Minimum Purchase 1, Maximum Purchase
-                                50</small>
-                        </p>
+    <form method="POST">
+        <!-- Detail Product -->
+        <!-- Dekstop View -->
+        <section class="container" id="dekstop-view">
+            <!-- Alert -->
+            <!-- Alert Succes -->
+            <?php if (isset($message)) : ?>
+            <?php foreach ($message as $message) : ?>
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <strong><?= $message ?></strong>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            <?php endforeach; ?>
+            <?php endif; ?>
+            <!-- End Alert Succes -->
+            <!-- Alert Error -->
+            <?php if (isset($error)) : ?>
+            <?php foreach ($error as $error) : ?>
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <strong><?= $error ?></strong>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            <?php endforeach; ?>
+            <?php endif; ?>
+            <!-- End Alert Error -->
+            <!-- End Alert -->
+            <div class="mb-3 bg-white card shadow" style="max-width: auto;">
+                <div class="row g-0 mt-3 mb-3">
+                    <div class="col-md-4" style="height: 300px; width: 300px;">
+                        <img id="image-view-product" src="../assets/images/product/<?= $prdct["picture"] ?>"
+                            class="img-fluid rounded-start" alt="Image Product">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title fw-bold"><?= $prdct["product_name"] ?></h5>
+                            <h3 class="card-title fw-bold"><?= rupiah($prdct["price"]) ?></h3>
+                            <p class="card-text">The products sold at the <b>Bukatoko</b> have been confirmed to
+                                be 100%
+                                original and have an official guarantee, for a warranty claim, you just have to come to
+                                our
+                                store. Thank you.</p>
+                            <p class="card-text"><small class="text-muted">Stock <?= $prdct["stock"] ?></small></p>
+                            <p class="card-text"><small class="text-muted">NOTE Minimum Purchase 1, Maximum Purchase
+                                    50</small>
+                            </p>
 
-                        <button class="plus-minus" id="decrement" onclick="stepper(this)"> - </button>
-                        <input type="number" min="1" max="50" step="1" value="1" id="quantity">
-                        <button class="plus-minus" id="increment" onclick="stepper(this)"> + </button>
+                            <button class="plus-minus" id="decrement" onclick="stepper(this)"> - </button>
 
-                        <div class="d-block pt-3">
-                            <button type="submit" class="btn btn-primary btn fw-bold rounded">ADD TO
-                                CART</button>
-                            <button type="submit" class="btn btn-primary btn fw-bold rounded">BUY NOW</button>
+                            <input type="number" min="1" max="50" step="1" value="1" id="quantity" name="quantity">
+
+                            <input type="text" value="<?= $time ?>" readonly required style="display: none;">
+
+                            <button class="plus-minus" id="increment" onclick="stepper(this)"> + </button>
+
+                            <div class="d-block pt-3">
+
+                                <button type="submit" class="btn btn-primary btn fw-bold rounded" name="addtocart">ADD
+                                    TO
+                                    CART</button>
+                                <button type="submit" class="btn btn-primary btn fw-bold rounded">BUY NOW</button>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="container-sm card bg-white shadow mt-3">
-            <h2 class="fw-bold pt-4">Product Description</h2>
-            <p class="pb-3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus tempore maxime error
-                aliquid? A quia rerum sunt exercitationem optio veritatis ducimus, nesciunt est nostrum enim dignissimos
-                alias, dicta nisi unde architecto dolores eius necessitatibus consectetur non incidunt. Quibusdam,
-                blanditiis accusantium officiis eius molestias illo ducimus, obcaecati expedita officia aspernatur nemo.
-            </p>
-        </div>
-    </section>
-    <!-- End Dekstop View -->
-
-    <!-- Mobile View -->
-    <section id="mobile-view">
-        <div class="container-sm bg-white shadow">
-            <img class="image-product" src="../assets/images/product/<?= $prdct["picture"] ?>" alt="Product">
-            <h1 class="fw-bold pt-2 d-inline-block"><?= rupiah($prdct["price"]) ?></h1>
-            <p style="font-size: 20px;"><?= $prdct["product_name"] ?></p>
-            <p><small class="text-muted">Stock <?= $prdct["stock"] ?></small></p>
-            <p><small class="text-muted">NOTE Minimum Purchase 1, Maximum Purchase
-                    50</small></p>
-
-            <button class="plus-minus" id="decrement" onclick="stepper(this)"> - </button>
-            <input type="number" min="1" max="50" step="1" value="1" id="quantity">
-            <button class="plus-minus" id="increment" onclick="stepper(this)"> + </button>
-
-            <div class="pb-3 pt-3 rounded">
-                <a class="btn btn-primary text-white fw-bold" href="">ADD TO CART</a>
-                <a class="btn btn-primary text-white fw-bold" href="">BUY NOW</a>
+            <div class="container-sm card bg-white shadow mt-3">
+                <h2 class="fw-bold pt-4">Product Description</h2>
+                <p class="pb-3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus tempore maxime
+                    error
+                    aliquid? A quia rerum sunt exercitationem optio veritatis ducimus, nesciunt est nostrum enim
+                    dignissimos
+                    alias, dicta nisi unde architecto dolores eius necessitatibus consectetur non incidunt. Quibusdam,
+                    blanditiis accusantium officiis eius molestias illo ducimus, obcaecati expedita officia aspernatur
+                    nemo.
+                </p>
             </div>
-        </div>
-        <div class="container-sm bg-white shadow mt-3">
-            <h1 class="fw-bold pt-3">Product Description</h1>
-            <p class="pb-3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus tempore maxime error
-                aliquid? A quia rerum sunt exercitationem optio veritatis ducimus, nesciunt est nostrum enim dignissimos
-                alias, dicta nisi unde architecto dolores eius necessitatibus consectetur non incidunt. Quibusdam,
-                blanditiis accusantium officiis eius molestias illo ducimus, obcaecati expedita officia aspernatur nemo.
-            </p>
-        </div>
-        <div style="margin-top: 35px;">
-            <h1 class="text-center text-white">margin</h1>
-        </div>
-    </section>
-    <!-- End Mobile View -->
-    <!-- End Detail Product -->
+        </section>
+        <!-- End Dekstop View -->
+
+        <!-- Mobile View -->
+        <section id="mobile-view">
+            <div class="container-sm bg-white shadow">
+                <img class="image-product" src="../assets/images/product/<?= $prdct["picture"] ?>" alt="Product">
+                <h1 class="fw-bold pt-2 d-inline-block"><?= rupiah($prdct["price"]) ?></h1>
+                <p style="font-size: 20px;"><?= $prdct["product_name"] ?></p>
+                <p><small class="text-muted">Stock <?= $prdct["stock"] ?></small></p>
+                <p><small class="text-muted">NOTE Minimum Purchase 1, Maximum Purchase
+                        50</small></p>
+
+                <button class="plus-minus" id="decrement" onclick="stepper(this)"> - </button>
+                <input type="number" min="1" max="50" step="1" value="1" id="quantity">
+                <button class="plus-minus" id="increment" onclick="stepper(this)"> + </button>
+
+                <div class="pb-3 pt-3 rounded">
+                    <a class="btn btn-primary text-white fw-bold" href="">ADD TO CART</a>
+                    <a class="btn btn-primary text-white fw-bold" href="">BUY NOW</a>
+                </div>
+            </div>
+            <div class="container-sm bg-white shadow mt-3">
+                <h1 class="fw-bold pt-3">Product Description</h1>
+                <p class="pb-3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus tempore maxime
+                    error
+                    aliquid? A quia rerum sunt exercitationem optio veritatis ducimus, nesciunt est nostrum enim
+                    dignissimos
+                    alias, dicta nisi unde architecto dolores eius necessitatibus consectetur non incidunt. Quibusdam,
+                    blanditiis accusantium officiis eius molestias illo ducimus, obcaecati expedita officia aspernatur
+                    nemo.
+                </p>
+            </div>
+            <div style="margin-top: 35px;">
+                <h1 class="text-center text-white">margin</h1>
+            </div>
+        </section>
+        <!-- End Mobile View -->
+        <!-- End Detail Product -->
+    </form>
 
     <!-- Input Stepper -->
     <script src="../assets/js/quantity.js"></script>

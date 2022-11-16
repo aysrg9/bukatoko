@@ -68,8 +68,8 @@ $time = date("Y-m-d H:i:s");
             <?php endif; ?>
             <!-- End Alert -->
 
-            <input type="text" value="<?php echo $time; ?>" name="created" style="display: none;" readonly>
-            <input type="text" value="person.png" id="picture" name="picture" style="display: none;" readonly>
+            <input type="text" value="<?php echo $time; ?>" name="created" style="display: none;" readonly required>
+            <input type="text" value="person.png" id="picture" name="picture" style="display: none;" readonly required>
 
             <div class="mb-3">
                 <input type="text" class="form-control" id="username" placeholder="Username" name="username"
