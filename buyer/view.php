@@ -102,7 +102,7 @@ $prdct = query("SELECT * FROM product WHERE id_product = $id_product")[0];
                         </p>
 
                         <button class="plus-minus" id="decrement" onclick="stepper(this)"> - </button>
-                        <input type="number" min="0" max="50" step="1" value="1" id="quantity">
+                        <input type="number" min="1" max="50" step="1" value="1" id="quantity">
                         <button class="plus-minus" id="increment" onclick="stepper(this)"> + </button>
 
                         <div class="d-block pt-3">
@@ -136,7 +136,7 @@ $prdct = query("SELECT * FROM product WHERE id_product = $id_product")[0];
                     50</small></p>
 
             <button class="plus-minus" id="decrement" onclick="stepper(this)"> - </button>
-            <input type="number" min="0" max="50" step="1" value="1" id="quantity">
+            <input type="number" min="1" max="50" step="1" value="1" id="quantity">
             <button class="plus-minus" id="increment" onclick="stepper(this)"> + </button>
 
             <div class="pb-3 pt-3 rounded">

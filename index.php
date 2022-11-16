@@ -1,10 +1,19 @@
 <?php
 
+session_start();
+
 // Connect
 require 'functions.php';
 
 // query data product
 $product = query("SELECT * FROM product");
+
+// cek user login
+if (isset($_SESSION['login'])) {
+    // jika sudah
+    $id_user = $_SESSION['id_user'];
+    $username = $_SESSION['username'];
+}
 
 ?>
 <!doctype html>
@@ -52,13 +61,26 @@ $product = query("SELECT * FROM product");
                     <input class="input-search form-control" type="search" placeholder="Search" aria-label="Search">
                     <button class="btn btn-outline-primary d-none" type="submit"><i class="bi bi-search"></i></button>
                 </form>
+
+
+                <?php if (isset($_SESSION['login'])) : ?>
+
+                <div id="button-navbar">
+                    <a href="./buyer/logout.php" style="text-decoration: none;" class=" fw-bold fs-5">Halo,
+                        <?= $_SESSION['username']; ?></a>
+                </div>
+
+                <?php else : ?>
                 <div id="button-navbar">
                     <a href="./buyer/login.php" class="btn btn-primary fw-bold">LOGIN</a>
                     <a href="./buyer/register.php" class="btn btn-primary fw-bold">REGISTER</a>
                 </div>
+
+                <?php endif; ?>
             </div>
         </nav>
     </section>
+
     <!-- Navbar Bottom -->
     <section id="nav-bottom">
         <nav class="nav-icon navbar fixed-bottom">

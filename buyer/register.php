@@ -1,3 +1,19 @@
+<?php
+
+// koneksi
+require '../functions.php';
+
+// proses register
+if (isset($_POST["submit"])) {
+    if (registrasic($_POST) > 0) {
+        // Alert Error
+        $created = true;
+    } else {
+        echo mysqli_error($db);
+    }
+}
+?>
+
 <!doctype html>
 <html lang="en">
 
@@ -26,30 +42,52 @@
     </h1>
     <section id="container-form" class="container shadow rounded"
         style="border: 3px solid gainsboro; margin-bottom: 50px;">
-        <form action="">
+        <form action="" method="POST">
+
             <h3 class="text-center header-form" style="padding-top: 35px; padding-bottom:35px;">Register first, come on!
             </h3>
+
+            <!-- Alert -->
+            <?php if (isset($created)) : ?>
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <strong>User Created!</strong>
+                <a href="login.php"><button type="button" class="btn-close" data-bs-dismiss="alert"
+                        aria-label="Close"></button></a>
+            </div>
+            <?php endif; ?>
+            <!-- End Alert -->
+
+            <input type="text" value="person.png" id="picture" name="picture" style="display: none;">
+
             <div class="mb-3">
-                <input type="text" class="form-control" id="username" placeholder="Username">
+                <input type="text" class="form-control" id="username" placeholder="Username" name="username"
+                    id="username" max="8" required>
                 <div id="usernameHelp" class="form-text">For example : aysrg9</div>
             </div>
+
             <div class="mb-3">
-                <input type="text" class="form-control" id="name" placeholder="Your Name">
+                <input type="text" class="form-control" placeholder="Your Name" name="fullname" id="fullname" required>
                 <div id="nameHelp" class="form-text">For example : Egyditya</div>
             </div>
+
             <div class="mb-3">
-                <input type="email" class="form-control" id="email" placeholder="Your Email">
+                <input type="email" class="form-control" placeholder="Your Email" name="email" id="email" required>
                 <div id="emailHelp" class="form-text">For example : name@email.com</div>
             </div>
+
             <div class="mb-3">
-                <input type="password" class="form-control" id="password" placeholder="Password">
+                <input type="password" class="form-control" id="password" placeholder="Password" name="password" min="8"
+                    required>
             </div>
+
             <div class="mb-3">
-                <input type="password" class="form-control" id="repassword" placeholder="Retype Password">
+                <input type="password" class="form-control" id="password2" placeholder="Retype Password"
+                    name="password2" min="8" required>
                 <div id="passwordHelp" class="form-text">We will never share your data with others.</div>
             </div>
+
             <div class="d-grid gap-2">
-                <button type="submit" class="btn btn-primary fw-bold">Register</button>
+                <button type="submit" name="submit" id="submit" class="btn btn-primary fw-bold">Register</button>
             </div>
 
             <hr>

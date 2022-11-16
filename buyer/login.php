@@ -1,3 +1,42 @@
+<?php
+
+session_start();
+
+// koneksi
+require '../functions.php';
+
+// cek form login
+if (isset($_POST["login"])) {
+
+    $username = $_POST["username"];
+    $password = $_POST["password"];
+
+    $result = mysqli_query($db, "SELECT * FROM customer WHERE username = '$username'");
+    $user = mysqli_fetch_assoc($result);
+
+    // cek username
+    if (mysqli_num_rows($result) === 1) {
+
+        // cek password
+        $row = mysqli_fetch_assoc($result);
+        if (password_verify($password, $user["password"])) {
+
+            // set session
+            $_SESSION['id_user'] = $user['id_user'];
+            // $_SESSION['picture'] = $user['picture'];
+            $_SESSION['username'] = $user['username'];
+            // $_SESSION['fullname'] = $user['fullname'];
+            // $_SESSION['email'] = $user['email'];
+            $_SESSION["login"] = true;
+
+            header("Location: ../index.php");
+            exit;
+        }
+    }
+    // Alert Error
+    $error = true;
+}
+?>
 <!doctype html>
 <html lang="en">
 
@@ -20,16 +59,29 @@
         Bukatoko
     </h1>
     <section id="container-form" class="container shadow rounded" style="border: 3px solid gainsboro;">
-        <form action="">
+        <form action="" method="POST">
             <h3 class="text-center header-form">Let's login first!</h3>
-            <div class="mb-3">
-                <input type="text" class="form-control" id="username" placeholder="Username">
+
+            <!-- Alert error -->
+            <?php if (isset($error)) : ?>
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <strong>Try Again!</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
+            <?php endif; ?>
+            <!-- End Alert -->
+
             <div class="mb-3">
-                <input type="password" class="form-control" id="password" placeholder="Password">
+                <input type="text" class="form-control" id="username" placeholder="Username" name="username" required>
             </div>
+
+            <div class="mb-3">
+                <input type="password" class="form-control" id="password" placeholder="Password" name="password"
+                    required>
+            </div>
+
             <div class="d-grid gap-2">
-                <button type="submit" class="btn btn-primary fw-bold">Login</button>
+                <button type="submit" name="login" class="btn btn-primary fw-bold">Login</button>
             </div>
 
             <hr>
