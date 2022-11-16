@@ -136,6 +136,10 @@ input::-webkit-inner-spin-button {
   padding-bottom: 49px;
 }
 
+.modal-backdrop {
+  display: none;
+}
+
 /* End View Product */
 /* End Product */
 

@@ -256,9 +256,8 @@ if (isset($_POST['addtocart'])) {
             <?php foreach ($messagem as $messagem) : ?>
 
             <!-- Modal -->
-            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                aria-hidden="true">
-                <div class="modal-dialog">
+            <div class="modal" id="exampleModal" style="background-color: #7B7B7B;">
+                <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">
                         <div class="modal-header">
                             <h1 class="modal-title fs-3 text-success" id="exampleModalLabel">Succes !</h1>
@@ -278,9 +277,8 @@ if (isset($_POST['addtocart'])) {
             <?php foreach ($errorm as $errorm) : ?>
 
             <!-- Modal -->
-            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                aria-hidden="true">
-                <div class="modal-dialog">
+            <div class="modal" id="exampleModal" style="background-color: #7B7B7B;">
+                <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">
                         <div class="modal-header">
                             <h1 class="modal-title fs-3 text-danger" id="exampleModalLabel">Warning !</h1>
@@ -294,6 +292,7 @@ if (isset($_POST['addtocart'])) {
 
             <?php endforeach; ?>
             <?php endif; ?>
+
             <!-- End Alert Error -->
             <!-- End Alert -->
             <div class="container-sm bg-white shadow mt-3">
