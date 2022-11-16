@@ -72,12 +72,13 @@ if (isset($_POST["login"])) {
             <!-- End Alert -->
 
             <div class="mb-3">
-                <input type="text" class="form-control" id="username" placeholder="Username" name="username" required>
+                <input type="text" class="form-control" id="username" placeholder="Username" name="username" required
+                    autocomplete="off">
             </div>
 
             <div class="mb-3">
                 <input type="password" class="form-control" id="password" placeholder="Password" name="password"
-                    required>
+                    required autocomplete="off">
             </div>
 
             <div class="d-grid gap-2">

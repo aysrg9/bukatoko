@@ -15,14 +15,14 @@ function query($query)
     return $rows;
 }
 
-// format rupiah
+// function rupiah
 function rupiah($angka)
 {
     $hasil = "Rp " . number_format($angka, '2', ',', '.');
     return $hasil;
 }
 
-// Regist Customer
+// Register Customer
 function registrasic($data)
 {
     global $db;
@@ -38,24 +38,14 @@ function registrasic($data)
     $result = mysqli_query($db, "SELECT username FROM customer WHERE username = '$username'");
 
     if (mysqli_fetch_assoc($result)) {
-        echo "
-            <script>
-                alert('User Is Already Registered');
-            </script>
-            ";
         return false;
     }
 
     // cek konfirmasi password 
     if ($password !== $password2) {
-        echo '
-        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-        <strong>Try Again!</strong>
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-            ';
         return false;
     }
+
     // enskirpsi password 
     $password = password_hash($password, PASSWORD_DEFAULT);
 
@@ -63,4 +53,16 @@ function registrasic($data)
     mysqli_query($db, "INSERT INTO customer VALUES(id_user,'$picture','$username','$fullname','$email','$password')");
 
     return mysqli_affected_rows($db);
+}
+
+// function search
+function search($keyword)
+{
+    $query = "SELECT * FROM product
+                WHERE
+                product_name LIKE '%$keyword%' OR 
+                stock LIKE '%$keyword%' OR
+                price LIKE '%$keyword%'
+            ";
+    return query($query);
 }

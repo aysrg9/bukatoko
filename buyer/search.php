@@ -3,7 +3,7 @@
 session_start();
 
 // Connect
-require 'functions.php';
+require '../functions.php';
 
 // query data product
 $product = query("SELECT * FROM product");
@@ -14,6 +14,9 @@ if (isset($_SESSION['login'])) {
     $id_user = $_SESSION['id_user'];
     $username = $_SESSION['username'];
 }
+
+// ambil keyword
+$keyword = $_GET['keyword'];
 
 ?>
 <!doctype html>
@@ -37,7 +40,8 @@ if (isset($_SESSION['login'])) {
     <link href="https://fonts.googleapis.com/css2?family=Kanit&display=swap" rel="stylesheet">
 
     <!-- My CSS -->
-    <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
+
 </head>
 
 <body>
@@ -55,9 +59,9 @@ if (isset($_SESSION['login'])) {
         </div>
         <nav class="navbar shadow" style="background-color: #fff;">
             <div class="container">
-                <a class="navbar-brand fs-2 text-primary fw-bold" href=""
+                <a class="navbar-brand fs-2 text-primary fw-bold" href="../index.php"
                     style="font-family: 'Kanit', sans-serif;">Bukatoko</a>
-                <form method="GET" action="./buyer/search.php" class="d-flex" role="search">
+                <form method="GET" action="" class="d-flex" role="search">
                     <input class="input-search form-control" type="search" placeholder="Search" aria-label="Search"
                         name="keyword" autocomplete="off" required>
                     <button class="btn btn-outline-primary d-none" type="submit"><i class="bi bi-search"
@@ -105,90 +109,39 @@ if (isset($_SESSION['login'])) {
     <!-- End Navbar Bottom -->
     <!-- End Navbar -->
 
-    <!-- Carousel -->
-    <section id="carousel">
-        <div class="container">
-            <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true">
-                <div class="carousel-indicators">
-                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0"
-                        class="active" aria-current="true" aria-label="Slide 1"></button>
-                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
-                        aria-label="Slide 2"></button>
-                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
-                        aria-label="Slide 3"></button>
-                </div>
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <img src="./assets/images/carousel/bukagames.png" class="d-block rounded" alt="...">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="./assets/images/carousel/bukareksa.png" class="d-block w-100 rounded" alt="...">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="./assets/images/carousel/murahmantap.png" class="d-block w-100 rounded" alt="...">
-                    </div>
-                </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
-                    data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
-                    data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </button>
-            </div>
-        </div>
-    </section>
-    <!-- End Carousel -->
-
-    <!-- Info -->
-    <section id="info-customer" class="container">
-        <div class="shadow" style="background-color: #ffffff;">
-            <div class="pt-3 pb-4 ps-3 pe-3">
-                <h3 class="text-primary fw-bold">For Egyditya</h3>
-                <div class="card-customer card mt-3 d-inline-block">
-                    <div class="card-body bg-primary text-white rounded">
-                        <h5 class="card-title fw-bold">Cashback 50%</h5>
-                        <p class="card-text">Check Bukatoko Birthday Surprise for your first purchase.</p>
-                    </div>
-                </div>
-                <div class="card-customer card mt-3 d-inline-block">
-                    <div class="card-body bg-primary text-white rounded">
-                        <h5 class="card-title fw-bold">Free Shipping</h5>
-                        <p class="card-text">Free shipping for the island of Java. Checkout now!.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- End Info -->
-
     <!-- Product -->
-    <section id="product" class="container">
+    <section id="product" class="container" style="margin-top: 156px;">
 
         <div id="banner-recomend" class="shadow" style="background-color: #ffffff;">
-            <h3 class="pt-2 pb-2 text-center text-primary fw-bold">Recommendation Product</h3>
+            <h3 class="pt-2 pb-2 text-center text-primary fw-bold">Based on what you are looking for</h3>
         </div>
 
         <div class="row row-cols-2 row-cols-sm-3 row-cols-lg-5 g-2 g-sm-3 mt-3">
 
-            <?php $i = 1; ?>
-            <?php foreach ($product as $row) : ?>
+            <?php
 
-            <a href="./buyer/view.php?id_product=<?= $row["id_product"] ?>" style="text-decoration: none;">
+            $query = mysqli_query($db, "SELECT * FROM product WHERE product_name LIKE '%$keyword%' OR  stock LIKE '%$keyword%' OR price LIKE '%$keyword%'");
+            $i = mysqli_num_rows($query);
+
+            ?>
+
+            <?php if ($i > 0) : ?>
+            <?php while ($p = mysqli_fetch_array($query)) : ?>
+
+
+
+            <a href="./buyer/view.php?id_product==<?= $p["id_product"] ?>" style="text-decoration: none;">
 
                 <div id="col-product" class="col shadow">
 
                     <div class="p-3 shadow-sm bg-white">
 
-                        <img src="./assets/images/product/<?= $row["picture"] ?>" class="card-img-top picture-product"
+                        <img src="../assets/images/product/<?= $p["picture"] ?>" class="card-img-top picture-product"
                             alt="...">
 
                         <div class="card-body pt-3">
-                            <p class="card-title text-truncate text-dark"><?= $row["product_name"] ?></p>
-                            <p class="card-title pt-2 fw-bold text-dark"><?= rupiah($row["price"]) ?></p>
+                            <p class="card-title text-truncate text-dark"><?= $p["product_name"] ?></p>
+                            <p class="card-title pt-2 fw-bold text-dark"><?= rupiah($p["price"]) ?></p>
                         </div>
 
                     </div>
@@ -197,10 +150,15 @@ if (isset($_SESSION['login'])) {
 
             </a>
 
-            <?php $i++ ?>
-            <?php endforeach; ?>
+            <?php endwhile; ?>
+            <?php else : ?>
+            <div class="alert alert-dismissible fade show text-center" role="alert" style="width: 100%;">
+                <strong class="fs-1">Not Found!</strong>
+            </div>
+            <?php endif; ?>
 
         </div>
+
     </section>
     <!-- End Product -->
 

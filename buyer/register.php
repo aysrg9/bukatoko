@@ -6,10 +6,10 @@ require '../functions.php';
 // proses register
 if (isset($_POST["submit"])) {
     if (registrasic($_POST) > 0) {
-        // Alert Error
+        // Alert
         $created = true;
     } else {
-        echo mysqli_error($db);
+        $tryagain = true;
     }
 }
 ?>
@@ -42,7 +42,7 @@ if (isset($_POST["submit"])) {
     </h1>
     <section id="container-form" class="container shadow rounded"
         style="border: 3px solid gainsboro; margin-bottom: 50px;">
-        <form action="" method="POST">
+        <form method="POST">
 
             <h3 class="text-center header-form" style="padding-top: 35px; padding-bottom:35px;">Register first, come on!
             </h3>
@@ -55,34 +55,43 @@ if (isset($_POST["submit"])) {
                         aria-label="Close"></button></a>
             </div>
             <?php endif; ?>
+
+            <?php if (isset($tryagain)) : ?>
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <strong>Try Again!</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            <?php endif; ?>
             <!-- End Alert -->
 
-            <input type="text" value="person.png" id="picture" name="picture" style="display: none;">
+            <input type="text" value="person.png" id="picture" name="picture" style="display: none;" readonly>
 
             <div class="mb-3">
                 <input type="text" class="form-control" id="username" placeholder="Username" name="username"
-                    id="username" max="8" required>
+                    id="username" max="8" required autocomplete="off">
                 <div id="usernameHelp" class="form-text">For example : aysrg9</div>
             </div>
 
             <div class="mb-3">
-                <input type="text" class="form-control" placeholder="Your Name" name="fullname" id="fullname" required>
+                <input type="text" class="form-control" placeholder="Your Name" name="fullname" id="fullname" required
+                    autocomplete="off">
                 <div id="nameHelp" class="form-text">For example : Egyditya</div>
             </div>
 
             <div class="mb-3">
-                <input type="email" class="form-control" placeholder="Your Email" name="email" id="email" required>
+                <input type="email" class="form-control" placeholder="Your Email" name="email" id="email" required
+                    autocomplete="off">
                 <div id="emailHelp" class="form-text">For example : name@email.com</div>
             </div>
 
             <div class="mb-3">
                 <input type="password" class="form-control" id="password" placeholder="Password" name="password" min="8"
-                    required>
+                    required autocomplete="off">
             </div>
 
             <div class="mb-3">
                 <input type="password" class="form-control" id="password2" placeholder="Retype Password"
-                    name="password2" min="8" required>
+                    name="password2" min="8" required autocomplete="off">
                 <div id="passwordHelp" class="form-text">We will never share your data with others.</div>
             </div>
 
