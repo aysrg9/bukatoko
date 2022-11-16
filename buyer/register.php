@@ -12,6 +12,10 @@ if (isset($_POST["submit"])) {
         $tryagain = true;
     }
 }
+
+// waktu 
+date_default_timezone_set('Asia/Jakarta');
+$time = date("Y-m-d H:i:s");
 ?>
 
 <!doctype html>
@@ -64,6 +68,7 @@ if (isset($_POST["submit"])) {
             <?php endif; ?>
             <!-- End Alert -->
 
+            <input type="text" value="<?php echo $time; ?>" name="created" style="display: none;" readonly>
             <input type="text" value="person.png" id="picture" name="picture" style="display: none;" readonly>
 
             <div class="mb-3">

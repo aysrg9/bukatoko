@@ -27,6 +27,7 @@ function registrasic($data)
 {
     global $db;
 
+    $created = (stripslashes($data["created"]));
     $picture = strtolower($data["picture"]);
     $username = strtolower(stripslashes($data["username"]));
     $fullname = (stripslashes($data["fullname"]));
@@ -50,7 +51,7 @@ function registrasic($data)
     $password = password_hash($password, PASSWORD_DEFAULT);
 
     //tambahkan user baru ke db
-    mysqli_query($db, "INSERT INTO customer VALUES(id_user,'$picture','$username','$fullname','$email','$password')");
+    mysqli_query($db, "INSERT INTO customer VALUES(id_user,'$picture','$username','$fullname','$email','$password','$created')");
 
     return mysqli_affected_rows($db);
 }

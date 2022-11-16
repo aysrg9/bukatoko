@@ -15,6 +15,10 @@ if (isset($_SESSION['login'])) {
     $username = $_SESSION['username'];
 }
 
+// waktu 
+date_default_timezone_set('Asia/Jakarta');
+$time = date("Y-m-d H:i:s");
+
 ?>
 <!doctype html>
 <html lang="en">

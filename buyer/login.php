@@ -36,6 +36,10 @@ if (isset($_POST["login"])) {
     // Alert Error
     $error = true;
 }
+
+// waktu 
+date_default_timezone_set('Asia/Jakarta');
+$time = date("Y-m-d H:i:s");
 ?>
 <!doctype html>
 <html lang="en">

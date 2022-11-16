@@ -13,8 +13,11 @@ $id_product = $_GET["id_product"];
 
 //query data product berdasarkan id
 $prdct = query("SELECT * FROM product WHERE id_product = $id_product")[0];
-?>
 
+// waktu 
+date_default_timezone_set('Asia/Jakarta');
+$time = date("Y-m-d H:i:s");
+?>
 <!doctype html>
 <html lang="en">
 
