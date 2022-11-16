@@ -42,6 +42,7 @@ $keyword = $_GET['keyword'];
     <!-- My CSS -->
     <link rel="stylesheet" href="../assets/css/style.css">
 
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
 
 <body>
@@ -91,7 +92,7 @@ $keyword = $_GET['keyword'];
     <section id="nav-bottom">
         <nav class="nav-icon navbar fixed-bottom">
             <div class="container">
-                <a href="#"><i class="bi bi-house"></i></a>
+                <a href="../index.php"><i class="bi bi-house"></i></a>
                 <a href="#"><i class="bi bi-heart"></i></a>
                 <a href="#"><i class="bi bi-cart3"></i></a>
 
@@ -110,9 +111,9 @@ $keyword = $_GET['keyword'];
     <!-- End Navbar -->
 
     <!-- Product -->
-    <section id="product" class="container" style="margin-top: 156px;">
+    <section id="product" class="container">
 
-        <div id="banner-recomend" class="shadow" style="background-color: #ffffff;">
+        <div id="banner-search" class="shadow" style="background-color: #ffffff;">
             <h3 class="pt-2 pb-2 text-center text-primary fw-bold">Based on what you are looking for</h3>
         </div>
 
@@ -130,7 +131,7 @@ $keyword = $_GET['keyword'];
 
 
 
-            <a href="./buyer/view.php?id_product==<?= $p["id_product"] ?>" style="text-decoration: none;">
+            <a href="view.php?id_product=<?= $p["id_product"] ?>" style="text-decoration: none;">
 
                 <div id="col-product" class="col shadow">
 
@@ -152,6 +153,9 @@ $keyword = $_GET['keyword'];
 
             <?php endwhile; ?>
             <?php else : ?>
+            <script>
+            swal("Data Not Found!");
+            </script>
             <div class="alert alert-dismissible fade show text-center" role="alert" style="width: 100%;">
                 <strong class="fs-1">Not Found!</strong>
             </div>

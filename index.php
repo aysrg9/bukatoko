@@ -55,7 +55,7 @@ if (isset($_SESSION['login'])) {
         </div>
         <nav class="navbar shadow" style="background-color: #fff;">
             <div class="container">
-                <a class="navbar-brand fs-2 text-primary fw-bold" href=""
+                <a class="navbar-brand fs-2 text-primary fw-bold" href="index.php"
                     style="font-family: 'Kanit', sans-serif;">Bukatoko</a>
                 <form method="GET" action="./buyer/search.php" class="d-flex" role="search">
                     <input class="input-search form-control" type="search" placeholder="Search" aria-label="Search"
@@ -87,7 +87,7 @@ if (isset($_SESSION['login'])) {
     <section id="nav-bottom">
         <nav class="nav-icon navbar fixed-bottom">
             <div class="container">
-                <a href="#"><i class="bi bi-house"></i></a>
+                <a href="index.php"><i class="bi bi-house"></i></a>
                 <a href="#"><i class="bi bi-heart"></i></a>
                 <a href="#"><i class="bi bi-cart3"></i></a>
 

@@ -56,14 +56,26 @@ $prdct = query("SELECT * FROM product WHERE id_product = $id_product")[0];
             <div class="container">
                 <a href="../index.php" class="navbar-brand fs-2 text-primary fw-bold"
                     style="font-family: 'Kanit', sans-serif;">Bukatoko</a>
-                <form class="d-flex" role="search">
-                    <input class="input-search form-control" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-primary d-none" type="submit"><i class="bi bi-search"></i></button>
+                <form method="GET" action="../buyer/search.php" class="d-flex" role="search">
+                    <input class="input-search form-control" type="search" placeholder="Search" aria-label="Search"
+                        name="keyword" autocomplete="off" required>
+                    <button class="btn btn-outline-primary d-none" type="submit"><i class="bi bi-search"
+                            name="search"></i></button>
                 </form>
+                <?php if (isset($_SESSION['login'])) : ?>
+
                 <div id="button-navbar">
-                    <a href="login.php" class="btn btn-primary fw-bold">LOGIN</a>
-                    <a href="register.php" class="btn btn-primary fw-bold">REGISTER</a>
+                    <a href="logout.php" style="text-decoration: none;" class=" fw-bold fs-5">Halo,
+                        <?= $_SESSION['username']; ?></a>
                 </div>
+
+                <?php else : ?>
+                <div id="button-navbar">
+                    <a href="./buyer/login.php" class="btn btn-primary fw-bold">LOGIN</a>
+                    <a href="./buyer/register.php" class="btn btn-primary fw-bold">REGISTER</a>
+                </div>
+
+                <?php endif; ?>
             </div>
         </nav>
     </section>
@@ -73,7 +85,16 @@ $prdct = query("SELECT * FROM product WHERE id_product = $id_product")[0];
                 <a href="#" onclick="history.go(-1);"><i class="bi bi-arrow-90deg-left"></i></a>
                 <a href="#"><i class="bi bi-heart"></i></i></a>
                 <a href="#"><i class="bi bi-cart3"></i></a>
-                <a href="#"><i class="bi bi-person-circle"></i></a>
+
+                <?php if (isset($_SESSION['login'])) : ?>
+
+                <a href="../buyer/logout.php"><i class="bi bi-person-circle"></i></a>
+
+                <?php else : ?>
+                <a href="../buyer/login.php"><i class="bi bi-box-arrow-in-right"></i></a>
+
+                <?php endif; ?>
+
             </div>
         </nav>
     </section>
