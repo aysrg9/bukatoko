@@ -40,14 +40,17 @@ if (isset($_POST['addtocart'])) {
     if ($quantity > $stock_product) {
         // jika stock tidak cukup
         $error[] = ' Sorry, not enough stock!';
+        $errorm[] = ' Sorry, not enough stock!';
     } else {
         // cek apakah product sudah ada dicart atau belum
         if (mysqli_num_rows($select_cart) > 0) {
             $error[] = 'Product already added to cart!';
+            $errorm[] = 'Product already added to cart!';
         } else {
             // jika stock cukup
             mysqli_query($db, "INSERT INTO `cart`(id_user, id_product, quantity) VALUES('$id_user', $id_product, '$quantity')") or die('query failed');
             $message[] = 'Product added to cart!';
+            $messagem[] = 'Product added to cart!';
         }
     }
 }
@@ -232,14 +235,67 @@ if (isset($_POST['addtocart'])) {
                         50</small></p>
 
                 <button class="plus-minus" id="decrement" onclick="stepper(this)"> - </button>
-                <input type="number" min="1" max="50" step="1" value="1" id="quantity">
+
+                <input type="number" min="1" max="50" step="1" value="1" id="quantity" name="quantity">
+
+                <input type="text" value="<?= $time ?>" readonly required style="display: none;">
+
                 <button class="plus-minus" id="increment" onclick="stepper(this)"> + </button>
 
                 <div class="pb-3 pt-3 rounded">
-                    <a class="btn btn-primary text-white fw-bold" href="">ADD TO CART</a>
+                    <button type="submit" class="btn btn-primary btn fw-bold" name="addtocart">ADD
+                        TO
+                        CART</button>
                     <a class="btn btn-primary text-white fw-bold" href="">BUY NOW</a>
                 </div>
             </div>
+
+            <!-- Alert -->
+            <!-- Alert Succes -->
+            <?php if (isset($messagem)) : ?>
+            <?php foreach ($messagem as $messagem) : ?>
+
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-3 text-success" id="exampleModalLabel">Succes !</h1>
+                        </div>
+                        <div class="modal-body">
+                            <?= $messagem ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <?php endforeach; ?>
+            <?php endif; ?>
+            <!-- End Alert Succes -->
+            <!-- Alert Error -->
+            <?php if (isset($errorm)) : ?>
+            <?php foreach ($errorm as $errorm) : ?>
+
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-3 text-danger" id="exampleModalLabel">Warning !</h1>
+                        </div>
+                        <div class="modal-body">
+                            <?= $errorm ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <?php endforeach; ?>
+            <?php endif; ?>
+            <!-- End Alert Error -->
+            <!-- End Alert -->
             <div class="container-sm bg-white shadow mt-3">
                 <h1 class="fw-bold pt-3">Product Description</h1>
                 <p class="pb-3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus tempore maxime
@@ -265,6 +321,21 @@ if (isset($_POST['addtocart'])) {
     <!-- JS Bootstrap -->
     <script src=" https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous">
+    </script>
+
+    <!-- JS Bootstrap 4.6 -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js"
+        integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous">
+    </script>
+
+    <script>
+    $('#exampleModal').modal('show')
     </script>
 </body>
 
