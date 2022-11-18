@@ -101,6 +101,7 @@ $time = date("Y-m-d H:i:s");
             <div class="mb-3">
                 <input type="password" class="form-control" id="password" placeholder="Password" name="password" min="8"
                     required autocomplete="off">
+                <div id="usernameHelp" class="form-text">Minimum 8 Characters</div>
             </div>
 
             <div class="mb-3">

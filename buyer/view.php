@@ -31,6 +31,8 @@ if (isset($_POST['addtocart'])) {
     // apabila sudah login, ambil id dari session
     $id_user = $_SESSION['id_user'];
     $id_product = $_GET['id_product'];
+    $product_name = $_POST['product_name'];
+    $price = $_POST['price'];
     $quantity = $_POST['quantity'];
     $stock_product = $prdct['stock'];
     $select_cart = mysqli_query($db, "SELECT * FROM `cart` WHERE id_product = '$id_product' AND id_user = '$id_user'") or
@@ -48,7 +50,7 @@ if (isset($_POST['addtocart'])) {
             $errorm[] = 'Product already added to cart!';
         } else {
             // jika stock cukup
-            mysqli_query($db, "INSERT INTO `cart`(id_user, id_product, quantity) VALUES('$id_user', $id_product, '$quantity')") or die('query failed');
+            mysqli_query($db, "INSERT INTO `cart`(id_user, id_product, product_name, price,quantity) VALUES('$id_user', $id_product, '$product_name', '$price', '$quantity')") or die('query failed');
             $message[] = 'Product added to cart!';
             $messagem[] = 'Product added to cart!';
         }
@@ -196,6 +198,10 @@ if (isset($_POST['addtocart'])) {
                             <input type="number" min="1" max="50" step="1" value="1" id="quantity" name="quantity">
 
                             <input type="text" value="<?= $time ?>" readonly required style="display: none;">
+                            <input type="text" value="<?= $prdct['product_name'] ?>" readonly required
+                                style="display: none;" name="price">
+                            <input type="text" value="<?= $prdct['price'] ?>" readonly required style="display: none;"
+                                name="price">
 
                             <button class="plus-minus" id="increment" onclick="stepper(this)"> + </button>
 
@@ -239,6 +245,9 @@ if (isset($_POST['addtocart'])) {
                 <input type="number" min="1" max="50" step="1" value="1" id="quantity" name="quantity">
 
                 <input type="text" value="<?= $time ?>" readonly required style="display: none;">
+                <input type="text" value="<?= $prdct['product_name'] ?>" readonly required style="display: none;"
+                    name="product_name">
+                <input type="text" value="<?= $prdct['price'] ?>" readonly required style="display: none;" name="price">
 
                 <button class="plus-minus" id="increment" onclick="stepper(this)"> + </button>
 

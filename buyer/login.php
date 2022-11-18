@@ -69,7 +69,7 @@ $time = date("Y-m-d H:i:s");
             <!-- Alert error -->
             <?php if (isset($error)) : ?>
             <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                <strong>Try Again!</strong>
+                <strong>Invalid Username Or Password!</strong>
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
             <?php endif; ?>
