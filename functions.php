@@ -37,13 +37,33 @@ function registrasic($data)
 
     // cek username sudah ada atau belum 
     $result = mysqli_query($db, "SELECT username FROM customer WHERE username = '$username'");
-
     if (mysqli_fetch_assoc($result)) {
+        $_POST['error'] = "Username Is Already In Use!";
+        return false;
+    }
+
+    // cek maksimal karakter username
+    if (strlen($username) > 8) {
+        $_POST['error'] = "Username Maximum 8 Characters!";
+        return false;
+    }
+
+    // cek email sudah ada atau belum 
+    $result = mysqli_query($db, "SELECT email FROM customer WHERE email = '$email'");
+    if (mysqli_fetch_assoc($result)) {
+        $_POST['error'] = "Email Is Already In Use!";
+        return false;
+    }
+
+    // cek berapa karakter yang di input user
+    if (strlen($password2) < 8) {
+        $_POST['error'] = "Enter A Password Of At Least 8 Characters!";
         return false;
     }
 
     // cek konfirmasi password 
     if ($password !== $password2) {
+        $_POST['error'] = "Invalid 2nd Password!";
         return false;
     }
 

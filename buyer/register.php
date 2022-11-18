@@ -5,11 +5,13 @@ require '../functions.php';
 
 // proses register
 if (isset($_POST["submit"])) {
+
     if (registrasic($_POST) > 0) {
-        // Alert
-        $created = true;
+        // Alert jika user berhasil dibuat
+        $created[] = 'User Created !';
     } else {
-        $tryagain = true;
+        // Alert error
+        $error[] = $_POST['error'];
     }
 }
 
@@ -52,20 +54,27 @@ $time = date("Y-m-d H:i:s");
             </h3>
 
             <!-- Alert -->
+            <!-- Alert Succes -->
             <?php if (isset($created)) : ?>
+            <?php foreach ($created as $created) : ?>
             <div class="alert alert-success alert-dismissible fade show" role="alert">
-                <strong>User Created!</strong>
-                <a href="login.php"><button type="button" class="btn-close" data-bs-dismiss="alert"
-                        aria-label="Close"></button></a>
+                <strong><?= $created ?></strong>
+                <button onclick="location.href = 'login.php';" type="button" class="btn-close" data-bs-dismiss="alert"
+                    aria-label="Close"></button>
             </div>
+            <?php endforeach; ?>
             <?php endif; ?>
-
-            <?php if (isset($tryagain)) : ?>
+            <!-- End Alert Succes -->
+            <!-- Alert Error -->
+            <?php if (isset($error)) : ?>
+            <?php foreach ($error as $error) : ?>
             <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                <strong>Try Again!</strong>
+                <strong><?= $error ?></strong>
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
+            <?php endforeach; ?>
             <?php endif; ?>
+            <!-- End Alert Error -->
             <!-- End Alert -->
 
             <input type="text" value="<?php echo $time; ?>" name="created" style="display: none;" readonly required>
