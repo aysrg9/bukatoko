@@ -55,7 +55,7 @@ $time = date("Y-m-d H:i:s");
     <section id="navbar" class="fixed-top">
         <div style="background-color: #F3F4F5;">
             <div id="text-info" class="container pt-1 pb-1">
-                <a href="" class="me-3">About Bukatoko</a>
+                <!-- <a href="" class="me-3">About Bukatoko</a> -->
                 <a class="me-1">Follow us on</a>
                 <a class="me-2" href="https://github.com/aysrg9/" target="_blank"><i class="bi bi-github"></i></a>
                 <a class="me-2" href="https://instagram.com/egydityaa/" target="_blank"><i
@@ -78,14 +78,22 @@ $time = date("Y-m-d H:i:s");
                 <?php if (isset($_SESSION['login'])) : ?>
 
                 <div id="button-navbar">
-                    <a href="./buyer/logout.php" style="text-decoration: none;" class=" fw-bold fs-5">Halo,
-                        <?= $_SESSION['username']; ?></a>
+                    <div class="dropdown">
+                        <a role="button" style="text-decoration: none;" class=" fw-bold fs-5" data-bs-toggle="dropdown"
+                            aria-expanded="false">Hallo,
+                            <?= $_SESSION['username']; ?></a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item fw-bold" href="#">Profile</a></li>
+                            <li><a class="dropdown-item fw-bold" href="cart.php">Cart</a></li>
+                            <li><a class="dropdown-item fw-bold" href="logout.php">Logout</a></li>
+                        </ul>
+                    </div>
                 </div>
 
                 <?php else : ?>
                 <div id="button-navbar">
-                    <a href="./buyer/login.php" class="btn btn-primary fw-bold">LOGIN</a>
-                    <a href="./buyer/register.php" class="btn btn-primary fw-bold">REGISTER</a>
+                    <a href="login.php" class="btn btn-primary fw-bold">LOGIN</a>
+                    <a href="register.php" class="btn btn-primary fw-bold">REGISTER</a>
                 </div>
 
                 <?php endif; ?>
@@ -99,14 +107,14 @@ $time = date("Y-m-d H:i:s");
             <div class="container">
                 <a href="../index.php"><i class="bi bi-house"></i></a>
                 <a href="#"><i class="bi bi-heart"></i></a>
-                <a href="#"><i class="bi bi-cart3"></i></a>
+                <a href="cart.php"><i class="bi bi-cart3"></i></a>
 
                 <?php if (isset($_SESSION['login'])) : ?>
 
-                <a href="./buyer/logout.php"><i class="bi bi-person-circle"></i></a>
+                <a href="logout.php"><i class="bi bi-person-circle"></i></a>
 
                 <?php else : ?>
-                <a href="./buyer/login.php"><i class="bi bi-box-arrow-in-right"></i></a>
+                <a href="login.php"><i class="bi bi-box-arrow-in-right"></i></a>
 
                 <?php endif; ?>
             </div>

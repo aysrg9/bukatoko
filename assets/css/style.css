@@ -39,6 +39,14 @@ body {
   color: black;
 }
 
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
+
+.dropdown-item:hover {
+  color: #0D6EFD;
+}
+
 /* End Navbar */
 
 /* Carousel */

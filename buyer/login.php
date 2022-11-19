@@ -25,7 +25,7 @@ if (isset($_POST["login"])) {
             $_SESSION['id_user'] = $user['id_user'];
             // $_SESSION['picture'] = $user['picture'];
             $_SESSION['username'] = $user['username'];
-            // $_SESSION['fullname'] = $user['fullname'];
+            $_SESSION['fullname'] = $user['fullname'];
             // $_SESSION['email'] = $user['email'];
             $_SESSION["login"] = true;
 
