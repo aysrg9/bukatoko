@@ -31,11 +31,12 @@ if (isset($_POST['addtocart'])) {
     // apabila sudah login, ambil id dari session
     $id_user = $_SESSION['id_user'];
     $id_product = $_GET['id_product'];
+    $picture = $_POST['picture'];
     $product_name = $_POST['product_name'];
     $price = $_POST['price'];
     $quantity = $_POST['quantity'];
     $stock_product = $prdct['stock'];
-    $select_cart = mysqli_query($db, "SELECT * FROM `cart` WHERE id_product = '$id_product' AND id_user = '$id_user'") or
+    $select_cart = mysqli_query($db, "SELECT * FROM cart WHERE id_product = '$id_product' AND id_user = '$id_user'") or
         die('query failed');
 
     // cek stock
@@ -50,7 +51,7 @@ if (isset($_POST['addtocart'])) {
             $errorm[] = 'Product already added to cart!';
         } else {
             // jika stock cukup
-            mysqli_query($db, "INSERT INTO `cart`(id_user, id_product, product_name, price,quantity) VALUES('$id_user', $id_product, '$product_name', '$price', '$quantity')") or die('query failed');
+            mysqli_query($db, "INSERT INTO cart (id_user, id_product, picture ,product_name, price,quantity) VALUES($id_user, $id_product, '$picture','$product_name', '$price', '$quantity')");
             $message[] = 'Product added to cart!';
             $messagem[] = 'Product added to cart!';
         }
@@ -147,7 +148,7 @@ if (isset($_POST['addtocart'])) {
     <!-- End Navbar bottom -->
     <!-- End Navbar -->
 
-    <form method="POST">
+    <form method="POST" action="">
         <!-- Detail Product -->
         <!-- Dekstop View -->
         <section class="container" id="dekstop-view">
@@ -193,19 +194,21 @@ if (isset($_POST['addtocart'])) {
                                     50</small>
                             </p>
 
-                            <button class="plus-minus" id="decrement" onclick="stepper(this)"> - </button>
+                            <a class="plus-minus text-decoration-none text-light" id="decrement"
+                                onclick="stepper(this)"> - </a>
 
                             <input type="number" min="1" max="50" step="1" value="1" id="quantity" name="quantity">
-
-                            <input type="text" value="<?= $time ?>" readonly required style="display: none;">
+                            <input type="text" value="<?= $prdct['picture'] ?>" readonly required style="display: none;"
+                                name="picture">
                             <input type="text" value="<?= $prdct['product_name'] ?>" readonly required
-                                style="display: none;" name="price">
+                                style="display: none;" name="product_name">
                             <input type="text" value="<?= $prdct['price'] ?>" readonly required style="display: none;"
                                 name="price">
 
-                            <button class="plus-minus" id="increment" onclick="stepper(this)"> + </button>
+                            <a class="plus-minus text-decoration-none text-light" id="increment"
+                                onclick="stepper(this)"> + </a>
 
-                            <div class="d-block pt-3">
+                            <div class="d-block pt-4">
 
                                 <button type="submit" class="btn btn-primary btn fw-bold rounded" name="addtocart">ADD
                                     TO
@@ -229,7 +232,9 @@ if (isset($_POST['addtocart'])) {
             </div>
         </section>
         <!-- End Dekstop View -->
+    </form>
 
+    <form method="POST" action="">
         <!-- Mobile View -->
         <section id="mobile-view">
             <div class="container-sm bg-white shadow">
@@ -240,18 +245,22 @@ if (isset($_POST['addtocart'])) {
                 <p><small class="text-muted">NOTE Minimum Purchase 1, Maximum Purchase
                         50</small></p>
 
-                <button class="plus-minus" id="decrement" onclick="stepper(this)"> - </button>
+                <a class="plus-minus text-decoration-none text-light" id="decrementmobile"
+                    onclick="steppermobile(this)"> -
+                </a>
 
-                <input type="number" min="1" max="50" step="1" value="1" id="quantity" name="quantity">
-
-                <input type="text" value="<?= $time ?>" readonly required style="display: none;">
+                <input type="number" min="1" max="50" step="1" value="1" id="quantitymobile" name="quantity">
+                <input type="text" value="<?= $prdct['picture'] ?>" readonly required style="display: none;"
+                    name="picture">
                 <input type="text" value="<?= $prdct['product_name'] ?>" readonly required style="display: none;"
                     name="product_name">
                 <input type="text" value="<?= $prdct['price'] ?>" readonly required style="display: none;" name="price">
 
-                <button class="plus-minus" id="increment" onclick="stepper(this)"> + </button>
+                <a class="plus-minus text-decoration-none text-light" id="incrementmobile"
+                    onclick="steppermobile(this)"> +
+                </a>
 
-                <div class="pb-3 pt-3 rounded">
+                <div class="pb-3 pt-4 rounded">
                     <button type="submit" class="btn btn-primary btn fw-bold" name="addtocart">ADD
                         TO
                         CART</button>
@@ -322,7 +331,6 @@ if (isset($_POST['addtocart'])) {
         <!-- End Mobile View -->
         <!-- End Detail Product -->
     </form>
-
     <!-- Input Stepper -->
     <script src="../assets/js/quantity.js"></script>
 

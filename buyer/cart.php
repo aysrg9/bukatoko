@@ -120,46 +120,50 @@ $time = date("Y-m-d H:i:s");
 
     <!-- Cart -->
     <section class="container">
-
-        <div class="card shadow" style="background-color: #ffffff; margin-top: 156px;">
-            <div class="pt-2 pb-2 ps-3 pe-3">
-                <h3 class="text-primary fw-bold">Cart</h3>
-            </div>
-        </div>
-
-        <div class="card shadow mt-3">
-            <div class="row g-0 ps-2 pe-2 pb-2 pt-2">
-                <div class="col text-center" style="max-width: auto;">Product</div>
-                <div class="col text-center" style="max-width: 170px;">Unit Price</div>
-                <div class="col text-center" style="max-width: 250px;">Quantity</div>
-                <div class="col text-center" style="max-width: 100px;">Action</div>
-            </div>
-        </div>
-
-        <?php $i = 1; ?>
-        <?php foreach ($cart as $row) : ?>
-
-        <div class="card shadow mt-3">
-            <h5 class="pt-4 ps-2 ">Bukatoko <i class="bi bi-patch-check-fill text-primary"></i></h5>
-            <hr>
-            <div class="row g-0 ps-2 pe-2 pb-3">
-                <div class="col" style="max-width: 594px;">
-                    <img src="../assets/images/product/62bb3f4a6be9a.png" alt="" width="75px" height="75px">
-                    <p class="d-inline-block tex    t-truncate" style="max-width: 495px;"><?= $row['product_name']; ?>
-                    </p>
-                </div>
-                <div class="col text-center" style="max-width: 170px;"><?= rupiah($row["price"]) ?>
-                </div>
-                <div class="col text-center" style="max-width: 250px;"><?= $row['quantity']; ?></div>
-                <div class="col text-center fs-4" style="max-width: 100px;"><a
-                        href="cart.php?remove=<?= $row['id_cart']; ?>"><i class="bi bi-trash-fill"></i></a>
+        <section id="dekstop-view">
+            <div class="card shadow" style="background-color: #ffffff;">
+                <div class="pt-2 pb-2 ps-3 pe-3">
+                    <h3 class="text-primary fw-bold">Cart</h3>
                 </div>
             </div>
-        </div>
 
-        <?php $i++ ?>
-        <?php endforeach; ?>
+            <div class="card shadow mt-3">
+                <div class="row g-0 ps-2 pe-2 pb-2 pt-2">
+                    <div class="col text-center fw-bold" style="max-width: auto;">Product</div>
+                    <div class="col text-center fw-bold" style="max-width: 170px;">Unit Price</div>
+                    <div class="col text-center fw-bold" style="max-width: 250px;">Quantity</div>
+                    <div class="col text-center fw-bold" style="max-width: 100px;">Action</div>
+                </div>
+            </div>
 
+            <?php $i = 1; ?>
+            <?php foreach ($cart as $row) : ?>
+
+            <div class="card shadow mt-3">
+                <h5 class="pt-4 ps-2 ">Bukatoko <i class="bi bi-patch-check-fill text-primary"></i></h5>
+                <hr>
+                <div class="row g-0 ps-2 pe-2 pb-3">
+                    <div class="col" style="max-width: 594px;">
+                        <img src="../assets/images/product/<?= $row['picture']; ?>" alt="" width="75px" height="75px">
+                        <p class="d-inline-block text-truncate" style="max-width: 495px;">
+                            <?= $row['product_name']; ?>
+                        </p>
+                    </div>
+                    <div class="col text-center" style="max-width: 170px;"><?= rupiah($row["price"]) ?>
+                    </div>
+                    <div class="col text-center" style="max-width: 250px;">
+                        <?= $row['quantity']; ?>
+                    </div>
+                    <div class="col text-center fs-3" style="max-width: 100px;">
+                        <a href="cart.php?remove=<?= $row['id_cart']; ?>"><i class="bi bi-trash-fill"></i></a>
+                        <a href=""><i class="bi bi-credit-card"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <?php $i++ ?>
+            <?php endforeach; ?>
+        </section>
     </section>
     <!-- End Cart -->
 

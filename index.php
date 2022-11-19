@@ -29,8 +29,7 @@ $time = date("Y-m-d H:i:s");
     <title>Bukatoko</title>
 
     <!-- CSS Bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
 
     <!-- Icon Bootstrap -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
@@ -52,35 +51,31 @@ $time = date("Y-m-d H:i:s");
                 <a href="" class="me-3">About Bukatoko</a>
                 <a class="me-1">Follow us on</a>
                 <a class="me-2" href="https://github.com/aysrg9/" target="_blank"><i class="bi bi-github"></i></a>
-                <a class="me-2" href="https://instagram.com/egydityaa/" target="_blank"><i
-                        class="bi bi-instagram"></i></a>
+                <a class="me-2" href="https://instagram.com/egydityaa/" target="_blank"><i class="bi bi-instagram"></i></a>
                 <a class="me-2" href="https://twitter.com/aysrg9/" target="_blank"><i class="bi bi-twitter"></i></a>
             </div>
         </div>
         <nav class="navbar shadow" style="background-color: #fff;">
             <div class="container">
-                <a class="navbar-brand fs-2 text-primary fw-bold" href="index.php"
-                    style="font-family: 'Kanit', sans-serif;">Bukatoko</a>
+                <a class="navbar-brand fs-2 text-primary fw-bold" href="index.php" style="font-family: 'Kanit', sans-serif;">Bukatoko</a>
                 <form method="GET" action="./buyer/search.php" class="d-flex" role="search">
-                    <input class="input-search form-control" type="search" placeholder="Search" aria-label="Search"
-                        name="keyword" autocomplete="off" required>
-                    <button class="btn btn-outline-primary d-none" type="submit"><i class="bi bi-search"
-                            name="search"></i></button>
+                    <input class="input-search form-control" type="search" placeholder="Search" aria-label="Search" name="keyword" autocomplete="off" required>
+                    <button class="btn btn-outline-primary d-none" type="submit"><i class="bi bi-search" name="search"></i></button>
                 </form>
 
 
                 <?php if (isset($_SESSION['login'])) : ?>
 
-                <div id="button-navbar">
-                    <a href="./buyer/logout.php" style="text-decoration: none;" class=" fw-bold fs-5">Halo,
-                        <?= $_SESSION['username']; ?></a>
-                </div>
+                    <div id="button-navbar">
+                        <a href="./buyer/logout.php" style="text-decoration: none;" class=" fw-bold fs-5">Halo,
+                            <?= $_SESSION['username']; ?></a>
+                    </div>
 
                 <?php else : ?>
-                <div id="button-navbar">
-                    <a href="./buyer/login.php" class="btn btn-primary fw-bold">LOGIN</a>
-                    <a href="./buyer/register.php" class="btn btn-primary fw-bold">REGISTER</a>
-                </div>
+                    <div id="button-navbar">
+                        <a href="./buyer/login.php" class="btn btn-primary fw-bold">LOGIN</a>
+                        <a href="./buyer/register.php" class="btn btn-primary fw-bold">REGISTER</a>
+                    </div>
 
                 <?php endif; ?>
             </div>
@@ -97,10 +92,10 @@ $time = date("Y-m-d H:i:s");
 
                 <?php if (isset($_SESSION['login'])) : ?>
 
-                <a href="./buyer/logout.php"><i class="bi bi-person-circle"></i></a>
+                    <a href="./buyer/logout.php"><i class="bi bi-person-circle"></i></a>
 
                 <?php else : ?>
-                <a href="./buyer/login.php"><i class="bi bi-box-arrow-in-right"></i></a>
+                    <a href="./buyer/login.php"><i class="bi bi-box-arrow-in-right"></i></a>
 
                 <?php endif; ?>
             </div>
@@ -114,12 +109,9 @@ $time = date("Y-m-d H:i:s");
         <div class="container">
             <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true">
                 <div class="carousel-indicators">
-                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0"
-                        class="active" aria-current="true" aria-label="Slide 1"></button>
-                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
-                        aria-label="Slide 2"></button>
-                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
-                        aria-label="Slide 3"></button>
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
                 </div>
                 <div class="carousel-inner">
                     <div class="carousel-item active">
@@ -132,13 +124,11 @@ $time = date("Y-m-d H:i:s");
                         <img src="./assets/images/carousel/murahmantap.png" class="d-block w-100 rounded" alt="...">
                     </div>
                 </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
-                    data-bs-slide="prev">
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                     <span class="visually-hidden">Previous</span>
                 </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
-                    data-bs-slide="next">
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                     <span class="visually-hidden">Next</span>
                 </button>
@@ -181,27 +171,26 @@ $time = date("Y-m-d H:i:s");
             <?php $i = 1; ?>
             <?php foreach ($product as $row) : ?>
 
-            <a href="./buyer/view.php?id_product=<?= $row["id_product"] ?>" style="text-decoration: none;">
+                <a href="./buyer/view.php?id_product=<?= $row["id_product"] ?>" style="text-decoration: none;">
 
-                <div id="col-product" class="col shadow">
+                    <div id="col-product" class="col shadow">
 
-                    <div class="p-3 shadow-sm bg-white">
+                        <div class="p-3 shadow-sm bg-white">
 
-                        <img src="./assets/images/product/<?= $row["picture"] ?>" class="card-img-top picture-product"
-                            alt="...">
+                            <img src="./assets/images/product/<?= $row["picture"] ?>" class="card-img-top picture-product" alt="...">
 
-                        <div class="card-body pt-3">
-                            <p class="card-title text-truncate text-dark"><?= $row["product_name"] ?></p>
-                            <p class="card-title pt-2 fw-bold text-dark"><?= rupiah($row["price"]) ?></p>
+                            <div class="card-body pt-3">
+                                <p class="card-title text-truncate text-dark"><?= $row["product_name"] ?></p>
+                                <p class="card-title pt-2 fw-bold text-dark"><?= rupiah($row["price"]) ?></p>
+                            </div>
+
                         </div>
 
                     </div>
 
-                </div>
+                </a>
 
-            </a>
-
-            <?php $i++ ?>
+                <?php $i++ ?>
             <?php endforeach; ?>
 
         </div>
@@ -209,8 +198,7 @@ $time = date("Y-m-d H:i:s");
     <!-- End Product -->
 
     <!-- JS Bootstrap -->
-    <script src=" https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous">
+    <script src=" https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous">
     </script>
 </body>
 

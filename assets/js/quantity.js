@@ -13,3 +13,19 @@ function stepper(btn) {
         myInput.setAttribute("value", newValue);
     }
 }
+
+const myInputMobile = document.getElementById("quantitymobile");
+
+function steppermobile(btn) {
+    let id = btn.getAttribute("id");
+    let min = myInputMobile.getAttribute("min");
+    let max = myInputMobile.getAttribute("max");
+    let step = myInputMobile.getAttribute("step");
+    let val = myInputMobile.getAttribute("value");
+    let calcStep = (id == "incrementmobile") ? (step * 1) : (step * -1);
+    let newValue = parseInt(val) + calcStep;
+
+    if (newValue >= min && newValue <= max) {
+        myInputMobile.setAttribute("value", newValue);
+    }
+}
