@@ -59,7 +59,7 @@ $time = date("Y-m-d H:i:s");
             <?php foreach ($created as $created) : ?>
             <div class="alert alert-success alert-dismissible fade show" role="alert">
                 <strong><?= $created ?></strong>
-                <button onclick="location.href = 'login.php';" type="button" class="btn-close" data-bs-dismiss="alert"
+                <button onclick="location.href = 'login';" type="button" class="btn-close" data-bs-dismiss="alert"
                     aria-label="Close"></button>
             </div>
             <?php endforeach; ?>
@@ -116,7 +116,7 @@ $time = date("Y-m-d H:i:s");
 
             <hr>
 
-            <p class="text-center">Already have an account? <a class="text-primary" href="login.php"
+            <p class="text-center">Already have an account? <a class="text-primary" href="login"
                     style="text-decoration: none;">Login</a></p>
         </form>
     </section>

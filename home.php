@@ -70,9 +70,9 @@ $time = date("Y-m-d H:i:s");
         </div>
         <nav class="navbar shadow" style="background-color: #fff;">
             <div class="container">
-                <a class="navbar-brand fs-2 text-primary fw-bold" href="index.php"
+                <a class="navbar-brand fs-2 text-primary fw-bold" href="home"
                     style="font-family: 'Kanit', sans-serif;">Bukatoko</a>
-                <form method="GET" action="./buyer/search.php" class="d-flex" role="search">
+                <form method="GET" action="./buyer/search" class="d-flex" role="search">
                     <input class="input-search form-control" type="search" placeholder="Search" aria-label="Search"
                         name="keyword" autocomplete="off" required>
                     <button class="btn btn-outline-primary d-none" type="submit"><i class="bi bi-search"
@@ -89,8 +89,8 @@ $time = date("Y-m-d H:i:s");
                                 <?= $_SESSION['username']; ?></a>
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item fw-bold" href="#">Profile</a></li>
-                                <li><a class="dropdown-item fw-bold" href="./buyer/cart.php">Cart</a></li>
-                                <li><a class="dropdown-item fw-bold" href="./buyer/logout.php">Logout</a></li>
+                                <li><a class="dropdown-item fw-bold" href="./buyer/cart">Cart</a></li>
+                                <li><a class="dropdown-item fw-bold" href="./buyer/logout">Logout</a></li>
                             </ul>
                         </div>
                     </form>
@@ -98,8 +98,8 @@ $time = date("Y-m-d H:i:s");
 
                 <?php else : ?>
                 <div id="button-navbar">
-                    <a href="./buyer/login.php" class="btn btn-primary fw-bold">LOGIN</a>
-                    <a href="./buyer/register.php" class="btn btn-primary fw-bold">REGISTER</a>
+                    <a href="./buyer/login" class="btn btn-primary fw-bold">LOGIN</a>
+                    <a href="./buyer/register" class="btn btn-primary fw-bold">REGISTER</a>
                 </div>
 
                 <?php endif; ?>
@@ -111,16 +111,16 @@ $time = date("Y-m-d H:i:s");
     <section id="nav-bottom">
         <nav class="nav-icon navbar fixed-bottom">
             <div class="container">
-                <a href="index.php"><i class="bi bi-house"></i></a>
+                <a href="home"><i class="bi bi-house"></i></a>
                 <a href="#"><i class="bi bi-heart"></i></a>
-                <a href="./buyer/cart.php"><i class="bi bi-cart3"></i></a>
+                <a href="./buyer/cart"><i class="bi bi-cart3"></i></a>
 
                 <?php if (isset($_SESSION['login'])) : ?>
 
-                <a href="./buyer/logout.php"><i class="bi bi-person-circle"></i></a>
+                <a href="./buyer/logout"><i class="bi bi-person-circle"></i></a>
 
                 <?php else : ?>
-                <a href="./buyer/login.php"><i class="bi bi-box-arrow-in-right"></i></a>
+                <a href="./buyer/login"><i class="bi bi-box-arrow-in-right"></i></a>
 
                 <?php endif; ?>
             </div>
@@ -223,7 +223,7 @@ $time = date("Y-m-d H:i:s");
             <?php $i = 1; ?>
             <?php foreach ($product as $row) : ?>
 
-            <a href="./buyer/view.php?id_product=<?= $row["id_product"] ?>" style="text-decoration: none;">
+            <a href="./buyer/view?id_product=<?= $row["id_product"] ?>" style="text-decoration: none;">
 
                 <div id="col-product" class="col shadow">
 

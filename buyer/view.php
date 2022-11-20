@@ -24,7 +24,7 @@ if (isset($_POST['addtocart'])) {
     // cek apakah user sudah login
     if (!isset($_SESSION['login'])) {
         // apabila belom login
-        header('Location: login.php');
+        header('Location: login');
     }
 
     // proses ambil data
@@ -97,9 +97,9 @@ if (isset($_POST['addtocart'])) {
         </div>
         <nav class="navbar shadow" style="background-color: #fff;">
             <div class="container">
-                <a href="../index.php" class="navbar-brand fs-2 text-primary fw-bold"
+                <a href="../home" class="navbar-brand fs-2 text-primary fw-bold"
                     style="font-family: 'Kanit', sans-serif;">Bukatoko</a>
-                <form method="GET" action="../buyer/search.php" class="d-flex" role="search">
+                <form method="GET" action="../buyer/search" class="d-flex" role="search">
                     <input class="input-search form-control" type="search" placeholder="Search" aria-label="Search"
                         name="keyword" autocomplete="off" required>
                     <button class="btn btn-outline-primary d-none" type="submit"><i class="bi bi-search"
@@ -116,16 +116,16 @@ if (isset($_POST['addtocart'])) {
                             <?= $_SESSION['username']; ?></a>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item fw-bold" href="#">Profile</a></li>
-                            <li><a class="dropdown-item fw-bold" href="cart.php">Cart</a></li>
-                            <li><a class="dropdown-item fw-bold" href="logout.php">Logout</a></li>
+                            <li><a class="dropdown-item fw-bold" href="cart">Cart</a></li>
+                            <li><a class="dropdown-item fw-bold" href="logout">Logout</a></li>
                         </ul>
                     </div>
                 </div>
 
                 <?php else : ?>
                 <div id="button-navbar">
-                    <a href="login.php" class="btn btn-primary fw-bold">LOGIN</a>
-                    <a href="register.php" class="btn btn-primary fw-bold">REGISTER</a>
+                    <a href="login" class="btn btn-primary fw-bold">LOGIN</a>
+                    <a href="register" class="btn btn-primary fw-bold">REGISTER</a>
                 </div>
 
                 <?php endif; ?>
@@ -137,16 +137,16 @@ if (isset($_POST['addtocart'])) {
     <section id="nav-bottom">
         <nav class="nav-icon navbar fixed-bottom">
             <div class="container">
-                <a onclick="history.go(-1);"><i class="bi bi-arrow-90deg-left"></i></a>
+                <a onclick="history.go(-1);"><i class="bi bi-arrow-90deg-left text-primary"></i></a>
                 <a href="#"><i class="bi bi-heart"></i></i></a>
-                <a href="cart.php"><i class="bi bi-cart3"></i></a>
+                <a href="cart"><i class="bi bi-cart3"></i></a>
 
                 <?php if (isset($_SESSION['login'])) : ?>
 
-                <a href="../buyer/logout.php"><i class="bi bi-person-circle"></i></a>
+                <a href="../buyer/logout"><i class="bi bi-person-circle"></i></a>
 
                 <?php else : ?>
-                <a href="../buyer/login.php"><i class="bi bi-box-arrow-in-right"></i></a>
+                <a href="../buyer/login"><i class="bi bi-box-arrow-in-right"></i></a>
 
                 <?php endif; ?>
 
@@ -166,7 +166,7 @@ if (isset($_POST['addtocart'])) {
             <?php foreach ($message as $message) : ?>
             <div class="alert alert-success alert-dismissible fade show" role="alert">
                 <strong><?= $message ?></strong>
-                <button onclick="location.href = 'cart.php';" type="button" class="btn-close" data-bs-dismiss="alert"
+                <button onclick="location.href = 'cart';" type="button" class="btn-close" data-bs-dismiss="alert"
                     aria-label="Close"></button>
             </div>
             <?php endforeach; ?>

@@ -29,7 +29,7 @@ if (isset($_POST["login"])) {
             // $_SESSION['email'] = $user['email'];
             $_SESSION["login"] = true;
 
-            header("Location: ../index.php");
+            header("Location: ../home");
             exit;
         }
     }
@@ -91,7 +91,7 @@ $time = date("Y-m-d H:i:s");
 
             <hr>
 
-            <p class="text-center">Don't have an account yet? <a class="text-primary" href="register.php"
+            <p class="text-center">Don't have an account yet? <a class="text-primary" href="register"
                     style="text-decoration: none;">Register</a></p>
         </form>
     </section>
