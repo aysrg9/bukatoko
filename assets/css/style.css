@@ -65,7 +65,15 @@ body {
 /* Info Promo */
 .card-customer {
   width: 17rem;
-  height: 112px;
+  height: auto;
+}
+
+.text-promo {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
 }
 
 #info-customer {

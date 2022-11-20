@@ -44,15 +44,12 @@ $time = date("Y-m-d H:i:s");
     <!-- My CSS -->
     <link rel="stylesheet" href="./assets/css/style.css">
 
-    <style>
-    .dropdown:hover .dropdown-menu {
-        display: block;
+    <!-- Fix Confirm Form Resubmission -->
+    <script>
+    if (window.history.replaceState) {
+        window.history.replaceState(null, null, window.location.href);
     }
-
-    .dropdown-item:hover {
-        color: #0D6EFD;
-    }
-    </style>
+    </script>
 </head>
 
 <body>
@@ -85,7 +82,7 @@ $time = date("Y-m-d H:i:s");
                     <form action="" method="post">
                         <div class="dropdown">
                             <a role="button" style="text-decoration: none;" class=" fw-bold fs-5"
-                                data-bs-toggle="dropdown" aria-expanded="false">Hallo,
+                                data-bs-toggle="dropdown" aria-expanded="false">Hello,
                                 <?= $_SESSION['username']; ?></a>
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item fw-bold" href="#">Profile</a></li>
@@ -172,17 +169,17 @@ $time = date("Y-m-d H:i:s");
     <section id="info-customer" class="container">
         <div class="shadow" style="background-color: #ffffff;">
             <div class="pt-3 pb-4 ps-3 pe-3">
-                <h3 class="text-primary fw-bold">For <?= $_SESSION['fullname']; ?></h3>
+                <h3 class="text-primary fw-bold">For you</h3>
                 <div class="card-customer card mt-3 d-inline-block">
                     <div class="card-body bg-primary text-white rounded">
                         <h5 class="card-title fw-bold">Cashback 50%</h5>
-                        <p class="card-text">Check Bukatoko Birthday Surprise for your first purchase.</p>
+                        <p class="card-text text-promo">Check Bukatoko Birthday Surprise for your first purchase.</p>
                     </div>
                 </div>
                 <div class="card-customer card mt-3 d-inline-block">
                     <div class="card-body bg-primary text-white rounded">
                         <h5 class="card-title fw-bold">Free Shipping</h5>
-                        <p class="card-text">Free shipping for the island of Java. Checkout now!.</p>
+                        <p class="card-text text-promo">Free shipping for the island of Java. Checkout now!.</p>
                     </div>
                 </div>
             </div>
@@ -196,13 +193,13 @@ $time = date("Y-m-d H:i:s");
                 <div class="card-customer card mt-3 d-inline-block">
                     <div class="card-body bg-primary text-white rounded">
                         <h5 class="card-title fw-bold">Cashback 50%</h5>
-                        <p class="card-text">Check Bukatoko Birthday Surprise for your first purchase.</p>
+                        <p class="card-text text-promo">Check Bukatoko Birthday Surprise for your first purchase.</p>
                     </div>
                 </div>
                 <div class="card-customer card mt-3 d-inline-block">
                     <div class="card-body bg-primary text-white rounded">
                         <h5 class="card-title fw-bold">Free Shipping</h5>
-                        <p class="card-text">Free shipping for the island of Java. Checkout now!.</p>
+                        <p class="card-text text-promo">Free shipping for the island of Java. Checkout now!.</p>
                     </div>
                 </div>
             </div>
@@ -234,7 +231,8 @@ $time = date("Y-m-d H:i:s");
 
                         <div class="card-body pt-3">
                             <p class="card-title text-truncate text-dark"><?= $row["product_name"] ?></p>
-                            <p class="card-title pt-2 fw-bold text-truncate text-dark"><?= rupiah($row["price"]) ?></p>
+                            <p class="card-title pt-2 fw-bold text-truncate text-dark">
+                                <?= rupiah($row["price"]) ?></p>
                         </div>
 
                     </div>

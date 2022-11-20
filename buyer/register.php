@@ -35,6 +35,13 @@ $time = date("Y-m-d H:i:s");
     <!-- My CSS -->
     <link rel="stylesheet" href="../assets/css/style.css">
 
+    <!-- Fix Confirm Form Resubmission -->
+    <script>
+    if (window.history.replaceState) {
+        window.history.replaceState(null, null, window.location.href);
+    }
+    </script>
+
     <!-- Font Google -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
