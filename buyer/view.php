@@ -67,7 +67,8 @@ if (isset($_POST['addtocart'])) {
     <title>Bukatoko</title>
 
     <!-- CSS Bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
 
     <!-- Icon Bootstrap -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
@@ -82,9 +83,9 @@ if (isset($_POST['addtocart'])) {
 
     <!-- Fix Confirm Form Resubmission -->
     <script>
-        if (window.history.replaceState) {
-            window.history.replaceState(null, null, window.location.href);
-        }
+    if (window.history.replaceState) {
+        window.history.replaceState(null, null, window.location.href);
+    }
     </script>
 </head>
 
@@ -96,38 +97,43 @@ if (isset($_POST['addtocart'])) {
                 <!-- <a href="" class="me-3">About Bukatoko</a> -->
                 <a class="me-1">Follow us on</a>
                 <a class="me-2" href="https://github.com/aysrg9/" target="_blank"><i class="bi bi-github"></i></a>
-                <a class="me-2" href="https://instagram.com/egydityaa/" target="_blank"><i class="bi bi-instagram"></i></a>
+                <a class="me-2" href="https://instagram.com/egydityaa/" target="_blank"><i
+                        class="bi bi-instagram"></i></a>
                 <a class="me-2" href="https://twitter.com/aysrg9/" target="_blank"><i class="bi bi-twitter"></i></a>
             </div>
         </div>
         <nav class="navbar shadow" style="background-color: #fff;">
             <div class="container">
-                <a href="../home" class="navbar-brand fs-2 text-primary fw-bold" style="font-family: 'Kanit', sans-serif;">Bukatoko</a>
+                <a href="../home" class="navbar-brand fs-2 text-primary fw-bold"
+                    style="font-family: 'Kanit', sans-serif;">Bukatoko</a>
                 <form method="GET" action="../buyer/search" class="d-flex" role="search">
-                    <input class="input-search form-control" type="search" placeholder="Search" aria-label="Search" name="keyword" autocomplete="off" required>
-                    <button class="btn btn-outline-primary d-none" type="submit"><i class="bi bi-search" name="search"></i></button>
+                    <input class="input-search form-control" type="search" placeholder="Search" aria-label="Search"
+                        name="keyword" autocomplete="off" required>
+                    <button class="btn btn-outline-primary d-none" type="submit"><i class="bi bi-search"
+                            name="search"></i></button>
                 </form>
 
                 <!-- Cek user login -->
                 <?php if (isset($_SESSION['login'])) : ?>
 
-                    <div id="button-navbar">
-                        <div class="dropdown">
-                            <a role="button" style="text-decoration: none;" class=" fw-bold fs-5" data-bs-toggle="dropdown" aria-expanded="false">Hello,
-                                <?= $_SESSION['username']; ?></a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item fw-bold" href="#">Profile</a></li>
-                                <li><a class="dropdown-item fw-bold" href="cart">Cart</a></li>
-                                <li><a class="dropdown-item fw-bold" href="logout">Logout</a></li>
-                            </ul>
-                        </div>
+                <div id="button-navbar">
+                    <div class="dropdown">
+                        <a role="button" style="text-decoration: none;" class=" fw-bold fs-5" data-bs-toggle="dropdown"
+                            aria-expanded="false">Hello,
+                            <?= $_SESSION['username']; ?></a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item fw-bold" href="#">Profile</a></li>
+                            <li><a class="dropdown-item fw-bold" href="cart">Cart</a></li>
+                            <li><a class="dropdown-item fw-bold" href="logout">Logout</a></li>
+                        </ul>
                     </div>
+                </div>
 
                 <?php else : ?>
-                    <div id="button-navbar">
-                        <a href="login" class="btn btn-primary fw-bold">LOGIN</a>
-                        <a href="register" class="btn btn-primary fw-bold">REGISTER</a>
-                    </div>
+                <div id="button-navbar">
+                    <a href="login" class="btn btn-primary fw-bold">LOGIN</a>
+                    <a href="register" class="btn btn-primary fw-bold">REGISTER</a>
+                </div>
 
                 <?php endif; ?>
             </div>
@@ -144,10 +150,10 @@ if (isset($_POST['addtocart'])) {
 
                 <?php if (isset($_SESSION['login'])) : ?>
 
-                    <a href="../buyer/logout"><i class="bi bi-person-circle"></i></a>
+                <a href="../buyer/logout"><i class="bi bi-person-circle"></i></a>
 
                 <?php else : ?>
-                    <a href="../buyer/login"><i class="bi bi-box-arrow-in-right"></i></a>
+                <a href="../buyer/login"><i class="bi bi-box-arrow-in-right"></i></a>
 
                 <?php endif; ?>
 
@@ -164,29 +170,31 @@ if (isset($_POST['addtocart'])) {
             <!-- Alert -->
             <!-- Alert Succes -->
             <?php if (isset($message)) : ?>
-                <?php foreach ($message as $message) : ?>
-                    <div class="alert alert-success alert-dismissible fade show" role="alert">
-                        <strong><?= $message ?></strong>
-                        <button onclick="location.href = 'cart';" type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div>
-                <?php endforeach; ?>
+            <?php foreach ($message as $message) : ?>
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <strong><?= $message ?></strong>
+                <button onclick="location.href = 'cart';" type="button" class="btn-close" data-bs-dismiss="alert"
+                    aria-label="Close"></button>
+            </div>
+            <?php endforeach; ?>
             <?php endif; ?>
             <!-- End Alert Succes -->
             <!-- Alert Error -->
             <?php if (isset($error)) : ?>
-                <?php foreach ($error as $error) : ?>
-                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                        <strong><?= $error ?></strong>
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div>
-                <?php endforeach; ?>
+            <?php foreach ($error as $error) : ?>
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <strong><?= $error ?></strong>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            <?php endforeach; ?>
             <?php endif; ?>
             <!-- End Alert Error -->
             <!-- End Alert -->
             <div class="mb-3 bg-white card shadow" style="max-width: auto;">
                 <div class="row g-0 mt-3 mb-3">
                     <div class="col-md-4" style="height: 300px; width: 300px;">
-                        <img id="image-view-product" src="../assets/images/product/<?= $prdct["picture"] ?>" class="img-fluid rounded-start" alt="Image Product">
+                        <img id="image-view-product" src="../assets/images/product/<?= $prdct["picture"] ?>"
+                            class="img-fluid rounded-start" alt="Image Product">
                     </div>
                     <div class="col-md-8">
                         <div class="card-body">
@@ -202,14 +210,19 @@ if (isset($_POST['addtocart'])) {
                                     50</small>
                             </p>
 
-                            <a class="plus-minus text-decoration-none text-light" id="decrement" onclick="stepper(this)"> - </a>
+                            <a class="plus-minus text-decoration-none text-light" id="decrement"
+                                onclick="stepper(this)"> - </a>
 
                             <input type="number" min="1" max="50" step="1" value="1" id="quantity" name="quantity">
-                            <input type="text" value="<?= $prdct['picture'] ?>" readonly required style="display: none;" name="picture">
-                            <input type="text" value="<?= $prdct['product_name'] ?>" readonly required style="display: none;" name="product_name">
-                            <input type="text" value="<?= $prdct['price'] ?>" readonly required style="display: none;" name="price">
+                            <input type="text" value="<?= $prdct['picture'] ?>" readonly required style="display: none;"
+                                name="picture">
+                            <input type="text" value="<?= $prdct['product_name'] ?>" readonly required
+                                style="display: none;" name="product_name">
+                            <input type="text" value="<?= $prdct['price'] ?>" readonly required style="display: none;"
+                                name="price">
 
-                            <a class="plus-minus text-decoration-none text-light" id="increment" onclick="stepper(this)"> + </a>
+                            <a class="plus-minus text-decoration-none text-light" id="increment"
+                                onclick="stepper(this)"> + </a>
 
                             <div class="d-block pt-4">
 
@@ -248,15 +261,19 @@ if (isset($_POST['addtocart'])) {
                 <p><small class="text-muted">NOTE Minimum Purchase 1, Maximum Purchase
                         50</small></p>
 
-                <a class="plus-minus text-decoration-none text-light" id="decrementmobile" onclick="steppermobile(this)"> -
+                <a class="plus-minus text-decoration-none text-light" id="decrementmobile"
+                    onclick="steppermobile(this)"> -
                 </a>
 
                 <input type="number" min="1" max="50" step="1" value="1" id="quantitymobile" name="quantity">
-                <input type="text" value="<?= $prdct['picture'] ?>" readonly required style="display: none;" name="picture">
-                <input type="text" value="<?= $prdct['product_name'] ?>" readonly required style="display: none;" name="product_name">
+                <input type="text" value="<?= $prdct['picture'] ?>" readonly required style="display: none;"
+                    name="picture">
+                <input type="text" value="<?= $prdct['product_name'] ?>" readonly required style="display: none;"
+                    name="product_name">
                 <input type="text" value="<?= $prdct['price'] ?>" readonly required style="display: none;" name="price">
 
-                <a class="plus-minus text-decoration-none text-light" id="incrementmobile" onclick="steppermobile(this)"> +
+                <a class="plus-minus text-decoration-none text-light" id="incrementmobile"
+                    onclick="steppermobile(this)"> +
                 </a>
 
                 <div class="pb-3 pt-4 rounded">
@@ -270,44 +287,44 @@ if (isset($_POST['addtocart'])) {
             <!-- Alert -->
             <!-- Alert Succes -->
             <?php if (isset($messagem)) : ?>
-                <?php foreach ($messagem as $messagem) : ?>
+            <?php foreach ($messagem as $messagem) : ?>
 
-                    <!-- Modal -->
-                    <div class="modal" id="exampleModal" style="background-color: #7B7B7B;">
-                        <div class="modal-dialog modal-dialog-centered">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h1 class="modal-title fs-3 text-success" id="exampleModalLabel">Succes !</h1>
-                                </div>
-                                <div class="modal-body">
-                                    <?= $messagem ?>
-                                </div>
-                            </div>
+            <!-- Modal -->
+            <div class="modal" id="exampleModal" style="background-color: #7B7B7B;">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-3 text-success" id="exampleModalLabel">Succes !</h1>
+                        </div>
+                        <div class="modal-body">
+                            <?= $messagem ?>
                         </div>
                     </div>
+                </div>
+            </div>
 
-                <?php endforeach; ?>
+            <?php endforeach; ?>
             <?php endif; ?>
             <!-- End Alert Succes -->
             <!-- Alert Error -->
             <?php if (isset($errorm)) : ?>
-                <?php foreach ($errorm as $errorm) : ?>
+            <?php foreach ($errorm as $errorm) : ?>
 
-                    <!-- Modal -->
-                    <div class="modal" id="exampleModal" style="background-color: #7B7B7B;">
-                        <div class="modal-dialog modal-dialog-centered">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h1 class="modal-title fs-3 text-danger" id="exampleModalLabel">Warning !</h1>
-                                </div>
-                                <div class="modal-body">
-                                    <?= $errorm ?>
-                                </div>
-                            </div>
+            <!-- Modal -->
+            <div class="modal" id="exampleModal" style="background-color: #7B7B7B;">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-3 text-danger" id="exampleModalLabel">Warning !</h1>
+                        </div>
+                        <div class="modal-body">
+                            <?= $errorm ?>
                         </div>
                     </div>
+                </div>
+            </div>
 
-                <?php endforeach; ?>
+            <?php endforeach; ?>
             <?php endif; ?>
 
             <!-- End Alert Error -->
@@ -334,19 +351,23 @@ if (isset($_POST['addtocart'])) {
     <script src="../assets/js/quantity.js"></script>
 
     <!-- JS Bootstrap -->
-    <script src=" https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous">
+    <script src=" https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous">
     </script>
 
     <!-- JS Bootstrap 4.6 -->
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous">
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js" integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js"
+        integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous">
     </script>
 
     <script>
-        $('#exampleModal').modal('show')
+    $('#exampleModal').modal('show')
     </script>
 </body>
 

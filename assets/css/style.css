@@ -181,6 +181,13 @@ input::-webkit-inner-spin-button {
 /* End View Product */
 /* End Product */
 
+/* Cart */
+.text-cart-mobile-view {
+  margin-top: 88px;
+}
+
+/* End Cart */
+
 /* Login & Regitser Form */
 .head-brand {
   padding-top: 40px;
