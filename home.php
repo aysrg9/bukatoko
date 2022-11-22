@@ -1,5 +1,6 @@
 <?php
 
+// Session Start
 session_start();
 
 // Connect
@@ -10,7 +11,7 @@ $product = query("SELECT * FROM product");
 
 // cek user login
 if (isset($_SESSION['login'])) {
-    // jika sudah
+    // jika sudah login ambil data dari session
     $id_user = $_SESSION['id_user'];
     $username = $_SESSION['username'];
     $fullname = $_SESSION['fullname'];
@@ -55,7 +56,9 @@ $time = date("Y-m-d H:i:s");
 <body>
     <!-- Start Navbar -->
     <section id="navbar" class="fixed-top">
+
         <div style="background-color: #F3F4F5;">
+
             <div id="text-info" class="container pt-1 pb-1">
                 <!-- <a href="" class="me-3">About Bukatoko</a> -->
                 <a class="me-1">Follow us on</a>
@@ -64,11 +67,16 @@ $time = date("Y-m-d H:i:s");
                         class="bi bi-instagram"></i></a>
                 <a class="me-2" href="https://twitter.com/aysrg9/" target="_blank"><i class="bi bi-twitter"></i></a>
             </div>
+
         </div>
+
         <nav class="navbar shadow" style="background-color: #fff;">
+
             <div class="container">
+
                 <a class="navbar-brand fs-2 text-primary fw-bold" href="home"
                     style="font-family: 'Kanit', sans-serif;">Bukatoko</a>
+
                 <form method="GET" action="./buyer/search" class="d-flex" role="search">
                     <input class="input-search form-control" type="search" placeholder="Search" aria-label="Search"
                         name="keyword" autocomplete="off" required>
@@ -79,6 +87,7 @@ $time = date("Y-m-d H:i:s");
                 <?php if (isset($_SESSION['login'])) : ?>
 
                 <div id="button-navbar">
+
                     <form action="" method="post">
                         <div class="dropdown">
                             <a role="button" style="text-decoration: none;" class=" fw-bold fs-5"
@@ -91,6 +100,7 @@ $time = date("Y-m-d H:i:s");
                             </ul>
                         </div>
                     </form>
+
                 </div>
 
                 <?php else : ?>
@@ -98,15 +108,19 @@ $time = date("Y-m-d H:i:s");
                     <a href="./buyer/login" class="btn btn-primary fw-bold">LOGIN</a>
                     <a href="./buyer/register" class="btn btn-primary fw-bold">REGISTER</a>
                 </div>
-
                 <?php endif; ?>
+
             </div>
+
         </nav>
+
     </section>
 
     <!-- Navbar Bottom -->
     <section id="nav-bottom">
+
         <nav class="nav-icon navbar fixed-bottom">
+
             <div class="container">
                 <a href="home"><i class="bi bi-house"></i></a>
                 <a href="#"><i class="bi bi-heart"></i></a>
@@ -118,10 +132,11 @@ $time = date("Y-m-d H:i:s");
 
                 <?php else : ?>
                 <a href="./buyer/login"><i class="bi bi-box-arrow-in-right"></i></a>
-
                 <?php endif; ?>
             </div>
+
         </nav>
+
     </section>
     <!-- End Navbar Bottom -->
     <!-- End Navbar -->

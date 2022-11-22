@@ -1,5 +1,6 @@
 <?php
 
+// Session Start
 session_start();
 
 // Connect
@@ -7,7 +8,7 @@ require '../functions.php';
 
 // cek user login
 if (isset($_SESSION['login'])) {
-    // jika sudah
+    // jika sudah ambil id dari session
     $id_user = $_SESSION['id_user'];
 } else {
     // jika belum
@@ -20,16 +21,19 @@ $id_user = $_SESSION["id_user"];
 //query data customer berdasarkan id
 $customer = query("SELECT * FROM customer WHERE id_user = $id_user")[0];
 
+// jika tombol save ditekan
 if (isset($_POST['save'])) {
 
+    // cek apakah user rubah data
     if (changeprofile($_POST) > 0) {
+        // jika user rubah data
         $message[] = "Changed Successfully!";
-        // $sec = "5";
-        // header("Refresh: $sec;");
-    } elseif (changeprofile($_POST) < 10) {
-        $error[] = "No Data Changes!";
+        // lakukan refresh halaman
+        $sec = "5";
+        header("Refresh: $sec;");
     } else {
-        $error[] = $_POST['error'];
+        // jika tidak rubah data
+        $error[] = "No Data Changes!";
     }
 }
 
@@ -211,8 +215,8 @@ $time = date("Y-m-d H:i:s");
                             <div class="mb-3 row">
                                 <label for="email" class="col-sm-2 col-form-label">Email</label>
                                 <div class="col">
-                                    <input type="email" class="form-control" id="email" autocomplete="off"
-                                        value="<?= $customer["email"] ?>" name="email" required>
+                                    <input type="email" class="form-control-plaintext" id="email" autocomplete="off"
+                                        value="<?= $customer["email"] ?>" readonly>
                                 </div>
                             </div>
                             <div class="mb-3 row">

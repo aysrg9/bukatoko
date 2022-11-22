@@ -3,7 +3,7 @@
 // koneksi
 require '../functions.php';
 
-// proses register
+// jika tombol submit ditekan
 if (isset($_POST["submit"])) {
 
     if (registrasic($_POST) > 0) {

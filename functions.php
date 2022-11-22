@@ -22,11 +22,12 @@ function rupiah($angka)
     return $hasil;
 }
 
-// Register Customer
+// function Register Customer
 function registrasic($data)
 {
     global $db;
 
+    // ambil data dari form
     $created = (stripslashes($data["created"]));
     $picture = strtolower($data["picture"]);
     $username = strtolower(stripslashes($data["username"]));
@@ -95,7 +96,6 @@ function changeprofile($data)
     //ambil dari data dari tiap elemen dalam form
     $id_user = $_SESSION["id_user"];
     $fullname = htmlspecialchars($data["fullname"]);
-    $email = htmlspecialchars($data["email"]);
 
     // cek apakah user pilih gambar baru atau tidak
     $pictureOld = htmlspecialchars($data["pictureOld"]);
@@ -106,7 +106,7 @@ function changeprofile($data)
     }
 
     //query insert data
-    $query = "UPDATE customer SET picture = '$picture', fullname = '$fullname', email = '$email' WHERE id_user =
+    $query = "UPDATE customer SET picture = '$picture', fullname = '$fullname' WHERE id_user =
     $id_user";
 
     mysqli_query($db, $query);
