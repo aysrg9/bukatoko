@@ -85,7 +85,7 @@ $time = date("Y-m-d H:i:s");
                                 data-bs-toggle="dropdown" aria-expanded="false">Hello,
                                 <?= $_SESSION['username']; ?></a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item fw-bold" href="#">Profile</a></li>
+                                <li><a class="dropdown-item fw-bold" href="./buyer/profile">Profile</a></li>
                                 <li><a class="dropdown-item fw-bold" href="./buyer/cart">Cart</a></li>
                                 <li><a class="dropdown-item fw-bold" href="./buyer/logout">Logout</a></li>
                             </ul>
@@ -114,7 +114,7 @@ $time = date("Y-m-d H:i:s");
 
                 <?php if (isset($_SESSION['login'])) : ?>
 
-                <a href="./buyer/logout"><i class="bi bi-person-circle"></i></a>
+                <a href="./buyer/profile"><i class="bi bi-person-circle"></i></a>
 
                 <?php else : ?>
                 <a href="./buyer/login"><i class="bi bi-box-arrow-in-right"></i></a>
@@ -169,7 +169,7 @@ $time = date("Y-m-d H:i:s");
     <section id="info-customer" class="container">
         <div class="shadow" style="background-color: #ffffff;">
             <div class="pt-3 pb-4 ps-3 pe-3">
-                <h3 class="text-primary fw-bold">For you</h3>
+                <h3 class="text-primary fw-bold">For <?= $fullname ?></h3>
                 <div class="card-customer card mt-3 d-inline-block">
                     <div class="card-body bg-primary text-white rounded">
                         <h5 class="card-title fw-bold">Cashback 50%</h5>

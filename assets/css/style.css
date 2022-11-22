@@ -45,6 +45,7 @@ body {
 
 .dropdown-item:hover {
   color: #0D6EFD;
+  background-color: #f1f1f1;
 }
 
 /* End Navbar */
@@ -265,6 +266,10 @@ input::-webkit-inner-spin-button {
 /* Mobile Device */
 @media screen and (max-width: 484px) {
   #product {
+    margin-bottom: 84px;
+  }
+
+  #cart-mobile {
     margin-bottom: 84px;
   }
 

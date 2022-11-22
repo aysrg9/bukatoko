@@ -90,7 +90,7 @@ $time = date("Y-m-d H:i:s");
                             aria-expanded="false">Hello,
                             <?= $_SESSION['username']; ?></a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item fw-bold" href="#">Profile</a></li>
+                            <li><a class="dropdown-item fw-bold" href="profile">Profile</a></li>
                             <li><a class="dropdown-item fw-bold" href="cart">Cart</a></li>
                             <li><a class="dropdown-item fw-bold" href="logout">Logout</a></li>
                         </ul>
@@ -118,7 +118,7 @@ $time = date("Y-m-d H:i:s");
 
                 <?php if (isset($_SESSION['login'])) : ?>
 
-                <a href="logout"><i class="bi bi-person-circle"></i></a>
+                <a href="profile"><i class="bi bi-person-circle"></i></a>
 
                 <?php else : ?>
                 <a href="login"><i class="bi bi-box-arrow-in-right"></i></a>
@@ -191,52 +191,55 @@ $time = date("Y-m-d H:i:s");
     <!-- End Dekstop View -->
 
     <!-- Mobile View -->
-    <section class="container" id="mobile-view">
+    <section id="cart-mobile">
+        <section class="container" id="mobile-view">
 
-        <div class="card shadow text-cart-mobile-view" style="background-color: #ffffff;">
-            <div class="pt-2 pb-2 ps-3 pe-3">
-                <h3 class="text-primary fw-bold">Cart</h3>
-            </div>
-        </div>
-
-        <?php
-
-        $cart = mysqli_query($db, "SELECT * FROM cart WHERE id_user = $id_user");
-        $i = mysqli_num_rows($cart);
-
-        ?>
-
-        <?php if ($i > 0) : ?>
-        <?php while ($cart_user = mysqli_fetch_array($cart)) : ?>
-
-        <div class="card shadow mt-3">
-            <h5 class="ps-2 pt-3 pb-2">Bukatoko <i class="bi bi-patch-check-fill text-primary"></i>
-            </h5>
-            <hr class="mb-0 mt-0">
-            <div class="row g-0 ps-2 pb-2 pt-2">
-                <div class="col" style="max-width: 72px;">
-                    <img src="../assets/images/product/<?= $cart_user['picture']; ?>" alt="" width="65px" height="65px">
-                </div>
-                <div class="col" style="max-width: 275px;">
-                    <p class="text-truncate mb-0 pb-0"><?= $cart_user['product_name']; ?></p>
-                    <p class="fw-bold mb-0 pb-0"><?= rupiah($cart_user["price"]) ?></p>
-                    <p class="mb-0 pb-0">Quantity <?= $cart_user["quantity"] ?></p>
+            <div class="card shadow text-cart-mobile-view" style="background-color: #ffffff;">
+                <div class="pt-2 pb-2 ps-3 pe-3">
+                    <h3 class="text-primary fw-bold">Cart</h3>
                 </div>
             </div>
-            <div class="pe-2 pb-2 fs-2">
-                <a class="float-end ps-2" href="cart?remove=<?= $cart_user['id_cart']; ?>"><i
-                        class="bi bi-trash-fill"></i></a>
-                <a class="float-end" href=""><i class="bi bi-credit-card"></i></a>
+
+            <?php
+
+            $cart = mysqli_query($db, "SELECT * FROM cart WHERE id_user = $id_user");
+            $i = mysqli_num_rows($cart);
+
+            ?>
+
+            <?php if ($i > 0) : ?>
+            <?php while ($cart_user = mysqli_fetch_array($cart)) : ?>
+
+            <div class="card shadow mt-3 ">
+                <h5 class="ps-2 pt-3 pb-2">Bukatoko <i class="bi bi-patch-check-fill text-primary"></i>
+                </h5>
+                <hr class="mb-0 mt-0">
+                <div class="row g-0 ps-2 pb-2 pt-2">
+                    <div class="col" style="max-width: 72px;">
+                        <img src="../assets/images/product/<?= $cart_user['picture']; ?>" alt="" width="65px"
+                            height="65px">
+                    </div>
+                    <div class="col" style="max-width: 275px;">
+                        <p class="text-truncate mb-0 pb-0"><?= $cart_user['product_name']; ?></p>
+                        <p class="fw-bold mb-0 pb-0"><?= rupiah($cart_user["price"]) ?></p>
+                        <p class="mb-0 pb-0">Quantity <?= $cart_user["quantity"] ?></p>
+                    </div>
+                </div>
+                <div class="pe-2 pb-2 fs-2">
+                    <a class="float-end ps-2" href="cart?remove=<?= $cart_user['id_cart']; ?>"><i
+                            class="bi bi-trash-fill"></i></a>
+                    <a class="float-end" href=""><i class="bi bi-credit-card"></i></a>
+                </div>
             </div>
-        </div>
 
-        <?php endwhile; ?>
-        <?php else : ?>
-        <div class="card shadow mt-3" style="background-color: #ffffff;">
-            <h3 class="text-primary text-center fw-bold pt-2">No Items Added!</h3>
-        </div>
-        <?php endif; ?>
+            <?php endwhile; ?>
+            <?php else : ?>
+            <div class="card shadow mt-3" style="background-color: #ffffff;">
+                <h3 class="text-primary text-center fw-bold pt-2">No Items Added!</h3>
+            </div>
+            <?php endif; ?>
 
+        </section>
     </section>
     <!-- End Mobile View -->
     <!-- End Cart -->

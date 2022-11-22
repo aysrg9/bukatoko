@@ -1,23 +1,18 @@
 <?php
 
-// start session
 session_start();
 
 // Connect
 require '../functions.php';
 
-// query data product
-$product = query("SELECT * FROM product");
-
 // cek user login
 if (isset($_SESSION['login'])) {
     // jika sudah
     $id_user = $_SESSION['id_user'];
-    $username = $_SESSION['username'];
+} else {
+    // jika belum
+    header('Location: login');
 }
-
-// ambil keyword
-$keyword = $_GET['keyword'];
 
 // waktu 
 date_default_timezone_set('Asia/Jakarta');
@@ -72,27 +67,28 @@ $time = date("Y-m-d H:i:s");
             <div class="container">
                 <a class="navbar-brand fs-2 text-primary fw-bold" href="../home"
                     style="font-family: 'Kanit', sans-serif;">Bukatoko</a>
-                <form method="GET" action="" class="d-flex" role="search">
+                <form method="GET" action="search" class="d-flex" role="search">
                     <input class="input-search form-control" type="search" placeholder="Search" aria-label="Search"
                         name="keyword" autocomplete="off" required>
                     <button class="btn btn-outline-primary d-none" type="submit"><i class="bi bi-search"
                             name="search"></i></button>
                 </form>
 
-
                 <?php if (isset($_SESSION['login'])) : ?>
 
                 <div id="button-navbar">
-                    <div class="dropdown">
-                        <a role="button" style="text-decoration: none;" class=" fw-bold fs-5" data-bs-toggle="dropdown"
-                            aria-expanded="false">Hello,
-                            <?= $_SESSION['username']; ?></a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item fw-bold" href="profile">Profile</a></li>
-                            <li><a class="dropdown-item fw-bold" href="cart">Cart</a></li>
-                            <li><a class="dropdown-item fw-bold" href="logout">Logout</a></li>
-                        </ul>
-                    </div>
+                    <form action="" method="post">
+                        <div class="dropdown">
+                            <a role="button" style="text-decoration: none;" class=" fw-bold fs-5"
+                                data-bs-toggle="dropdown" aria-expanded="false">Hello,
+                                <?= $_SESSION['username']; ?></a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item fw-bold" href="profile">Profile</a></li>
+                                <li><a class="dropdown-item fw-bold" href="cart">Cart</a></li>
+                                <li><a class="dropdown-item fw-bold" href="logout">Logout</a></li>
+                            </ul>
+                        </div>
+                    </form>
                 </div>
 
                 <?php else : ?>
@@ -111,12 +107,12 @@ $time = date("Y-m-d H:i:s");
         <nav class="nav-icon navbar fixed-bottom">
             <div class="container">
                 <a href="../home"><i class="bi bi-house"></i></a>
-                <a href=""><i class="bi bi-heart"></i></a>
+                <a href="#"><i class="bi bi-heart"></i></a>
                 <a href="cart"><i class="bi bi-cart3"></i></a>
 
                 <?php if (isset($_SESSION['login'])) : ?>
 
-                <a href="profile"><i class="bi bi-person-circle"></i></a>
+                <a href="logout"><i class="bi bi-person-circle"></i></a>
 
                 <?php else : ?>
                 <a href="login"><i class="bi bi-box-arrow-in-right"></i></a>
@@ -128,58 +124,62 @@ $time = date("Y-m-d H:i:s");
     <!-- End Navbar Bottom -->
     <!-- End Navbar -->
 
-    <!-- Product -->
-    <section id="product" class="container">
-
-        <div id="banner-search" class="shadow" style="background-color: #ffffff;">
-            <h3 class="pt-2 pb-2 text-center text-primary fw-bold">Based on what you are looking for</h3>
-        </div>
-
-        <div class="row row-cols-2 row-cols-sm-3 row-cols-lg-5 g-2 g-sm-3 mt-3">
-
-            <?php
-
-            $query = mysqli_query($db, "SELECT * FROM product WHERE product_name LIKE '%$keyword%' OR  stock LIKE '%$keyword%' OR price LIKE '%$keyword%'");
-            $i = mysqli_num_rows($query);
-
-            ?>
-
-            <?php if ($i > 0) : ?>
-            <?php while ($p = mysqli_fetch_array($query)) : ?>
-
-
-
-            <a href="view?id_product=<?= $p["id_product"] ?>" style="text-decoration: none;">
-
-                <div id="col-product" class="col shadow">
-
-                    <div class="p-3 shadow-sm bg-white">
-
-                        <img src="../assets/images/product/<?= $p["picture"] ?>" class="card-img-top picture-product"
-                            alt="...">
-
-                        <div class="card-body pt-3">
-                            <p class="card-title text-truncate text-dark"><?= $p["product_name"] ?></p>
-                            <p class="card-title pt-2 fw-bold text-dark"><?= rupiah($p["price"]) ?></p>
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </a>
-
-            <?php endwhile; ?>
-            <?php else : ?>
-            <div class="alert alert-dismissible fade show text-center" role="alert" style="width: 100%;">
-                <strong class="fs-1">The product you are looking for was not found!</strong>
+    <!-- Profile -->
+    <section id="dekstop-view" class="container">
+        <div class="card shadow">
+            <div class="head ps-3 pt-3 pe-3">
+                <h3 class="mb-0 mt- 0">My Profile</h3>
+                <p class="mb-0 mt-0">Manage your profile information to control, protect and secure your account</p>
+                <hr>
             </div>
-            <?php endif; ?>
+            <div class="profile-buyer ps-3 pt-3 pe-3 pb-4">
+                <div class="row">
+                    <div class="col" style="max-width: 225px;">
+                        <img class="border mb-3" src="../assets/images/profile/person.png" alt="" width="225px"
+                            height="225px">
 
+                        <label for="select-picture" class="form-label btn btn-primary btn-sm"
+                            style="width: 225px;">SELECT
+                            IMAGE</label>
+                        <input class="form-control d-none" type="file" id="select-picture">
+                        <p class="mb-0">File size: 2,000,000 bytes (2 Megabytes) maximum. Allowed file extensions: .PNG
+                            only
+                        </p>
+                    </div>
+                    <div class="col ms-5" style="max-width: 821px;">
+                        <h5>Change Personal Data</h5>
+                        <div class="mb-3 row">
+                            <label for="username" class="col-sm-2 col-form-label">Username</label>
+                            <div class="col-sm-2">
+                                <input type="text" readonly class="form-control-plaintext" id="username" value="aysrg9">
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label for="fullname" class="col-sm-2 col-form-label">Fullname</label>
+                            <div class="col">
+                                <input type="text" class="form-control" id="fullname" autocomplete="off">
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label for="email" class="col-sm-2 col-form-label">Email</label>
+                            <div class="col">
+                                <input type="email" class="form-control" id="email" autocomplete="off">
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label for="created" class="col-sm-2 col-form-label">Created At</label>
+                            <div class="col-sm-4">
+                                <input type="text" readonly class="form-control-plaintext" id="created"
+                                    value="2022-11-16 16:53:33">
+                            </div>
+                        </div>
+                        <button type="button" class="btn btn-primary btn-sm float-end ps-3 pe-3 pb-1 pt-1">SAVE</button>
+                    </div>
+                </div>
+            </div>
         </div>
-
     </section>
-    <!-- End Product -->
+    <!-- End Profile -->
 
     <!-- JS Bootstrap -->
     <script src=" https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
