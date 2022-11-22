@@ -14,6 +14,25 @@ if (isset($_SESSION['login'])) {
     header('Location: login');
 }
 
+// ambil id user dari session
+$id_user = $_SESSION["id_user"];
+
+//query data customer berdasarkan id
+$customer = query("SELECT * FROM customer WHERE id_user = $id_user")[0];
+
+if (isset($_POST['save'])) {
+
+    if (changeprofile($_POST) > 0) {
+        $message[] = "Changed Successfully!";
+        // $sec = "5";
+        // header("Refresh: $sec;");
+    } elseif (changeprofile($_POST) < 10) {
+        $error[] = "No Data Changes!";
+    } else {
+        $error[] = $_POST['error'];
+    }
+}
+
 // waktu 
 date_default_timezone_set('Asia/Jakarta');
 $time = date("Y-m-d H:i:s");
@@ -129,54 +148,86 @@ $time = date("Y-m-d H:i:s");
         <div class="card shadow">
             <div class="head ps-3 pt-3 pe-3">
                 <h3 class="mb-0 mt- 0">My Profile</h3>
-                <p class="mb-0 mt-0">Manage your profile information to control, protect and secure your account</p>
                 <hr>
             </div>
-            <div class="profile-buyer ps-3 pt-3 pe-3 pb-4">
-                <div class="row">
-                    <div class="col" style="max-width: 225px;">
-                        <img class="border mb-3" src="../assets/images/profile/person.png" alt="" width="225px"
-                            height="225px">
+            <form action="" method="POST" enctype="multipart/form-data">
+                <div class="profile-buyer ps-3 pt-3 pe-3 pb-4">
+                    <div class="row">
+                        <div class="col" style="max-width: 225px;">
+                            <img class="border mb-3" src="../assets/images/profile/<?= $customer["picture"] ?>" alt=""
+                                width="225px" height="225px">
 
-                        <label for="select-picture" class="form-label btn btn-primary btn-sm"
-                            style="width: 225px;">SELECT
-                            IMAGE</label>
-                        <input class="form-control d-none" type="file" id="select-picture">
-                        <p class="mb-0">File size: 2,000,000 bytes (2 Megabytes) maximum. Allowed file extensions: .PNG
-                            only
-                        </p>
-                    </div>
-                    <div class="col ms-5" style="max-width: 821px;">
-                        <h5>Change Personal Data</h5>
-                        <div class="mb-3 row">
-                            <label for="username" class="col-sm-2 col-form-label">Username</label>
-                            <div class="col-sm-2">
-                                <input type="text" readonly class="form-control-plaintext" id="username" value="aysrg9">
-                            </div>
+                            <label for="select-picture" class="form-label btn btn-primary btn-sm"
+                                style="width: 225px;">SELECT
+                                IMAGE</label>
+                            <input class="form-control d-none" type="file" id="select-picture" name="picture">
+                            <input class="form-control d-none" type="text" id="select-picture" name="pictureOld"
+                                value="<?= $customer["picture"] ?>" readonly>
+                            <p class="mb-0">File size: 2,000,000 bytes (2 Megabytes) maximum. Allowed file extensions:
+                                .PNG
+                                only
+                            </p>
                         </div>
-                        <div class="mb-3 row">
-                            <label for="fullname" class="col-sm-2 col-form-label">Fullname</label>
-                            <div class="col">
-                                <input type="text" class="form-control" id="fullname" autocomplete="off">
+                        <div class="col ms-5" style="max-width: 821px;">
+                            <!-- Alert -->
+                            <!-- Alert Succes -->
+                            <?php if (isset($message)) : ?>
+                            <?php foreach ($message as $message) : ?>
+                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                <strong><?= $message ?></strong>
+                                <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                    aria-label="Close"></button>
                             </div>
-                        </div>
-                        <div class="mb-3 row">
-                            <label for="email" class="col-sm-2 col-form-label">Email</label>
-                            <div class="col">
-                                <input type="email" class="form-control" id="email" autocomplete="off">
+                            <?php endforeach; ?>
+                            <?php endif; ?>
+                            <!-- End Alert Succes -->
+                            <!-- Alert Error -->
+                            <?php if (isset($error)) : ?>
+                            <?php foreach ($error as $error) : ?>
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                <strong><?= $error ?></strong>
+                                <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                    aria-label="Close"></button>
                             </div>
-                        </div>
-                        <div class="mb-3 row">
-                            <label for="created" class="col-sm-2 col-form-label">Created At</label>
-                            <div class="col-sm-4">
-                                <input type="text" readonly class="form-control-plaintext" id="created"
-                                    value="2022-11-16 16:53:33">
+                            <?php endforeach; ?>
+                            <?php endif; ?>
+                            <!-- End Alert Error -->
+                            <!-- End Alert -->
+                            <h5>Personal Data</h5>
+                            <div class="mb-3 row">
+                                <label for="username" class="col-sm-2 col-form-label">Username</label>
+                                <div class="col-sm-2">
+                                    <input type="text" readonly class="form-control-plaintext" id="username"
+                                        value="<?= $customer["username"] ?>">
+                                </div>
                             </div>
+                            <div class="mb-3 row">
+                                <label for="fullname" class="col-sm-2 col-form-label">Fullname</label>
+                                <div class="col">
+                                    <input type="text" class="form-control" id="fullname" autocomplete="off"
+                                        value="<?= $customer["fullname"] ?>" name="fullname" required>
+                                </div>
+                            </div>
+                            <div class="mb-3 row">
+                                <label for="email" class="col-sm-2 col-form-label">Email</label>
+                                <div class="col">
+                                    <input type="email" class="form-control" id="email" autocomplete="off"
+                                        value="<?= $customer["email"] ?>" name="email" required>
+                                </div>
+                            </div>
+                            <div class="mb-3 row">
+                                <label for="created" class="col-sm-2 col-form-label">Created At</label>
+                                <div class="col-sm-4">
+                                    <input type="text" readonly class="form-control-plaintext" id="created"
+                                        value="<?= $customer["created"] ?>">
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-sm float-end ps-3 pe-3 pb-1 pt-1"
+                                name="save">SAVE</button>
                         </div>
-                        <button type="button" class="btn btn-primary btn-sm float-end ps-3 pe-3 pb-1 pt-1">SAVE</button>
                     </div>
                 </div>
-            </div>
+            </form>
         </div>
     </section>
     <!-- End Profile -->

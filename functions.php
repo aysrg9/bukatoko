@@ -87,3 +87,64 @@ function search($keyword)
             ";
     return query($query);
 }
+
+// function change profile
+function changeprofile($data)
+{
+    global $db;
+    //ambil dari data dari tiap elemen dalam form
+    $id_user = $_SESSION["id_user"];
+    $fullname = htmlspecialchars($data["fullname"]);
+    $email = htmlspecialchars($data["email"]);
+
+    // cek apakah user pilih gambar baru atau tidak
+    $pictureOld = htmlspecialchars($data["pictureOld"]);
+    if ($_FILES['picture']['error'] === 4) {
+        $picture = $pictureOld;
+    } else {
+        $picture = uploadpicture();
+    }
+
+    //query insert data
+    $query = "UPDATE customer SET picture = '$picture', fullname = '$fullname', email = '$email' WHERE id_user =
+    $id_user";
+
+    mysqli_query($db, $query);
+    return mysqli_affected_rows($db);
+}
+
+// function upload photo profile
+function uploadpicture()
+{
+    $nameFile = $_FILES['picture']['name'];
+    $sizeFile = $_FILES['picture']['size'];
+    $tmpName = $_FILES['picture']['tmp_name'];
+
+    //cek apakah yang diupload adalah gambar
+    $extensionGambarValid = ['png'];
+    $extensionGambar = explode('.', $nameFile);
+
+    // fungsi explode itu string jadi array , kalau nama
+    // filenya person.png itu menjadi ['person','png']
+
+    $extensionGambar = strtolower(end($extensionGambar));
+    // cek apakah user upload gambar atau bukan
+    if (!in_array($extensionGambar, $extensionGambarValid)) {
+        return false;
+    }
+
+    // cek jika ukurannya terlalu besar
+    if ($sizeFile > 2000000) {
+        return false;
+    }
+
+    // lolos pengecekan, gambar siap di upload
+    // dan generate nama baru
+    $nameFileBaru = uniqid();
+    $nameFileBaru .= '.';
+    $nameFileBaru .= $extensionGambar;
+
+
+    move_uploaded_file($tmpName, '../assets/images/profile/' . $nameFileBaru);
+    return $nameFileBaru;
+}
