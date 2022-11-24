@@ -6,9 +6,6 @@ session_start();
 // Connect
 require '../functions.php';
 
-// query data product
-$wishlist = query("SELECT * FROM wishlist");
-
 // cek user login
 if (isset($_SESSION['acces-login'])) {
     // jika sudah login ambil data dari session
@@ -19,6 +16,9 @@ if (isset($_SESSION['acces-login'])) {
     // jika belom
     header('Location: login');
 }
+
+// query data
+$wishlist = mysqli_query($db, "SELECT * FROM wishlist WHERE id_user = $id_user");
 
 // remove cart
 if (isset($_POST['remove'])) {
@@ -84,10 +84,10 @@ $time = date("Y-m-d H:i:s");
 
             <div class="container">
 
-                <a class="navbar-brand fs-2 text-primary fw-bold" href="home"
+                <a class="navbar-brand fs-2 text-primary fw-bold" href="../home.php"
                     style="font-family: 'Kanit', sans-serif;">Bukatoko</a>
 
-                <form method="GET" action="./buyer/search" class="d-flex" role="search">
+                <form method="GET" action="search" class="d-flex" role="search">
                     <input class="input-search form-control" type="search" placeholder="Search" aria-label="Search"
                         name="keyword" autocomplete="off" required>
                     <button class="btn btn-outline-primary d-none" type="submit"><i class="bi bi-search"
@@ -98,25 +98,24 @@ $time = date("Y-m-d H:i:s");
 
                 <div id="button-navbar">
 
-                    <form action="" method="post">
-                        <div class="dropdown">
-                            <a role="button" style="text-decoration: none;" class=" fw-bold fs-5"
-                                data-bs-toggle="dropdown" aria-expanded="false">Hello,
-                                <?= $_SESSION['username']; ?></a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item fw-bold" href="./buyer/profile">Profile</a></li>
-                                <li><a class="dropdown-item fw-bold" href="./buyer/cart">Cart</a></li>
-                                <li><a class="dropdown-item fw-bold" href="./buyer/logout">Logout</a></li>
-                            </ul>
-                        </div>
-                    </form>
+                    <div class="dropdown">
+                        <a role="button" style="text-decoration: none;" class=" fw-bold fs-5" data-bs-toggle="dropdown"
+                            aria-expanded="false">Hello,
+                            <?= $_SESSION['username']; ?></a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item fw-bold" href="profile">Profile</a></li>
+                            <li><a class="dropdown-item fw-bold" href="cart">Cart</a></li>
+                            <li><a class="dropdown-item fw-bold" href="wishlist">Wishlist</a></li>
+                            <li><a class="dropdown-item fw-bold" href="logout">Logout</a></li>
+                        </ul>
+                    </div>
 
                 </div>
 
                 <?php else : ?>
                 <div id="button-navbar">
-                    <a href="./buyer/login" class="btn btn-primary fw-bold">LOGIN</a>
-                    <a href="./buyer/register" class="btn btn-primary fw-bold">REGISTER</a>
+                    <a href="login" class="btn btn-primary fw-bold">LOGIN</a>
+                    <a href="register" class="btn btn-primary fw-bold">REGISTER</a>
                 </div>
                 <?php endif; ?>
 
@@ -132,16 +131,16 @@ $time = date("Y-m-d H:i:s");
         <nav class="nav-icon navbar fixed-bottom">
 
             <div class="container">
-                <a href="home"><i class="bi bi-house"></i></a>
-                <a href="#"><i class="bi bi-heart-fill text-danger"></i></a>
-                <a href="./buyer/cart"><i class="bi bi-cart3"></i></a>
+                <a href="../home"><i class="bi bi-house"></i></a>
+                <a href="wishlist"><i class="bi bi-heart"></i></a>
+                <a href="cart"><i class="bi bi-cart3"></i></a>
 
                 <?php if (isset($_SESSION['acces-login'])) : ?>
 
-                <a href="./buyer/profile"><i class="bi bi-person-circle"></i></a>
+                <a href="profile"><i class="bi bi-person-circle"></i></a>
 
                 <?php else : ?>
-                <a href="./buyer/login"><i class="bi bi-box-arrow-in-right"></i></a>
+                <a href="login"><i class="bi bi-box-arrow-in-right"></i></a>
                 <?php endif; ?>
             </div>
 
@@ -158,49 +157,51 @@ $time = date("Y-m-d H:i:s");
             <h3 class="pt-2 pb-2 text-center text-primary fw-bold">Wishlist <?= $fullname ?></h3>
         </div>
 
+        <?php $i = mysqli_num_rows($wishlist); ?>
+        <?php if ($i > 0) : ?>
+        <?php while ($wishlist_user = mysqli_fetch_array($wishlist)) : ?>
+
         <div class="row row-cols-2 row-cols-sm-3 row-cols-lg-5 g-2 g-sm-3 mt-3">
 
-            <?php $i = 1; ?>
-            <?php foreach ($wishlist as $row) : ?>
-
-            <a href="view?id_product=<?= $row["id_product"] ?>" style="text-decoration: none;">
+            <a href="view?id_product=<?= $wishlist_user["id_product"] ?>" style="text-decoration: none;">
 
                 <div id="col-product" class="col shadow">
 
                     <div class="p-3 shadow-sm bg-white">
 
-                        <img src="../assets/images/product/<?= $row["picture"] ?>" class="card-img-top picture-product"
-                            alt="...">
+                        <img src="../assets/images/product/<?= $wishlist_user["picture"] ?>"
+                            class="card-img-top picture-product" alt="...">
 
                         <div class="card-body pt-3">
-                            <p class="card-title text-truncate text-dark"><?= $row["product_name"] ?></p>
+                            <p class="card-title text-truncate text-dark"><?= $wishlist_user["product_name"] ?></p>
                             <p class="card-title pt-2 fw-bold text-truncate text-dark">
-                                <?= rupiah($row["price"]) ?></p>
+                                <?= rupiah($wishlist_user["price"]) ?></p>
                         </div>
 
                         <div class="footer pt-2">
                             <form action="" method="POST">
-                                <button type="submit" name="addtocart" class="btn btn-primary btn-sm rounded fw-bold">+
-                                    CART</button>
+                                <button type="submit" name="remove" class="btn btn-primary btn-sm rounded"><i
+                                        class="bi bi-trash-fill"></i></button>
 
-                                <input type="text" class="d-none" readonly value="<?= $row['id_wishlist'] ?>"
+                                <input type="text" class="d-none" readonly value="<?= $wishlist_user['id_wishlist'] ?>"
                                     name="id_wishlist">
 
-                                <button type="submit" name="remove"
-                                    class="btn btn-primary btn-sm rounded fw-bold">DELETE</button>
+                                <button type="submit" name="addtocart"
+                                    class="btn btn-primary btn-sm rounded float-end">ADD TO CART</button>
                             </form>
                         </div>
-
                     </div>
-
                 </div>
-
             </a>
-
-            <?php $i++ ?>
-            <?php endforeach; ?>
-
         </div>
+
+        <?php endwhile; ?>
+        <?php else : ?>
+        <div class="card shadow mt-3 text-center" style="background-color: #ffffff;">
+            <h3 class="text-primary text-center fw-bold">No Items Added!</h3>
+        </div>
+        <?php endif; ?>
+
     </section>
     <!-- End Product -->
 

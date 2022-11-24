@@ -93,6 +93,7 @@ $time = date("Y-m-d H:i:s");
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item fw-bold" href="profile">Profile</a></li>
                             <li><a class="dropdown-item fw-bold" href="cart">Cart</a></li>
+                            <li><a class="dropdown-item fw-bold" href="wishlist">Wishlist</a></li>
                             <li><a class="dropdown-item fw-bold" href="logout">Logout</a></li>
                         </ul>
                     </div>
@@ -114,7 +115,7 @@ $time = date("Y-m-d H:i:s");
         <nav class="nav-icon navbar fixed-bottom">
             <div class="container">
                 <a href="../home"><i class="bi bi-house"></i></a>
-                <a href="#"><i class="bi bi-heart-fill text-danger"></i></a>
+                <a href="wishlist"><i class="bi bi-heart"></i></a>
                 <a href="cart"><i class="bi bi-cart3"></i></a>
 
                 <?php if (isset($_SESSION['acces-login'])) : ?>

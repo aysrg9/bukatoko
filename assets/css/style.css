@@ -280,6 +280,11 @@ input::-webkit-inner-spin-button {
     margin-bottom: 84px;
   }
 
+  #wishlist {
+    margin-bottom: 84px;
+    margin-top: -45px;
+  }
+
   #button-navbar {
     display: none;
   }

@@ -153,6 +153,7 @@ if (isset($_POST['addtocart'])) {
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item fw-bold" href="profile">Profile</a></li>
                             <li><a class="dropdown-item fw-bold" href="cart">Cart</a></li>
+                            <li><a class="dropdown-item fw-bold" href="wishlist">Wishlist</a></li>
                             <li><a class="dropdown-item fw-bold" href="logout">Logout</a></li>
                         </ul>
                     </div>
@@ -174,7 +175,7 @@ if (isset($_POST['addtocart'])) {
         <nav class="nav-icon navbar fixed-bottom">
             <div class="container">
                 <a onclick="history.go(-1);"><i class="bi bi-arrow-90deg-left text-primary"></i></a>
-                <a href="#"><i class="bi bi-heart-fill text-danger"></i></i></a>
+                <a href="wishlist"><i class="bi bi-heart"></i></i></a>
                 <a href="cart"><i class="bi bi-cart3"></i></a>
 
                 <?php if (isset($_SESSION['acces-login'])) : ?>
