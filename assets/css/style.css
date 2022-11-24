@@ -189,6 +189,13 @@ input::-webkit-inner-spin-button {
 
 /* End Cart */
 
+/* Wishlist */
+#wishlist {
+  padding-top: 156px;
+}
+
+/* End Wishlist */
+
 /* Login & Regitser Form */
 .head-brand {
   padding-top: 40px;

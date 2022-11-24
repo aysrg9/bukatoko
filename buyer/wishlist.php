@@ -1,23 +1,31 @@
 <?php
 
-// start session
+// Session Start
 session_start();
 
 // Connect
 require '../functions.php';
 
 // query data product
-$product = query("SELECT * FROM product");
+$wishlist = query("SELECT * FROM wishlist");
 
 // cek user login
 if (isset($_SESSION['acces-login'])) {
-    // jika sudah
+    // jika sudah login ambil data dari session
     $id_user = $_SESSION['id_user'];
     $username = $_SESSION['username'];
+    $fullname = $_SESSION['fullname'];
+} else {
+    // jika belom
+    header('Location: login');
 }
 
-// ambil keyword
-$keyword = $_GET['keyword'];
+// remove cart
+if (isset($_POST['remove'])) {
+    $remove_id = $_POST['id_wishlist'];
+    mysqli_query($db, "DELETE FROM wishlist WHERE id_wishlist = '$remove_id'");
+    header('location:wishlist');
+}
 
 // waktu 
 date_default_timezone_set('Asia/Jakarta');
@@ -58,7 +66,9 @@ $time = date("Y-m-d H:i:s");
 <body>
     <!-- Start Navbar -->
     <section id="navbar" class="fixed-top">
+
         <div style="background-color: #F3F4F5;">
+
             <div id="text-info" class="container pt-1 pb-1">
                 <!-- <a href="" class="me-3">About Bukatoko</a> -->
                 <a class="me-1">Follow us on</a>
@@ -67,100 +77,118 @@ $time = date("Y-m-d H:i:s");
                         class="bi bi-instagram"></i></a>
                 <a class="me-2" href="https://twitter.com/aysrg9/" target="_blank"><i class="bi bi-twitter"></i></a>
             </div>
+
         </div>
+
         <nav class="navbar shadow" style="background-color: #fff;">
+
             <div class="container">
-                <a class="navbar-brand fs-2 text-primary fw-bold" href="../home"
+
+                <a class="navbar-brand fs-2 text-primary fw-bold" href="home"
                     style="font-family: 'Kanit', sans-serif;">Bukatoko</a>
-                <form method="GET" action="" class="d-flex" role="search">
+
+                <form method="GET" action="./buyer/search" class="d-flex" role="search">
                     <input class="input-search form-control" type="search" placeholder="Search" aria-label="Search"
                         name="keyword" autocomplete="off" required>
                     <button class="btn btn-outline-primary d-none" type="submit"><i class="bi bi-search"
                             name="search"></i></button>
                 </form>
 
-
                 <?php if (isset($_SESSION['acces-login'])) : ?>
 
                 <div id="button-navbar">
-                    <div class="dropdown">
-                        <a role="button" style="text-decoration: none;" class=" fw-bold fs-5" data-bs-toggle="dropdown"
-                            aria-expanded="false">Hello,
-                            <?= $_SESSION['username']; ?></a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item fw-bold" href="profile">Profile</a></li>
-                            <li><a class="dropdown-item fw-bold" href="cart">Cart</a></li>
-                            <li><a class="dropdown-item fw-bold" href="logout">Logout</a></li>
-                        </ul>
-                    </div>
+
+                    <form action="" method="post">
+                        <div class="dropdown">
+                            <a role="button" style="text-decoration: none;" class=" fw-bold fs-5"
+                                data-bs-toggle="dropdown" aria-expanded="false">Hello,
+                                <?= $_SESSION['username']; ?></a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item fw-bold" href="./buyer/profile">Profile</a></li>
+                                <li><a class="dropdown-item fw-bold" href="./buyer/cart">Cart</a></li>
+                                <li><a class="dropdown-item fw-bold" href="./buyer/logout">Logout</a></li>
+                            </ul>
+                        </div>
+                    </form>
+
                 </div>
 
                 <?php else : ?>
                 <div id="button-navbar">
-                    <a href="login" class="btn btn-primary fw-bold">LOGIN</a>
-                    <a href="register" class="btn btn-primary fw-bold">REGISTER</a>
+                    <a href="./buyer/login" class="btn btn-primary fw-bold">LOGIN</a>
+                    <a href="./buyer/register" class="btn btn-primary fw-bold">REGISTER</a>
                 </div>
-
                 <?php endif; ?>
+
             </div>
+
         </nav>
+
     </section>
 
     <!-- Navbar Bottom -->
     <section id="nav-bottom">
+
         <nav class="nav-icon navbar fixed-bottom">
+
             <div class="container">
-                <a href="../home"><i class="bi bi-house"></i></a>
-                <a href=""><i class="bi bi-heart-fill"></i></a>
-                <a href="cart"><i class="bi bi-cart3"></i></a>
+                <a href="home"><i class="bi bi-house"></i></a>
+                <a href="#"><i class="bi bi-heart-fill text-danger"></i></a>
+                <a href="./buyer/cart"><i class="bi bi-cart3"></i></a>
 
                 <?php if (isset($_SESSION['acces-login'])) : ?>
 
-                <a href="profile"><i class="bi bi-person-circle"></i></a>
+                <a href="./buyer/profile"><i class="bi bi-person-circle"></i></a>
 
                 <?php else : ?>
-                <a href="login"><i class="bi bi-box-arrow-in-right"></i></a>
-
+                <a href="./buyer/login"><i class="bi bi-box-arrow-in-right"></i></a>
                 <?php endif; ?>
             </div>
+
         </nav>
+
     </section>
     <!-- End Navbar Bottom -->
     <!-- End Navbar -->
 
-    <!-- Product -->
-    <section id="product" class="container">
+    <!-- wishlist-->
+    <section id="wishlist" class="container">
 
-        <div id="banner-search" class="shadow" style="background-color: #ffffff;">
-            <h3 class="pt-2 pb-2 text-center text-primary fw-bold">Based on what you are looking for</h3>
+        <div id="banner-recomend" class="shadow" style="background-color: #ffffff;">
+            <h3 class="pt-2 pb-2 text-center text-primary fw-bold">Wishlist <?= $fullname ?></h3>
         </div>
 
         <div class="row row-cols-2 row-cols-sm-3 row-cols-lg-5 g-2 g-sm-3 mt-3">
 
-            <?php
+            <?php $i = 1; ?>
+            <?php foreach ($wishlist as $row) : ?>
 
-            $query = mysqli_query($db, "SELECT * FROM product WHERE product_name LIKE '%$keyword%'");
-            $i = mysqli_num_rows($query);
-
-            ?>
-
-            <?php if ($i > 0) : ?>
-            <?php while ($p = mysqli_fetch_array($query)) : ?>
-
-
-
-            <a href="view?id_product=<?= $p["id_product"] ?>" style="text-decoration: none;">
+            <a href="view?id_product=<?= $row["id_product"] ?>" style="text-decoration: none;">
 
                 <div id="col-product" class="col shadow">
 
                     <div class="p-3 shadow-sm bg-white">
 
-                        <img src="../assets/images/product/<?= $p["picture"] ?>" class="card-img-top picture-product"
+                        <img src="../assets/images/product/<?= $row["picture"] ?>" class="card-img-top picture-product"
                             alt="...">
 
                         <div class="card-body pt-3">
-                            <p class="card-title text-truncate text-dark"><?= $p["product_name"] ?></p>
-                            <p class="card-title pt-2 fw-bold text-dark"><?= rupiah($p["price"]) ?></p>
+                            <p class="card-title text-truncate text-dark"><?= $row["product_name"] ?></p>
+                            <p class="card-title pt-2 fw-bold text-truncate text-dark">
+                                <?= rupiah($row["price"]) ?></p>
+                        </div>
+
+                        <div class="footer pt-2">
+                            <form action="" method="POST">
+                                <button type="submit" name="addtocart" class="btn btn-primary btn-sm rounded fw-bold">+
+                                    CART</button>
+
+                                <input type="text" class="d-none" readonly value="<?= $row['id_wishlist'] ?>"
+                                    name="id_wishlist">
+
+                                <button type="submit" name="remove"
+                                    class="btn btn-primary btn-sm rounded fw-bold">DELETE</button>
+                            </form>
                         </div>
 
                     </div>
@@ -169,15 +197,10 @@ $time = date("Y-m-d H:i:s");
 
             </a>
 
-            <?php endwhile; ?>
-            <?php else : ?>
-            <div class="alert alert-dismissible fade show text-center" role="alert" style="width: 100%;">
-                <strong class="fs-1">The product you are looking for was not found!</strong>
-            </div>
-            <?php endif; ?>
+            <?php $i++ ?>
+            <?php endforeach; ?>
 
         </div>
-
     </section>
     <!-- End Product -->
 

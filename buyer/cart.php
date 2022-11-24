@@ -7,7 +7,7 @@ session_start();
 require '../functions.php';
 
 // cek user login
-if (isset($_SESSION['login'])) {
+if (isset($_SESSION['acces-login'])) {
     // jika sudah
     $id_user = $_SESSION['id_user'];
 } else {
@@ -83,7 +83,7 @@ $time = date("Y-m-d H:i:s");
                 </form>
 
 
-                <?php if (isset($_SESSION['login'])) : ?>
+                <?php if (isset($_SESSION['acces-login'])) : ?>
 
                 <div id="button-navbar">
                     <div class="dropdown">
@@ -114,10 +114,10 @@ $time = date("Y-m-d H:i:s");
         <nav class="nav-icon navbar fixed-bottom">
             <div class="container">
                 <a href="../home"><i class="bi bi-house"></i></a>
-                <a href="#"><i class="bi bi-heart"></i></a>
+                <a href="#"><i class="bi bi-heart-fill text-danger"></i></a>
                 <a href="cart"><i class="bi bi-cart3"></i></a>
 
-                <?php if (isset($_SESSION['login'])) : ?>
+                <?php if (isset($_SESSION['acces-login'])) : ?>
 
                 <a href="profile"><i class="bi bi-person-circle"></i></a>
 
@@ -226,6 +226,7 @@ $time = date("Y-m-d H:i:s");
                         <p class="mb-0 pb-0">Quantity <?= $cart_user["quantity"] ?></p>
                     </div>
                 </div>
+                <hr>
                 <div class="pe-2 pb-2 fs-2">
                     <a class="float-end ps-2" href="cart?remove=<?= $cart_user['id_cart']; ?>"><i
                             class="bi bi-trash-fill"></i></a>

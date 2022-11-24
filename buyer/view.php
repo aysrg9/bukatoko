@@ -19,10 +19,39 @@ $prdct = query("SELECT * FROM product WHERE id_product = $id_product")[0];
 date_default_timezone_set('Asia/Jakarta');
 $time = date("Y-m-d H:i:s");
 
+// wishlist
+if (isset($_POST['wishlist'])) {
+    // cek user login
+    if (!isset($_SESSION['acces-login'])) {
+        // jika belom
+        header('Location: login');
+    }
+    // jika sudah login
+    // ambil data
+    $id_user = $_SESSION['id_user'];
+    $id_product = $_GET['id_product'];
+    $picture = $_POST['picture'];
+    $product_name = $_POST['product_name'];
+    $price = $_POST['price'];
+    $select_wishlist = mysqli_query($db, "SELECT * FROM wishlist WHERE id_product = '$id_product' AND id_user = '$id_user'") or
+        die('query failed');
+
+    // cek apakah product sudah ada diwishlist atau belum
+    if (mysqli_num_rows($select_wishlist) > 0) {
+        $error[] = 'Product already added to wishlist!';
+        $errorm[] = 'Product already added to wishlist!';
+    } else {
+        // jika belum ada di wishlist
+        mysqli_query($db, "INSERT INTO wishlist (id_user, id_product, picture ,product_name, price) VALUES($id_user, $id_product, '$picture','$product_name', '$price')");
+        $message[] = 'Product added to wishlist!';
+        $messagem[] = 'Product added to wishlist!';
+    }
+}
+
 // add to cart
 if (isset($_POST['addtocart'])) {
     // cek apakah user sudah login
-    if (!isset($_SESSION['login'])) {
+    if (!isset($_SESSION['acces-login'])) {
         // apabila belom login
         header('Location: login');
     }
@@ -114,7 +143,7 @@ if (isset($_POST['addtocart'])) {
                 </form>
 
                 <!-- Cek user login -->
-                <?php if (isset($_SESSION['login'])) : ?>
+                <?php if (isset($_SESSION['acces-login'])) : ?>
 
                 <div id="button-navbar">
                     <div class="dropdown">
@@ -122,7 +151,7 @@ if (isset($_POST['addtocart'])) {
                             aria-expanded="false">Hello,
                             <?= $_SESSION['username']; ?></a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item fw-bold" href="#">Profile</a></li>
+                            <li><a class="dropdown-item fw-bold" href="profile">Profile</a></li>
                             <li><a class="dropdown-item fw-bold" href="cart">Cart</a></li>
                             <li><a class="dropdown-item fw-bold" href="logout">Logout</a></li>
                         </ul>
@@ -145,12 +174,12 @@ if (isset($_POST['addtocart'])) {
         <nav class="nav-icon navbar fixed-bottom">
             <div class="container">
                 <a onclick="history.go(-1);"><i class="bi bi-arrow-90deg-left text-primary"></i></a>
-                <a href="#"><i class="bi bi-heart"></i></i></a>
+                <a href="#"><i class="bi bi-heart-fill text-danger"></i></i></a>
                 <a href="cart"><i class="bi bi-cart3"></i></a>
 
-                <?php if (isset($_SESSION['login'])) : ?>
+                <?php if (isset($_SESSION['acces-login'])) : ?>
 
-                <a href="../buyer/logout"><i class="bi bi-person-circle"></i></a>
+                <a href="../buyer/profile"><i class=" bi bi-person-circle"></i></a>
 
                 <?php else : ?>
                 <a href="../buyer/login"><i class="bi bi-box-arrow-in-right"></i></a>
@@ -173,8 +202,7 @@ if (isset($_POST['addtocart'])) {
             <?php foreach ($message as $message) : ?>
             <div class="alert alert-success alert-dismissible fade show" role="alert">
                 <strong><?= $message ?></strong>
-                <button onclick="location.href = 'cart';" type="button" class="btn-close" data-bs-dismiss="alert"
-                    aria-label="Close"></button>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
             <?php endforeach; ?>
             <?php endif; ?>
@@ -224,12 +252,15 @@ if (isset($_POST['addtocart'])) {
                             <a class="plus-minus text-decoration-none text-light" id="increment"
                                 onclick="stepper(this)"> + </a>
 
-                            <div class="d-block pt-4">
+                            <div class="d-block pt-3">
 
                                 <button type="submit" class="btn btn-primary btn fw-bold rounded" name="addtocart">ADD
                                     TO
                                     CART</button>
                                 <button type="submit" class="btn btn-primary btn fw-bold rounded">BUY NOW</button>
+                                <button type="submit" class="btn fw-bold rounded" name="wishlist"
+                                    style="border: none;"><i class="bi bi-heart-fill fs-3 text-danger"></i></button>
+
                             </div>
                         </div>
                     </div>

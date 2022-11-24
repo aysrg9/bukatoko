@@ -27,7 +27,7 @@ if (isset($_POST["login"])) {
             $_SESSION['username'] = $user['username'];
             $_SESSION['fullname'] = $user['fullname'];
             // $_SESSION['email'] = $user['email'];
-            $_SESSION["login"] = true;
+            $_SESSION["acces-login"] = true;
 
             header("Location: ../home");
             exit;
