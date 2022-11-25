@@ -172,9 +172,11 @@ $time = date("Y-m-d H:i:s");
                 </div>
                 <div class="col text-center" style="max-width: 170px;"><?= rupiah($cart_user["price"]) ?>
                 </div>
+
                 <div class="col text-center" style="max-width: 250px;">
                     <?= $cart_user['quantity']; ?>
                 </div>
+
                 <div class="col text-center fs-3" style="max-width: 100px;">
                     <a href="cart?remove=<?= $cart_user['id_cart']; ?>"><i class="bi bi-trash-fill"></i></a>
                     <a href=""><i class="bi bi-credit-card"></i></a>
@@ -246,6 +248,9 @@ $time = date("Y-m-d H:i:s");
     </section>
     <!-- End Mobile View -->
     <!-- End Cart -->
+
+    <!-- Quantity -->
+    <script src="../assets/js/quantity.js"></script>
 
     <!-- JS Bootstrap -->
     <script src=" https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"

@@ -26,10 +26,12 @@ if (isset($_POST['save'])) {
         // jika user rubah data
         // lakukan refresh halaman
         $message[] = "Changed Successfully!";
-        $sec = "5";
+        $messagem[] = "Changed Successfully!";
+        $sec = "3";
         header("Refresh: $sec;");
     } else {
         // jika tidak rubah data
+        $errorm[] = "No Data Changes!";
         $error[] = "No Data Changes!";
     }
 }
@@ -229,14 +231,140 @@ $time = date("Y-m-d H:i:s");
                         </div>
                     </div>
                 </div>
-            </form>
         </div>
     </section>
+
+    <section id="mobile-view" class="container">
+        <!-- Alert -->
+        <!-- Alert Succes -->
+        <?php if (isset($messagem)) : ?>
+        <?php foreach ($messagem as $messagem) : ?>
+
+        <!-- Modal -->
+        <div class="modal" id="exampleModalAlert" style="background-color: #7B7B7B;">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-3 text-success" id="exampleModalLabel">Succes !</h1>
+                    </div>
+                    <div class="modal-body">
+                        <?= $messagem ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <?php endforeach; ?>
+        <?php endif; ?>
+        <!-- End Alert Succes -->
+        <!-- Alert Error -->
+        <?php if (isset($errorm)) : ?>
+        <?php foreach ($errorm as $errorm) : ?>
+
+        <!-- Modal -->
+        <div class="modal" id="exampleModalAlert" style="background-color: #7B7B7B;">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-3 text-danger" id="exampleModalLabel">Warning !</h1>
+                    </div>
+                    <div class="modal-body">
+                        <?= $errorm ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <?php endforeach; ?>
+        <?php endif; ?>
+
+        <!-- End Alert Error -->
+        <div class="card shadow text-cart-mobile-view" style="background-color: #ffffff;">
+            <div class="pt-2 pb-2 ps-3 pe-3">
+                <div class="row">
+                    <div class="col" style="max-width: 65px;">
+                        <img class="rounded-circle border" src="../assets/images/profile/<?= $customer["picture"] ?>"
+                            alt="" width="50px" height="50px">
+                    </div>
+                    <div class="col" style="max-width: 275px;">
+                        <p class="fw-bold mb-0 text-truncate"><?= $customer["fullname"] ?></p>
+                        <a class="text-primary text-decoration-none" data-bs-toggle="modal"
+                            data-bs-target="#exampleModal" data-bs-whatever="@mdo">Other</a>
+
+                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                            aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="exampleModalLabel">My Profile</h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="mb-2 text-center">
+                                            <img class="border mb-2 rounded-circle border"
+                                                src="../assets/images/profile/<?= $customer["picture"] ?>" alt=""
+                                                width="115px" height="115px">
+                                            <br>
+                                            <label for="select-picture" class="form-label btn btn-primary btn-sm"
+                                                style="width: 115px;">SELECT
+                                                IMAGE</label>
+
+                                        </div>
+                                        <div class="mb-2">
+                                            <label for="username" class="col-form-label">Username:</label>
+                                            <input type="text" class="form-control" id="username"
+                                                value="<?= $customer["username"] ?>" readonly>
+                                        </div>
+                                        <div class="mb-2">
+                                            <label for="fullname" class="col-form-label">Fullname:</label>
+                                            <input type="text" class="form-control" id="fullname"
+                                                value="<?= $customer["fullname"] ?>" name="fullname" autocomplete="off">
+                                        </div>
+                                        <div class="mb-2">
+                                            <label for="email" class="col-form-label">Email:</label>
+                                            <input type="email" class="form-control" id="email"
+                                                value="<?= $customer["email"] ?>" readonly>
+                                        </div>
+                                        <div class="mb-2">
+                                            <label for="created" class="col-form-label">Created:</label>
+                                            <input type="text" class="form-control" id="created"
+                                                value="<?= $customer["created"] ?>" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-bs-dismiss="modal">Close</button>
+                                        <button type="submit" class="btn btn-primary" name="save">Save</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </section>
+    </form>
     <!-- End Profile -->
 
     <!-- JS Bootstrap -->
     <script src=" https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous">
+    </script>
+
+    <!-- JS Bootstrap 4.6 -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js"
+        integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous">
+    </script>
+
+    <script>
+    $('#exampleModalAlert').modal('show')
     </script>
 </body>
 

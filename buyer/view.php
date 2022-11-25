@@ -313,6 +313,8 @@ if (isset($_POST['addtocart'])) {
                         TO
                         CART</button>
                     <a class="btn btn-primary text-white fw-bold" href="">BUY NOW</a>
+                    <button type="submit" class="btn fw-bold rounded" name="wishlist" style="border: none;"><i
+                            class="bi bi-heart-fill fs-3 text-danger"></i></button>
                 </div>
             </div>
 
