@@ -153,8 +153,8 @@ $time = date("Y-m-d H:i:s");
     <!-- wishlist-->
     <section id="wishlist" class="container">
 
-        <div id="banner-recomend" class="shadow" style="background-color: #ffffff;">
-            <h3 class="pt-2 pb-2 text-center text-primary fw-bold">Wishlist <?= $fullname ?></h3>
+        <div id="banner-recomend" class="card shadow" style="background-color: #ffffff;">
+            <h3 class="pt-2 pb-2 text-center text-primary fw-bold mb-0">Wishlist <?= $fullname ?></h3>
         </div>
 
         <?php $i = mysqli_num_rows($wishlist); ?>
@@ -165,29 +165,27 @@ $time = date("Y-m-d H:i:s");
 
             <a href="view?id_product=<?= $wishlist_user["id_product"] ?>" style="text-decoration: none;">
 
-                <div id="col-product" class="col shadow">
+                <div id="col-product" class="col shadow card">
 
-                    <div class="p-3 shadow-sm bg-white">
+                    <div class="p-3 shadow-sm bg-white ps-2 pe-2 pb-0">
 
                         <img src="../assets/images/product/<?= $wishlist_user["picture"] ?>"
                             class="card-img-top picture-product" alt="...">
 
                         <div class="card-body pt-3">
-                            <p class="card-title text-truncate text-dark"><?= $wishlist_user["product_name"] ?></p>
-                            <p class="card-title pt-2 fw-bold text-truncate text-dark">
+                            <p class="card-title text-truncate text-dark mb-0"><?= $wishlist_user["product_name"] ?></p>
+                            <p class="card-title pt-2 mb-0 fw-bold text-truncate text-dark">
                                 <?= rupiah($wishlist_user["price"]) ?></p>
                         </div>
 
-                        <div class="footer pt-2">
+                        <div class="footer pe-3 ps-3">
                             <form action="" method="POST">
-                                <button type="submit" name="remove" class="btn btn-primary btn-sm rounded"><i
+                                <button type="submit" name="remove"
+                                    class="btn btn-primary btn-sm rounded float-end mb-3"><i
                                         class="bi bi-trash-fill"></i></button>
 
                                 <input type="text" class="d-none" readonly value="<?= $wishlist_user['id_wishlist'] ?>"
                                     name="id_wishlist">
-
-                                <button type="submit" name="addtocart"
-                                    class="btn btn-primary btn-sm rounded float-end">ADD TO CART</button>
                             </form>
                         </div>
                     </div>
@@ -198,7 +196,7 @@ $time = date("Y-m-d H:i:s");
         <?php endwhile; ?>
         <?php else : ?>
         <div class="card shadow mt-3 text-center" style="background-color: #ffffff;">
-            <h3 class="text-primary text-center fw-bold">No Items Added!</h3>
+            <h3 class="text-primary text-center fw-bold mb-0 mt-0 pb-2 pt-2">No Items Added!</h3>
         </div>
         <?php endif; ?>
 

@@ -181,7 +181,7 @@ $time = date("Y-m-d H:i:s");
     <!-- Info -->
     <?php if (isset($_SESSION['acces-login'])) : ?>
     <section id="info-customer" class="container">
-        <div class="shadow" style="background-color: #ffffff;">
+        <div class="shadow card" style="background-color: #ffffff;">
             <div class="pt-3 pb-4 ps-3 pe-3">
                 <h3 class="text-primary fw-bold">For <?= $fullname ?></h3>
                 <div class="card-customer card mt-3 d-inline-block">
@@ -201,7 +201,7 @@ $time = date("Y-m-d H:i:s");
     </section>
     <?php else : ?>
     <section id="info-customer" class="container">
-        <div class="shadow" style="background-color: #ffffff;">
+        <div class="shadow card" style="background-color: #ffffff;">
             <div class="pt-3 pb-4 ps-3 pe-3">
                 <h3 class="text-primary fw-bold">For you</h3>
                 <div class="card-customer card mt-3 d-inline-block">
@@ -225,8 +225,8 @@ $time = date("Y-m-d H:i:s");
     <!-- Product -->
     <section id="product" class="container">
 
-        <div id="banner-recomend" class="shadow" style="background-color: #ffffff;">
-            <h3 class="pt-2 pb-2 text-center text-primary fw-bold">Recommendation Product</h3>
+        <div id="banner-recomend" class="shadow card" style="background-color: #ffffff;">
+            <h3 class="pt-2 pb-2 text-center text-primary fw-bold mb-0">Recommendation Product</h3>
         </div>
 
         <div class="row row-cols-2 row-cols-sm-3 row-cols-lg-5 g-2 g-sm-3 mt-3">
@@ -236,16 +236,16 @@ $time = date("Y-m-d H:i:s");
 
             <a href="./buyer/view?id_product=<?= $row["id_product"] ?>" style="text-decoration: none;">
 
-                <div id="col-product" class="col shadow">
+                <div id="col-product" class="col shadow card">
 
-                    <div class="p-3 shadow-sm bg-white">
+                    <div class="p-3 shadow bg-white ps-2 pe-2 pb-0">
 
                         <img src="./assets/images/product/<?= $row["picture"] ?>" class="card-img-top picture-product"
                             alt="...">
 
                         <div class="card-body pt-3">
                             <p class="card-title text-truncate text-dark"><?= $row["product_name"] ?></p>
-                            <p class="card-title pt-2 fw-bold text-truncate text-dark">
+                            <p class="card-title pt-2 mb-0 fw-bold text-truncate text-dark">
                                 <?= rupiah($row["price"]) ?></p>
                         </div>
 

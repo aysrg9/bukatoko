@@ -132,8 +132,8 @@ $time = date("Y-m-d H:i:s");
     <!-- Product -->
     <section id="product" class="container">
 
-        <div id="banner-search" class="shadow" style="background-color: #ffffff;">
-            <h3 class="pt-2 pb-2 text-center text-primary fw-bold">Based on what you are looking for</h3>
+        <div id="banner-search" class="shadow card" style="background-color: #ffffff;">
+            <h3 class="pt-2 pb-2 text-center text-primary fw-bold mb-0">Based on what you are looking for</h3>
         </div>
 
         <div class="row row-cols-2 row-cols-sm-3 row-cols-lg-5 g-2 g-sm-3 mt-3">
@@ -152,16 +152,17 @@ $time = date("Y-m-d H:i:s");
 
             <a href="view?id_product=<?= $p["id_product"] ?>" style="text-decoration: none;">
 
-                <div id="col-product" class="col shadow">
+                <div id="col-product" class="col shadow card">
 
-                    <div class="p-3 shadow-sm bg-white">
+                    <div class="p-3 shadow-sm bg-white ps-1 pe-1 pb-0">
 
                         <img src="../assets/images/product/<?= $p["picture"] ?>" class="card-img-top picture-product"
                             alt="...">
 
                         <div class="card-body pt-3">
                             <p class="card-title text-truncate text-dark"><?= $p["product_name"] ?></p>
-                            <p class="card-title pt-2 fw-bold text-dark"><?= rupiah($p["price"]) ?></p>
+                            <p class="card-title pt-2 fw-bold text-dark mb-0 text-truncate"><?= rupiah($p["price"]) ?>
+                            </p>
                         </div>
 
                     </div>

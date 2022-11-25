@@ -99,19 +99,11 @@ $time = date("Y-m-d H:i:s");
                 <?php if (isset($_SESSION['acces-login'])) : ?>
 
                 <div id="button-navbar">
-                    <form action="" method="post">
-                        <div class="dropdown">
-                            <a role="button" style="text-decoration: none;" class=" fw-bold fs-5"
-                                data-bs-toggle="dropdown" aria-expanded="false">Hello,
-                                <?= $_SESSION['username']; ?></a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item fw-bold" href="profile">Profile</a></li>
-                                <li><a class="dropdown-item fw-bold" href="cart">Cart</a></li>
-                                <li><a class="dropdown-item fw-bold" href="wishlist">Wishlist</a></li>
-                                <li><a class="dropdown-item fw-bold" href="logout">Logout</a></li>
-                            </ul>
-                        </div>
-                    </form>
+                    <div class="dropdown">
+                        <a role="button" style="text-decoration: none;" class=" fw-bold fs-5" data-bs-toggle="dropdown"
+                            aria-expanded="false">Hello,
+                            <?= $_SESSION['username']; ?></a>
+                    </div>
                 </div>
 
                 <?php else : ?>
@@ -127,7 +119,7 @@ $time = date("Y-m-d H:i:s");
 
     <!-- Navbar Bottom -->
     <section id="nav-bottom">
-        <nav class="nav-icon navbar fixed-bottom">
+        <nav class="nav-icon navbar fixed-bottom d-none">
             <div class="container">
                 <a href="../home"><i class="bi bi-house"></i></a>
                 <a href="wishlist"><i class="bi bi-heart"></i></a>
@@ -168,8 +160,7 @@ $time = date("Y-m-d H:i:s");
                             <input class="form-control d-none" type="text" id="select-picture" name="pictureOld"
                                 value="<?= $customer["picture"] ?>" readonly>
                             <p class="mb-0">File size: 2,000,000 bytes (2 Megabytes) maximum. Allowed file extensions:
-                                .PNG
-                                only
+                                .PNG .JPG .JPEG
                             </p>
                         </div>
                         <div class="col ms-5" style="max-width: 821px;">
@@ -279,8 +270,8 @@ $time = date("Y-m-d H:i:s");
         <?php endif; ?>
 
         <!-- End Alert Error -->
-        <div class="card shadow text-cart-mobile-view" style="background-color: #ffffff;">
-            <div class="pt-2 pb-2 ps-3 pe-3">
+        <div class="text-cart-mobile-view">
+            <div class="pt-2 pb-2 ps-3 pe-3 card shadow" style="background-color: #ffffff;">
                 <div class="row">
                     <div class="col" style="max-width: 65px;">
                         <img class="rounded-circle border" src="../assets/images/profile/<?= $customer["picture"] ?>"
@@ -327,7 +318,7 @@ $time = date("Y-m-d H:i:s");
                                                 value="<?= $customer["email"] ?>" readonly>
                                         </div>
                                         <div class="mb-2">
-                                            <label for="created" class="col-form-label">Created:</label>
+                                            <label for="created" class="col-form-label">Created At:</label>
                                             <input type="text" class="form-control" id="created"
                                                 value="<?= $customer["created"] ?>" readonly>
                                         </div>
@@ -341,6 +332,27 @@ $time = date("Y-m-d H:i:s");
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+
+            <div class="card shadow mt-4" style="background-color: #ffffff;">
+                <div class="pt-3 pb-3 ps-3 pe-3 d-inline-block">
+                    <p class="pt-0 pb-0 mb-0 mt-0 fw-bold" style="font-size: 17px;">My Activity</p>
+                    <a href="" class="mb-0 mt-3 text-decoration-none d-inline-block fw-bold text-dark"><i
+                            class="bi bi-receipt fs-4 me-3"></i>Transaction
+                        List</a>
+                    <br>
+                    <a href="cart" class="mb-0 mt-3 text-decoration-none d-inline-block fw-bold text-dark"><i
+                            class="bi bi-cart3 fs-4 me-3"></i>Cart</a>
+                    <br>
+                    <a href="wishlist" class="mb-0 mt-3 text-decoration-none d-inline-block fw-bold text-dark"><i
+                            class="bi bi-heart fs-4 me-3"></i>Wishlist</a>
+                    <br>
+                    <a href="" class="mb-0 mt-3 text-decoration-none d-inline-block fw-bold text-dark"><i
+                            class="bi bi-credit-card-2-front fs-4 me-3"></i>Voucher</a>
+                    <br>
+                    <a href="logout" class="mb-0 mt-3 text-decoration-none d-inline-block fw-bold text-dark"><i
+                            class="bi bi-box-arrow-in-right fs-4 me-3"></i></i>Logout</a>
                 </div>
             </div>
     </section>

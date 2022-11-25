@@ -121,7 +121,7 @@ function uploadpicture()
     $tmpName = $_FILES['picture']['tmp_name'];
 
     //cek apakah yang diupload adalah gambar
-    $extensionGambarValid = ['png'];
+    $extensionGambarValid = ['png', 'jpg', 'jpeg'];
     $extensionGambar = explode('.', $nameFile);
 
     // fungsi explode itu string jadi array , kalau nama

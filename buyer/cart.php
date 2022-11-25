@@ -135,13 +135,8 @@ $time = date("Y-m-d H:i:s");
     <!-- Cart -->
     <!-- Dekstop View -->
     <section class="container" id="dekstop-view">
-        <div class="card shadow" style="background-color: #ffffff;">
-            <div class="pt-2 pb-2 ps-3 pe-3">
-                <h3 class="text-primary fw-bold">Cart</h3>
-            </div>
-        </div>
 
-        <div class="card shadow mt-3">
+        <div class="card shadow">
             <div class="row g-0 ps-2 pe-2 pb-2 pt-2">
                 <div class="col text-center fw-bold" style="max-width: auto;">Product</div>
                 <div class="col text-center fw-bold" style="max-width: 170px;">Unit Price</div>
@@ -187,7 +182,7 @@ $time = date("Y-m-d H:i:s");
         <?php endwhile; ?>
         <?php else : ?>
         <div class="card shadow mt-3" style="background-color: #ffffff;">
-            <h3 class="text-primary text-center fw-bold">No Items Added!</h3>
+            <h3 class="text-primary text-center fw-bold mb-0 pt-1 pb-1">No Items Added!</h3>
         </div>
         <?php endif; ?>
 
@@ -200,7 +195,7 @@ $time = date("Y-m-d H:i:s");
 
             <div class="card shadow text-cart-mobile-view" style="background-color: #ffffff;">
                 <div class="pt-2 pb-2 ps-3 pe-3">
-                    <h3 class="text-primary fw-bold">Cart</h3>
+                    <h3 class="text-primary text-center fw-bold pb-0 mb-0 mt-0">Cart</h3>
                 </div>
             </div>
 
