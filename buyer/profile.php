@@ -219,6 +219,26 @@ $time = date("Y-m-d H:i:s");
                             </div>
                             <button type="submit" class="btn btn-primary btn-sm float-end ps-3 pe-3 pb-1 pt-1"
                                 name="save">SAVE</button>
+
+                            <h5 class="pt-4 pb-2">My Activity</h5>
+                            <div class="list-group my-activity">
+                                <a href="#" class="text-decoration-none mb-3">
+                                    <i class="bi bi-receipt fs-4 me-2"></i>Transaction
+                                    List
+                                </a>
+                                <a href="cart" class="text-decoration-none mb-3">
+                                    <i class="bi bi-cart3 fs-4 me-2"></i>Cart
+                                </a>
+                                <a href="wishlist" class="text-decoration-none mb-3">
+                                    <i class="bi bi-heart fs-4 me-2"></i>Wishlist
+                                </a>
+                                <a href="#" class="text-decoration-none mb-3">
+                                    <i class="bi bi-credit-card-2-front fs-4 me-2"></i>Voucher
+                                </a>
+                                <a href="logout" class="text-decoration-none">
+                                    <i class="bi bi-box-arrow-in-right fs-4 me-2"></i>Logout
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -347,21 +367,24 @@ $time = date("Y-m-d H:i:s");
             <div class="card shadow mt-4" style="background-color: #ffffff;">
                 <div class="pt-3 pb-3 ps-3 pe-3 d-inline-block">
                     <p class="pt-0 pb-0 mb-0 mt-0 fw-bold" style="font-size: 17px;">My Activity</p>
-                    <a href="" class="mb-0 mt-3 text-decoration-none d-inline-block fw-bold text-dark"><i
-                            class="bi bi-receipt fs-4 me-3"></i>Transaction
-                        List</a>
-                    <br>
-                    <a href="cart" class="mb-0 mt-3 text-decoration-none d-inline-block fw-bold text-dark"><i
-                            class="bi bi-cart3 fs-4 me-3"></i>Cart</a>
-                    <br>
-                    <a href="wishlist" class="mb-0 mt-3 text-decoration-none d-inline-block fw-bold text-dark"><i
-                            class="bi bi-heart fs-4 me-3"></i>Wishlist</a>
-                    <br>
-                    <a href="" class="mb-0 mt-3 text-decoration-none d-inline-block fw-bold text-dark"><i
-                            class="bi bi-credit-card-2-front fs-4 me-3"></i>Voucher</a>
-                    <br>
-                    <a href="logout" class="mb-0 mt-3 text-decoration-none d-inline-block fw-bold text-dark"><i
-                            class="bi bi-box-arrow-in-right fs-4 me-3"></i></i>Logout</a>
+                    <div class="list-group my-activity mt-2">
+                        <a href="#" class="text-decoration-none mb-3">
+                            <i class="bi bi-receipt fs-4 me-2"></i>Transaction
+                            List
+                        </a>
+                        <a href="cart" class="text-decoration-none mb-3">
+                            <i class="bi bi-cart3 fs-4 me-2"></i>Cart
+                        </a>
+                        <a href="wishlist" class="text-decoration-none mb-3">
+                            <i class="bi bi-heart fs-4 me-2"></i>Wishlist
+                        </a>
+                        <a href="#" class="text-decoration-none mb-3">
+                            <i class="bi bi-credit-card-2-front fs-4 me-2"></i>Voucher
+                        </a>
+                        <a href="logout" class="text-decoration-none">
+                            <i class="bi bi-box-arrow-in-right fs-4 me-2"></i>Logout
+                        </a>
+                    </div>
                 </div>
             </div>
     </section>
