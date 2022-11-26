@@ -27,7 +27,7 @@ if (isset($_POST['save'])) {
         // lakukan refresh halaman
         $message[] = "Changed Successfully!";
         $messagem[] = "Changed Successfully!";
-        $sec = "3";
+        $sec = "2";
         header("Refresh: $sec;");
     } else {
         // jika tidak rubah data
@@ -222,6 +222,7 @@ $time = date("Y-m-d H:i:s");
                         </div>
                     </div>
                 </div>
+            </form>
         </div>
     </section>
 
@@ -282,55 +283,63 @@ $time = date("Y-m-d H:i:s");
                         <a class="text-primary text-decoration-none" data-bs-toggle="modal"
                             data-bs-target="#exampleModal" data-bs-whatever="@mdo">Other</a>
 
-                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                            aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h1 class="modal-title fs-5" id="exampleModalLabel">My Profile</h1>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                            aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <div class="mb-2 text-center">
-                                            <img class="border mb-2 rounded-circle border"
-                                                src="../assets/images/profile/<?= $customer["picture"] ?>" alt=""
-                                                width="115px" height="115px">
-                                            <br>
-                                            <label for="select-picture" class="form-label btn btn-primary btn-sm"
-                                                style="width: 115px;">SELECT
-                                                IMAGE</label>
+                        <form action="" method="POST" enctype="multipart/form-data">
+                            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                                aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h1 class="modal-title fs-5" id="exampleModalLabel">My Profile</h1>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="mb-2 text-center">
 
+                                                <input class="form-control d-none" type="text" id="select-picture"
+                                                    name="pictureOld" value="<?= $customer["picture"] ?>" readonly>
+                                                <input class="form-control d-none" type="file" id="select-picture"
+                                                    name="picture">
+                                                <img class="border mb-2 rounded-circle border"
+                                                    src="../assets/images/profile/<?= $customer["picture"] ?>" alt=""
+                                                    width="115px" height="115px">
+                                                <br>
+                                                <label for="select-picture" class="form-label btn btn-primary btn-sm"
+                                                    style="width: 115px;">SELECT
+                                                    IMAGE</label>
+
+                                            </div>
+                                            <div class="mb-2">
+                                                <label for="username" class="col-form-label">Username:</label>
+                                                <input type="text" class="form-control" id="username"
+                                                    value="<?= $customer["username"] ?>" readonly>
+                                            </div>
+                                            <div class="mb-2">
+                                                <label for="fullname" class="col-form-label">Fullname:</label>
+                                                <input type="text" class="form-control" id="fullname"
+                                                    value="<?= $customer["fullname"] ?>" name="fullname"
+                                                    autocomplete="off">
+                                            </div>
+                                            <div class="mb-2">
+                                                <label for="email" class="col-form-label">Email:</label>
+                                                <input type="email" class="form-control" id="email"
+                                                    value="<?= $customer["email"] ?>" readonly>
+                                            </div>
+                                            <div class="mb-2">
+                                                <label for="created" class="col-form-label">Created At:</label>
+                                                <input type="text" class="form-control" id="created"
+                                                    value="<?= $customer["created"] ?>" readonly>
+                                            </div>
                                         </div>
-                                        <div class="mb-2">
-                                            <label for="username" class="col-form-label">Username:</label>
-                                            <input type="text" class="form-control" id="username"
-                                                value="<?= $customer["username"] ?>" readonly>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary"
+                                                data-bs-dismiss="modal">Close</button>
+                                            <button type="submit" class="btn btn-primary" name="save">Save</button>
                                         </div>
-                                        <div class="mb-2">
-                                            <label for="fullname" class="col-form-label">Fullname:</label>
-                                            <input type="text" class="form-control" id="fullname"
-                                                value="<?= $customer["fullname"] ?>" name="fullname" autocomplete="off">
-                                        </div>
-                                        <div class="mb-2">
-                                            <label for="email" class="col-form-label">Email:</label>
-                                            <input type="email" class="form-control" id="email"
-                                                value="<?= $customer["email"] ?>" readonly>
-                                        </div>
-                                        <div class="mb-2">
-                                            <label for="created" class="col-form-label">Created At:</label>
-                                            <input type="text" class="form-control" id="created"
-                                                value="<?= $customer["created"] ?>" readonly>
-                                        </div>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary"
-                                            data-bs-dismiss="modal">Close</button>
-                                        <button type="submit" class="btn btn-primary" name="save">Save</button>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -356,7 +365,6 @@ $time = date("Y-m-d H:i:s");
                 </div>
             </div>
     </section>
-    </form>
     <!-- End Profile -->
 
     <!-- JS Bootstrap -->
