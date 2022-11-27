@@ -281,27 +281,32 @@ $time = date("Y-m-d H:i:s");
                     <div class="ms-2 me-2 pb-2 fs-2 mb-1 mt-1">
                         <div class="float-start">
                             <?php if ($cart_user['quantity'] == 1) : ?>
-                            <button type="button" id="decrement" class="btn btn-primary plus-minus mt-1" disabled> -
+
+                            <button type="submit" id="decrement"
+                                class="btn btn-primary plus-minus text-decoration-none text-light" disabled> -
                             </button>
 
                             <input type="number" min="1" max="50" step="1" value="<?= $cart_user['quantity']; ?>"
                                 id="quantity" name="quantity">
 
-                            <button type="submit" name="add" class="plus-minus text-decoration-none text-light"
-                                id="increment" onclick="stepper(this)"> +
+                            <button type="submit" name="add"
+                                class="btn btn-primary plus-minus text-decoration-none text-light" id="increment"
+                                onclick="stepper(this)"> +
                             </button>
 
                             <?php else : ?>
 
-                            <button type="submit" name="min" class="plus-minus text-decoration-none text-light"
-                                id="decrement" onclick="stepper(this)"> -
+                            <button type="submit" name="min"
+                                class="btn btn-primary plus-minus text-decoration-none text-light" id="decrement"
+                                onclick="stepper(this)"> -
                             </button>
 
                             <input type="number" min="1" max="50" step="1" value="<?= $cart_user['quantity']; ?>"
                                 id="quantity" name="quantity">
 
-                            <button type="submit" name="add" class="plus-minus text-decoration-none text-light"
-                                id="increment" onclick="stepper(this)"> +
+                            <button type="submit" name="add"
+                                class="btn btn-primary plus-minus text-decoration-none text-light" id="increment"
+                                onclick="stepper(this)"> +
                             </button>
 
                             <?php endif; ?>
