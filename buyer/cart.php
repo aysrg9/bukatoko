@@ -39,6 +39,7 @@ if (isset($_POST['min'])) {
     $qty = 1;
     $result = $quantity - $qty;
     mysqli_query($db, "UPDATE cart SET quantity = $result WHERE id_cart = '$id_cart'");
+    header('location:cart');
 }
 
 // waktu 
@@ -163,6 +164,7 @@ $time = date("Y-m-d H:i:s");
                 <div class="col text-center fw-bold" style="max-width: 100px;">Action</div>
             </div>
         </div>
+
         <?php
 
         $cart = mysqli_query($db, "SELECT * FROM cart WHERE id_user = $id_user");
@@ -244,7 +246,7 @@ $time = date("Y-m-d H:i:s");
 
             <div class="card shadow text-cart-mobile-view" style="background-color: #ffffff;">
                 <div class="pt-2 pb-2 ps-3 pe-3">
-                    <h3 class="text-primary text-center fw-bold pb-0 mb-0 mt-0">Cart</h3>
+                    <h3 class="text-primary fw-bold pb-0 mb-0 mt-0">Cart</h3>
                 </div>
             </div>
 
@@ -258,30 +260,66 @@ $time = date("Y-m-d H:i:s");
             <?php if ($i > 0) : ?>
             <?php while ($cart_user = mysqli_fetch_array($cart)) : ?>
 
-            <div class="card shadow mt-3 ">
-                <h5 class="ps-2 pt-3 pb-2">Bukatoko <i class="bi bi-patch-check-fill text-primary"></i>
-                </h5>
-                <hr class="mb-0 mt-0">
-                <div class="row g-0 ps-2 pb-2 pt-2">
-                    <div class="col" style="max-width: 72px;">
-                        <img src="../assets/images/product/<?= $cart_user['picture']; ?>" alt="" width="65px"
-                            height="65px">
+            <form method="POST">
+
+                <div class="card shadow mt-3 ">
+                    <h5 class="ps-2 pt-3 pb-2">Bukatoko <i class="bi bi-patch-check-fill text-primary"></i>
+                    </h5>
+                    <hr class="mb-0 mt-0">
+                    <div class="row g-0 ps-2 pb-2 pt-2">
+                        <div class="col" style="max-width: 72px;">
+                            <img src="../assets/images/product/<?= $cart_user['picture']; ?>" alt="" width="65px"
+                                height="65px">
+                        </div>
+                        <div class="col" style="max-width: 275px;">
+                            <p class="text-truncate mb-0 pb-0"><?= $cart_user['product_name']; ?></p>
+                            <p class="fw-bold mb-0 pb-0"><?= rupiah($cart_user["price"]) ?></p>
+                            <p class="mb-0 pb-0">Quantity <?= $cart_user["quantity"] ?></p>
+                        </div>
                     </div>
-                    <div class="col" style="max-width: 275px;">
-                        <p class="text-truncate mb-0 pb-0"><?= $cart_user['product_name']; ?></p>
-                        <p class="fw-bold mb-0 pb-0"><?= rupiah($cart_user["price"]) ?></p>
-                        <p class="mb-0 pb-0">Quantity <?= $cart_user["quantity"] ?></p>
+                    <hr class="mb-1">
+                    <div class="ms-2 me-2 pb-2 fs-2 mb-1 mt-1">
+                        <div class="float-start">
+                            <?php if ($cart_user['quantity'] == 1) : ?>
+                            <button type="button" id="decrement" class="btn btn-primary plus-minus mt-1" disabled> -
+                            </button>
+
+                            <input type="number" min="1" max="50" step="1" value="<?= $cart_user['quantity']; ?>"
+                                id="quantity" name="quantity">
+
+                            <button type="submit" name="add" class="plus-minus text-decoration-none text-light"
+                                id="increment" onclick="stepper(this)"> +
+                            </button>
+
+                            <?php else : ?>
+
+                            <button type="submit" name="min" class="plus-minus text-decoration-none text-light"
+                                id="decrement" onclick="stepper(this)"> -
+                            </button>
+
+                            <input type="number" min="1" max="50" step="1" value="<?= $cart_user['quantity']; ?>"
+                                id="quantity" name="quantity">
+
+                            <button type="submit" name="add" class="plus-minus text-decoration-none text-light"
+                                id="increment" onclick="stepper(this)"> +
+                            </button>
+
+                            <?php endif; ?>
+                        </div>
+                        <div class="float-end pt-1">
+                            <button type="submit" name="remove" class="btn btn-primary"><i
+                                    class="bi bi-trash-fill"></i></button>
+
+                            <input type="text" class="d-none" readonly name="id_cart"
+                                value="<?= $cart_user['id_cart']; ?>">
+
+                            <button type="submit" name="checkout" class="btn btn-primary"><i
+                                    class="bi bi-credit-card"></i></button>
+                        </div>
                     </div>
                 </div>
-                <hr class="mb-1">
-                <div class="ms-2 pb-2 fs-2 mb-1">
-                    <button type="submit" name="remove" class="btn btn-primary btn-sm"><i
-                            class="bi bi-trash-fill"></i></button>
-                    <input type="text" class="d-none" readonly name="remove_id" value="<?= $cart_user['id_cart']; ?>">
-                    <button type="submit" name="checkout" class="btn btn-primary btn-sm"><i
-                            class="bi bi-credit-card"></i></button>
-                </div>
-            </div>
+
+            </form>
 
             <?php endwhile; ?>
             <?php else : ?>
