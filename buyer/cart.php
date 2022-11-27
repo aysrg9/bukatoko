@@ -29,6 +29,7 @@ if (isset($_POST['add'])) {
     $qty = 1;
     $result = $quantity + $qty;
     mysqli_query($db, "UPDATE cart SET quantity = $result WHERE id_cart = '$id_cart'");
+    header('location:cart');
 }
 
 // edit min quantity
@@ -277,9 +278,6 @@ $time = date("Y-m-d H:i:s");
     </section>
     <!-- End Mobile View -->
     <!-- End Cart -->
-
-    <!-- Quantity -->
-    <script src="../assets/js/quantity.js"></script>
 
     <!-- JS Bootstrap -->
     <script src=" https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
