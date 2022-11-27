@@ -143,7 +143,7 @@ $time = date("Y-m-d H:i:s");
     <section id="dekstop-view" class="container">
         <div class="card shadow">
             <div class="head ps-3 pt-3 pe-3">
-                <h3 class="mb-0 mt- 0">My Profile</h3>
+                <h3 class="mb-0 mt- 0">Profile</h3>
                 <hr>
             </div>
             <form action="" method="POST" enctype="multipart/form-data">

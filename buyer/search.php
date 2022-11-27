@@ -150,7 +150,7 @@ $time = date("Y-m-d H:i:s");
 
 
 
-            <a href="view?id_product=<?= $p["id_product"] ?>" style="text-decoration: none;">
+            <a href="view?p=<?= $p["id_product"] ?>" style="text-decoration: none;">
 
                 <div id="col-product" class="col shadow card">
 

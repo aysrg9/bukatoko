@@ -53,7 +53,7 @@ $time = date("Y-m-d H:i:s");
     <h1 class="fw-bold text-primary text-center head-brand" style="padding-top: 40px; padding-bottom:40px;">
         Bukatoko
     </h1>
-    <section id="container-form" class="container shadow rounded"
+    <section id="container-form" class="container cart shadow rounded"
         style="border: 3px solid gainsboro; margin-bottom: 50px;">
         <form method="POST">
 

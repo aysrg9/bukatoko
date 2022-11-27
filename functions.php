@@ -22,7 +22,7 @@ function rupiah($angka)
     return $hasil;
 }
 
-// function Register Customer
+// function register buyer
 function registrasic($data)
 {
     global $db;
@@ -43,7 +43,7 @@ function registrasic($data)
         return false;
     }
 
-    // cek maksimal karakter username
+    // cek maksimal karakter username = 8
     if (strlen($username) > 8) {
         $_POST['error'] = "Username Maximum 8 Characters!";
         return false;
@@ -75,18 +75,6 @@ function registrasic($data)
     mysqli_query($db, "INSERT INTO customer VALUES(id_user,'$picture','$username','$fullname','$email','$password','$created')");
 
     return mysqli_affected_rows($db);
-}
-
-// function search
-function search($keyword)
-{
-    $query = "SELECT * FROM product
-                WHERE
-                product_name LIKE '%$keyword%' OR 
-                stock LIKE '%$keyword%' OR
-                price LIKE '%$keyword%'
-            ";
-    return query($query);
 }
 
 // function change profile

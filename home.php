@@ -153,13 +153,13 @@ $time = date("Y-m-d H:i:s");
                         aria-label="Slide 3"></button>
                 </div>
                 <div class="carousel-inner">
-                    <div class="carousel-item active">
+                    <div class="carousel-item active" data-bs-interval="2000">
                         <img src="./assets/images/carousel/bukagames.png" class="d-block rounded" alt="...">
                     </div>
-                    <div class="carousel-item">
+                    <div class="carousel-item" data-bs-interval="2000">
                         <img src="./assets/images/carousel/bukareksa.png" class="d-block w-100 rounded" alt="...">
                     </div>
-                    <div class="carousel-item">
+                    <div class="carousel-item" data-bs-interval="2000">
                         <img src="./assets/images/carousel/murahmantap.png" class="d-block w-100 rounded" alt="...">
                     </div>
                 </div>
@@ -234,7 +234,7 @@ $time = date("Y-m-d H:i:s");
             <?php $i = 1; ?>
             <?php foreach ($product as $row) : ?>
 
-            <a href="./buyer/view?id_product=<?= $row["id_product"] ?>" style="text-decoration: none;">
+            <a href="./buyer/view?p=<?= $row["id_product"] ?>" style="text-decoration: none;">
 
                 <div id="col-product" class="col shadow card">
 

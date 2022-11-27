@@ -10,7 +10,7 @@ require '../functions.php';
 $product = query("SELECT * FROM product");
 
 // ambil data di url 
-$id_product = $_GET["id_product"];
+$id_product = $_GET["p"];
 
 //query data product berdasarkan id
 $prdct = query("SELECT * FROM product WHERE id_product = $id_product")[0];
@@ -29,7 +29,7 @@ if (isset($_POST['wishlist'])) {
     // jika sudah login
     // ambil data
     $id_user = $_SESSION['id_user'];
-    $id_product = $_GET['id_product'];
+    $id_product = $_GET['p'];
     $picture = $_POST['picture'];
     $product_name = $_POST['product_name'];
     $price = $_POST['price'];
@@ -59,7 +59,7 @@ if (isset($_POST['addtocart'])) {
     // proses ambil data
     // apabila sudah login, ambil id dari session
     $id_user = $_SESSION['id_user'];
-    $id_product = $_GET['id_product'];
+    $id_product = $_GET['p'];
     $picture = $_POST['picture'];
     $product_name = $_POST['product_name'];
     $price = $_POST['price'];

@@ -62,7 +62,7 @@ $time = date("Y-m-d H:i:s");
     <h1 class="fw-bold text-primary text-center head-brand" style="padding-top: 40px; padding-bottom:40px;">
         Bukatoko
     </h1>
-    <section id="container-form" class="container shadow rounded" style="border: 3px solid gainsboro;">
+    <section id="container-form" class="container card shadow rounded" style="border: 3px solid gainsboro;">
         <form action="" method="POST">
             <h3 class="text-center header-form">Let's login first!</h3>
 

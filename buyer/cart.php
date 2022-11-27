@@ -16,10 +16,28 @@ if (isset($_SESSION['acces-login'])) {
 }
 
 // remove cart
-if (isset($_GET['remove'])) {
-    $remove_id = $_GET['remove'];
+if (isset($_POST['remove'])) {
+    $remove_id = $_POST['id_cart'];
     mysqli_query($db, "DELETE FROM cart WHERE id_cart = '$remove_id'");
     header('location:cart');
+}
+
+// edit add quantity
+if (isset($_POST['add'])) {
+    $id_cart = $_POST['id_cart'];
+    $quantity = $_POST['quantity'];
+    $qty = 1;
+    $result = $quantity + $qty;
+    mysqli_query($db, "UPDATE cart SET quantity = $result WHERE id_cart = '$id_cart'");
+}
+
+// edit min quantity
+if (isset($_POST['min'])) {
+    $id_cart = $_POST['id_cart'];
+    $quantity = $_POST['quantity'];
+    $qty = 1;
+    $result = $quantity - $qty;
+    mysqli_query($db, "UPDATE cart SET quantity = $result WHERE id_cart = '$id_cart'");
 }
 
 // waktu 
@@ -144,7 +162,6 @@ $time = date("Y-m-d H:i:s");
                 <div class="col text-center fw-bold" style="max-width: 100px;">Action</div>
             </div>
         </div>
-
         <?php
 
         $cart = mysqli_query($db, "SELECT * FROM cart WHERE id_user = $id_user");
@@ -155,29 +172,44 @@ $time = date("Y-m-d H:i:s");
         <?php if ($i > 0) : ?>
         <?php while ($cart_user = mysqli_fetch_array($cart)) : ?>
 
-        <div class="card shadow mt-3">
-            <h5 class="pt-4 ps-2 ">Bukatoko <i class="bi bi-patch-check-fill text-primary"></i></h5>
-            <hr>
-            <div class="row g-0 ps-2 pe-2 pb-3">
-                <div class="col" style="max-width: 594px;">
-                    <img src="../assets/images/product/<?= $cart_user['picture']; ?>" alt="" width="75px" height="75px">
-                    <p class="d-inline-block text-truncate" style="max-width: 495px;">
-                        <?= $cart_user['product_name']; ?>
-                    </p>
-                </div>
-                <div class="col text-center" style="max-width: 170px;"><?= rupiah($cart_user["price"]) ?>
-                </div>
+        <form method="POST">
+            <div class="card shadow mt-3">
+                <h5 class="pt-4 ps-2 ">Bukatoko <i class="bi bi-patch-check-fill text-primary"></i></h5>
+                <hr>
+                <div class="row g-0 ps-2 pe-2 pb-3">
+                    <div class="col" style="max-width: 594px;">
+                        <img src="../assets/images/product/<?= $cart_user['picture']; ?>" alt="" width="75px"
+                            height="75px">
+                        <p class="d-inline-block text-truncate" style="max-width: 495px;">
+                            <?= $cart_user['product_name']; ?>
+                        </p>
+                    </div>
+                    <div class="col text-center" style="max-width: 170px;"><?= rupiah($cart_user["price"]) ?>
+                    </div>
 
-                <div class="col text-center" style="max-width: 250px;">
-                    <?= $cart_user['quantity']; ?>
-                </div>
+                    <div class="col text-center" style="max-width: 250px;">
+                        <button type="submit" name="min" class="plus-minus text-decoration-none text-light"
+                            id="decrement" onclick="stepper(this)"> -
+                        </button>
 
-                <div class="col text-center fs-3" style="max-width: 100px;">
-                    <a href="cart?remove=<?= $cart_user['id_cart']; ?>"><i class="bi bi-trash-fill"></i></a>
-                    <a href=""><i class="bi bi-credit-card"></i></a>
+                        <input type="number" min="1" max="50" step="1" value="<?= $cart_user['quantity']; ?>"
+                            id="quantity" name="quantity">
+
+                        <button type="submit" name="add" class="plus-minus text-decoration-none text-light"
+                            id="increment" onclick="stepper(this)"> +
+                        </button>
+                    </div>
+                    <div class="col text-center fs-3" style="max-width: 100px;">
+                        <button type="submit" name="remove" class="btn btn-primary"><i
+                                class="bi bi-trash-fill"></i></button>
+                        <input type="text" class="d-none" readonly name="id_cart" value="<?= $cart_user['id_cart']; ?>">
+                        <button type="submit" name="checkout" class="btn btn-primary"><i
+                                class="bi bi-credit-card"></i></button>
+                    </div>
+
                 </div>
             </div>
-        </div>
+        </form>
 
         <?php endwhile; ?>
         <?php else : ?>
@@ -224,11 +256,13 @@ $time = date("Y-m-d H:i:s");
                         <p class="mb-0 pb-0">Quantity <?= $cart_user["quantity"] ?></p>
                     </div>
                 </div>
-                <hr>
-                <div class="pe-2 pb-2 fs-2">
-                    <a class="float-end ps-2" href="cart?remove=<?= $cart_user['id_cart']; ?>"><i
-                            class="bi bi-trash-fill"></i></a>
-                    <a class="float-end" href=""><i class="bi bi-credit-card"></i></a>
+                <hr class="mb-1">
+                <div class="ms-2 pb-2 fs-2 mb-1">
+                    <button type="submit" name="remove" class="btn btn-primary btn-sm"><i
+                            class="bi bi-trash-fill"></i></button>
+                    <input type="text" class="d-none" readonly name="remove_id" value="<?= $cart_user['id_cart']; ?>">
+                    <button type="submit" name="checkout" class="btn btn-primary btn-sm"><i
+                            class="bi bi-credit-card"></i></button>
                 </div>
             </div>
 

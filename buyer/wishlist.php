@@ -163,7 +163,7 @@ $time = date("Y-m-d H:i:s");
 
         <div class="row row-cols-2 row-cols-sm-3 row-cols-lg-5 g-2 g-sm-3 mt-3">
 
-            <a href="view?id_product=<?= $wishlist_user["id_product"] ?>" style="text-decoration: none;">
+            <a href="view?p=<?= $wishlist_user["id_product"] ?>" style="text-decoration: none;">
 
                 <div id="col-product" class="col shadow card">
 
