@@ -189,6 +189,19 @@ $time = date("Y-m-d H:i:s");
                     </div>
 
                     <div class="col text-center" style="max-width: 250px;">
+
+                        <?php if ($cart_user['quantity'] == 1) : ?>
+                        <button type="button" id="decrement" class="btn btn-primary plus-minus" disabled>-</button>
+
+                        <input type="number" min="1" max="50" step="1" value="<?= $cart_user['quantity']; ?>"
+                            id="quantity" name="quantity">
+
+                        <button type="submit" name="add" class="plus-minus text-decoration-none text-light"
+                            id="increment" onclick="stepper(this)"> +
+                        </button>
+
+                        <?php else : ?>
+
                         <button type="submit" name="min" class="plus-minus text-decoration-none text-light"
                             id="decrement" onclick="stepper(this)"> -
                         </button>
@@ -199,6 +212,9 @@ $time = date("Y-m-d H:i:s");
                         <button type="submit" name="add" class="plus-minus text-decoration-none text-light"
                             id="increment" onclick="stepper(this)"> +
                         </button>
+
+                        <?php endif; ?>
+
                     </div>
                     <div class="col text-center fs-3" style="max-width: 100px;">
                         <button type="submit" name="remove" class="btn btn-primary"><i
