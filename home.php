@@ -236,7 +236,7 @@ $time = date("Y-m-d H:i:s");
 
             <a href="./buyer/view?p=<?= $row["id_product"] ?>" style="text-decoration: none;">
 
-                <div id="col-product" class="col shadow card">
+                <div id="col-product" class="col card">
 
                     <div class="p-3 shadow bg-white ps-2 pe-2 pb-0">
 
