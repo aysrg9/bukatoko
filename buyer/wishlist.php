@@ -150,18 +150,18 @@ $time = date("Y-m-d H:i:s");
     <!-- End Navbar Bottom -->
     <!-- End Navbar -->
 
-    <!-- wishlist-->
+    <!-- Wishlist-->
     <section id="wishlist" class="container">
 
         <div id="banner-recomend" class="card shadow" style="background-color: #ffffff;">
             <h3 class="pt-2 pb-2 text-center text-primary fw-bold mb-0">Wishlist <?= $fullname ?></h3>
         </div>
 
-        <?php $i = mysqli_num_rows($wishlist); ?>
-        <?php if ($i > 0) : ?>
-        <?php while ($wishlist_user = mysqli_fetch_array($wishlist)) : ?>
-
         <div class="row row-cols-2 row-cols-sm-3 row-cols-lg-5 g-2 g-sm-3 mt-3">
+
+            <?php $i = mysqli_num_rows($wishlist); ?>
+            <?php if ($i > 0) : ?>
+            <?php while ($wishlist_user = mysqli_fetch_array($wishlist)) : ?>
 
             <a href="view?p=<?= $wishlist_user["id_product"] ?>" style="text-decoration: none;">
 
@@ -191,14 +191,15 @@ $time = date("Y-m-d H:i:s");
                     </div>
                 </div>
             </a>
-        </div>
 
-        <?php endwhile; ?>
-        <?php else : ?>
-        <div class="card shadow mt-3 text-center" style="background-color: #ffffff;">
-            <h3 class="text-primary text-center fw-bold mb-0 mt-0 pb-2 pt-2">No Items Added!</h3>
+            <?php endwhile; ?>
+            <?php else : ?>
+            <div class="card shadow mt-3 text-center" style="background-color: #ffffff;">
+                <h3 class="text-primary text-center fw-bold mb-0 mt-0 pb-2 pt-2">No Items Added!</h3>
+            </div>
+            <?php endif; ?>
+
         </div>
-        <?php endif; ?>
 
     </section>
     <!-- End Product -->
