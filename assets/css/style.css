@@ -296,6 +296,10 @@ input::-webkit-inner-spin-button {
     margin-top: -45px;
   }
 
+  .checkout {
+    margin-top: 290px;
+  }
+
   #button-navbar {
     display: none;
   }

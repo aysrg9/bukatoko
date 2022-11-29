@@ -24,21 +24,24 @@ if (isset($_SESSION['acces-login'])) {
 }
 
 // voucher test logic
+$handlingfee = 1000;
 $shippingfee = 15000;
 $unit_price = $prdct['price'];
 $quantity = $_SESSION['quantity'];
 $result = $unit_price * $quantity;
-$totalpayment = $result + $shippingfee;
+$totalpayment = $result + $handlingfee + $shippingfee;
 
 if (isset($_POST['checkvoucher'])) {
-    $voucheruser = $_POST['voucher'];
-    $kodevoucher = "freeshipping";
+    $voucheruser = strtoupper($_POST['voucher']);
+    $kodevoucher = "FREESHIPPING";
     if ($voucheruser == $kodevoucher) {
         $shippingfee = 0;
-        $totalpayment = $result + $shippingfee;
+        $totalpayment = $result + $handlingfee + $shippingfee;
         $message[] = "Succes, your voucher code has been installed";
+        $messagem[] = "Succes, your voucher code has been installed";
     } else {
         $failed[] = "Sorry, the voucher code you entered is invalid!";
+        $failedm[] = "Sorry, the voucher code you entered is invalid!";
         $_POST['voucher'] = "";
     }
 }
@@ -172,9 +175,10 @@ $time = date("d M Y");
 
             <div class="card shadow mb-3">
                 <label for="address" class="ms-3 me-3 mt-3 mb-1 fw-bold fs-4">Shipping Address</label>
-                <input type="text" class="ms-3 me-3 mt-3 mb-4" id="address" name="address"
-                    style="border: none; outline: none;"
-                    placeholder="For Example : Jl Kita Bisa No.1 RT001/04 Kel. Batu Ceper, Kec. Cibodad, 15416, Jakarta, Indonesia">
+                <textarea type="text" class="ms-3 me-3 mt-3 mb-4" id="address" name="address"
+                    style="border: none; outline: none; resize: none; height: 80px;"
+                    placeholder="Jl Kita Bisa No.1 RT001/04 Kel. Batu Ceper, Kec. Cibodad, 15416, Jakarta, Indonesia"
+                    autocomplete="off" autofocus="on"></textarea>
             </div>
 
             <div class="card shadow mb-3">
@@ -187,7 +191,7 @@ $time = date("d M Y");
                         <div class="card-body">
                             <h5 class="card-title text-truncate mb-1"><?= $prdct["product_name"] ?></h5>
                             <p class="card-text mb-1">Quantity <?= $_SESSION['quantity'] ?></p>
-                            <p class="card-text"><?= rupiah($prdct["price"]) ?></p>
+                            <p class="card-text">Price <?= rupiah($prdct["price"]) ?></p>
                         </div>
                     </div>
                 </div>
@@ -223,25 +227,107 @@ $time = date("d M Y");
                     <input type="text" class="form-control me-3 ms-3" placeholder="freeshipping" name="voucher"
                         value="<?= $_POST['voucher'] ?>" autocomplete="off">
                 </div>
-                <button type="submit" name="checkvoucher" class="btn btn-primary btn-sm me-3 ms-3 mb-4 pt-2 pb-2"
+                <button name="checkvoucher" class="btn btn-primary btn-sm me-3 ms-3 mb-4 pt-2 pb-2"
                     style="width: 130px;">CHECK VOUCHER</button>
                 <?php else : ?>
                 <div class="input-group mb-3">
                     <input type="text" class="form-control me-3 ms-3" placeholder="freeshipping" name="voucher"
                         autocomplete="off">
                 </div>
-                <button type="submit" name="checkvoucher" class="btn btn-primary btn-sm me-3 ms-3 mb-4 pt-2 pb-2"
+                <button name="checkvoucher" class="btn btn-primary btn-sm me-3 ms-3 mb-4 pt-2 pb-2"
                     style="width: 130px;">CHECK VOUCHER</button>
                 <?php endif; ?>
             </div>
 
             <div class="card shadow">
-                <h3 class="ms-3 mt-3 mb-4 fw-bold">Payment Method</h3>
+                <h3 class="ms-3 mt-3 mb-4 fw-bold">Total Bill</h3>
                 <hr class="me-3 ms-3 mt-0">
                 <div class="ms-3">
                     <p class="text-muted">Subtotals for Products : <?= rupiah($result) ?>
                     </p>
-                    <p class="text-muted">Total Shipping Fee : <?= rupiah($shippingfee) ?></p>
+                    <p class="text-muted">Shipping Fee : <?= rupiah($shippingfee) ?></p>
+                    <p class="text-muted">Handling Fee : <?= rupiah($handlingfee) ?></p>
+                    <p class="text-muted">Total Payment : <span class="fs-3"><?= rupiah($totalpayment) ?></span></p>
+                </div>
+                <hr class="me-3 ms-3 mt-0">
+                <button class="btn btn-primary mb-4 ms-3 me-3" style="width: 130px;">BUY NOW</button>
+            </div>
+
+        </section>
+
+        <section id="mobile-view" class="checkout">
+            <div class="card shadow mb-3" style="margin-top: 82px;">
+                <label for="address" class="ms-3 me-3 mt-3 mb-1 fw-bold fs-4">Shipping Address</label>
+                <textarea type="text" class="ms-3 me-3 mt-3 mb-4" id="address" name="address"
+                    style="border: none; outline: none; resize: none; height: auto;"
+                    placeholder="Jl Kita Bisa No.1 RT001/04 Kel. Batu Ceper, Kec. Cibodad, 15416, Jakarta, Indonesia"
+                    autocomplete="off" autofocus="on"></textarea>
+            </div>
+
+            <div class="card shadow mb-3">
+                <div class="row">
+                    <div class="col ms-2 mt-4 mb-4 me-3" style="max-width: 80px;">
+                        <img src="../assets/images/product/<?= $prdct['picture'] ?>" alt="" width="80px" height="80px"
+                            class="">
+                    </div>
+                    <div class="col mt-4 mb-4">
+                        <p class="mb-0 pb-1"><?= $prdct['product_name'] ?></p>
+                        <p class="mb-0 pb-1">Quantity <?= $_SESSION['quantity'] ?></p>
+                        <p class="mb-0">Price <?= $prdct['price'] ?></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card shadow mb-3">
+                <label for="voucher" class="ms-3 me-3 mt-3 mb-3 fw-bold fs-4">Voucher</label>
+
+                <?php if (isset($_POST['voucher'])) : ?>
+                <!-- Alert -->
+                <!-- Alert Succes -->
+                <?php if (isset($messagem)) : ?>
+                <?php foreach ($messagem as $messagem) : ?>
+                <div class="alert alert-success alert-dismissible fade show me-3 ms-3" role="alert">
+                    <strong><?= $messagem ?></strong>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                <?php endforeach; ?>
+                <?php endif; ?>
+                <!-- End Alert Succes -->
+                <!-- Alert Error -->
+                <?php if (isset($failedm)) : ?>
+                <?php foreach ($failedm as $failedm) : ?>
+                <div class="alert alert-danger alert-dismissible fade show ms-3 me-3" role="alert">
+                    <strong><?= $failedm ?></strong>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                <?php endforeach; ?>
+                <?php endif; ?>
+                <!-- End Alert Error -->
+                <!-- End Alert -->
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control me-3 ms-3" placeholder="freeshipping" name="voucher"
+                        value="<?= $_POST['voucher'] ?>" autocomplete="off">
+                </div>
+                <button name="checkvoucher" class="btn btn-primary btn-sm me-3 ms-3 mb-4 pt-2 pb-2"
+                    style="width: 130px;">CHECK VOUCHER</button>
+                <?php else : ?>
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control me-3 ms-3" placeholder="freeshipping" name="voucher"
+                        autocomplete="off">
+                </div>
+                <button name="checkvoucher" class="btn btn-primary btn-sm me-3 ms-3 mb-4 pt-2 pb-2"
+                    style="width: 130px;">CHECK VOUCHER</button>
+                <?php endif; ?>
+            </div>
+
+            <div class="card shadow" style="margin-bottom: 82px;">
+                <h3 class="ms-3 mt-3 mb-4 fw-bold">Total Bill</h3>
+                <hr class="me-3 ms-3 mt-0">
+                <div class="ms-3">
+                    <p class="text-muted">Subtotals for Products : <?= rupiah($result) ?>
+                    </p>
+                    <p class="text-muted">Shipping Fee : <?= rupiah($shippingfee) ?></p>
+                    <p class="text-muted">Handling Fee : <?= rupiah($handlingfee) ?></p>
                     <p class="text-muted">Total Payment : <span class="fs-3"><?= rupiah($totalpayment) ?></span></p>
                 </div>
                 <hr class="me-3 ms-3 mt-0">

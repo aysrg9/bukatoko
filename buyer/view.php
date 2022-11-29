@@ -12,8 +12,14 @@ $product = query("SELECT * FROM product");
 // ambil data di url 
 $id_product = $_GET["p"];
 
-//query data product berdasarkan id
+// query data product berdasarkan id
 $prdct = query("SELECT * FROM product WHERE id_product = $id_product")[0];
+
+$id_user = $_SESSION['id_user'];
+
+// select wishlist
+$select_wishlist = mysqli_query($db, "SELECT * FROM wishlist WHERE id_product = '$id_product' AND id_user = '$id_user'") or
+    die('query failed');
 
 // waktu 
 date_default_timezone_set('Asia/Jakarta');
@@ -56,13 +62,16 @@ if (isset($_POST['checkout'])) {
         // jika belum
         header('Location: login');
     }
+
     // cek quantity dan stock
     if ($_POST['quantity'] > $prdct['stock']) {
         $error[] = "Sorry, not enough stock!";
+    } else {
+        // jika user sudah login & qty < stock
+        $_SESSION['id_product'] = $_GET['p'];
+        $_SESSION['quantity'] = $_POST['quantity'];
+        header('Location: order');
     }
-    // jika user sudah login & qty < stock
-    $_SESSION['id_product'] = $_GET['p'];
-    $_SESSION['quantity'] = $_POST['quantity'];
 }
 
 // add to cart
@@ -272,14 +281,19 @@ if (isset($_POST['addtocart'])) {
 
                             <div class="d-block pt-3">
 
-                                <button type="submit" class="btn btn-primary btn fw-bold rounded" name="addtocart">ADD
+                                <button type="submit" class="btn btn-primary btn fw-bold rounded me-2"
+                                    name="addtocart">ADD
                                     TO
                                     CART</button>
                                 <button type="submit" name="checkout" class="btn btn-primary btn fw-bold rounded">BUY
                                     NOW</button>
+                                <?php if (mysqli_num_rows($select_wishlist) > 0) : ?>
                                 <button type="submit" class="btn fw-bold rounded" name="wishlist"
                                     style="border: none;"><i class="bi bi-heart-fill fs-3 text-danger"></i></button>
-
+                                <?php else : ?>
+                                <button type="submit" class="btn fw-bold rounded" name="wishlist"
+                                    style="border: none;"><i class="bi bi-heart fs-3"></i></button>
+                                <?php endif; ?>
                             </div>
                         </div>
                     </div>
