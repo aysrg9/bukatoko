@@ -18,6 +18,7 @@ $prdct = query("SELECT * FROM product WHERE id_product = $id_product")[0];
 // waktu 
 date_default_timezone_set('Asia/Jakarta');
 $time = date("Y-m-d H:i:s");
+$time_order = date("d M Y");
 
 // wishlist
 if (isset($_POST['wishlist'])) {
@@ -46,6 +47,22 @@ if (isset($_POST['wishlist'])) {
         $message[] = 'Product added to wishlist!';
         $messagem[] = 'Product added to wishlist!';
     }
+}
+
+// buynow
+if (isset($_POST['checkout'])) {
+    // cek user login
+    if (!isset($_SESSION['acces-login'])) {
+        // jika belum
+        header('Location: login');
+    }
+    // cek quantity dan stock
+    if ($_POST['quantity'] > $prdct['stock']) {
+        $error[] = "Sorry, not enough stock!";
+    }
+    // jika user sudah login & qty < stock
+    $_SESSION['id_product'] = $_GET['p'];
+    $_SESSION['quantity'] = $_POST['quantity'];
 }
 
 // add to cart
@@ -258,7 +275,8 @@ if (isset($_POST['addtocart'])) {
                                 <button type="submit" class="btn btn-primary btn fw-bold rounded" name="addtocart">ADD
                                     TO
                                     CART</button>
-                                <button type="submit" class="btn btn-primary btn fw-bold rounded">BUY NOW</button>
+                                <button type="submit" name="checkout" class="btn btn-primary btn fw-bold rounded">BUY
+                                    NOW</button>
                                 <button type="submit" class="btn fw-bold rounded" name="wishlist"
                                     style="border: none;"><i class="bi bi-heart-fill fs-3 text-danger"></i></button>
 

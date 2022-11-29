@@ -42,14 +42,10 @@ if (isset($_POST['min'])) {
     header('location:cart');
 }
 
-if (isset($_POST['checkout'])) {
-    // ambil data
-
-}
-
 // waktu 
 date_default_timezone_set('Asia/Jakarta');
 $time = date("Y-m-d H:i:s");
+$time_order = date("d M Y");
 
 ?>
 <!doctype html>
@@ -181,6 +177,9 @@ $time = date("Y-m-d H:i:s");
         <?php while ($cart_user = mysqli_fetch_array($cart)) : ?>
 
         <form method="POST">
+            <input type="text" name="product_name" class="d-none" readonly value="<?= $cart_user['product_name']; ?>">
+            <input type="number" name="price" class="d-none" readonly value="<?= $cart_user['price']; ?>">
+            <input type="number" name="quantity" class="d-none" readonly value="<?= $cart_user['quantity']; ?>">
             <div class="card shadow mt-3">
                 <h5 class="pt-4 ps-2 ">Bukatoko <i class="bi bi-patch-check-fill text-primary"></i></h5>
                 <hr>
