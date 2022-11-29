@@ -341,12 +341,17 @@ if (isset($_POST['addtocart'])) {
                 </a>
 
                 <div class="pb-3 pt-4 rounded">
-                    <button type="submit" class="btn btn-primary btn fw-bold" name="addtocart">ADD
+                    <button type="submit" class="btn btn-primary fw-bold me-1" name="addtocart">ADD
                         TO
                         CART</button>
-                    <a class="btn btn-primary text-white fw-bold" href="">BUY NOW</a>
+                    <button type="submit" class="btn btn-primary fw-bold" name="checkout">BUY NOW</button>
+                    <?php if (mysqli_num_rows($select_wishlist) > 0) : ?>
                     <button type="submit" class="btn fw-bold rounded" name="wishlist" style="border: none;"><i
                             class="bi bi-heart-fill fs-3 text-danger"></i></button>
+                    <?php else : ?>
+                    <button type="submit" class="btn fw-bold rounded" name="wishlist" style="border: none;"><i
+                            class="bi bi-heart fs-3"></i></button>
+                    <?php endif; ?>
                 </div>
             </div>
 

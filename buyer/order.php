@@ -260,7 +260,7 @@ $time = date("d M Y");
                 <label for="address" class="ms-3 me-3 mt-3 mb-1 fw-bold fs-4">Shipping Address</label>
                 <textarea type="text" class="ms-3 me-3 mt-3 mb-4" id="address" name="address"
                     style="border: none; outline: none; resize: none; height: auto;"
-                    placeholder="Jl Kita Bisa No.1 RT001/04 Kel. Batu Ceper, Kec. Cibodad, 15416, Jakarta, Indonesia"
+                    placeholder="For Example : Jl Kita Bisa No.1 RT001/04 Kel. Batu Ceper, Kec. Cibodad, 15416, Jakarta, Indonesia"
                     autocomplete="off" autofocus="on"></textarea>
             </div>
 
@@ -273,7 +273,7 @@ $time = date("d M Y");
                     <div class="col mt-4 mb-4">
                         <p class="mb-0 pb-1"><?= $prdct['product_name'] ?></p>
                         <p class="mb-0 pb-1">Quantity <?= $_SESSION['quantity'] ?></p>
-                        <p class="mb-0">Price <?= $prdct['price'] ?></p>
+                        <p class="mb-0">Price <?= rupiah($prdct['price']) ?></p>
                     </div>
                 </div>
             </div>
