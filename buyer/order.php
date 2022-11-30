@@ -132,8 +132,8 @@ $time = date("d M Y");
 
                 <?php else : ?>
                 <div id="button-navbar">
-                    <a href="./buyer/login" class="btn btn-primary fw-bold">LOGIN</a>
-                    <a href="./buyer/register" class="btn btn-primary fw-bold">REGISTER</a>
+                    <a href="login" class="btn btn-primary fw-bold">LOGIN</a>
+                    <a href="register" class="btn btn-primary fw-bold">REGISTER</a>
                 </div>
                 <?php endif; ?>
 
@@ -150,15 +150,15 @@ $time = date("d M Y");
 
             <div class="container">
                 <a href="home"><i class="bi bi-house"></i></a>
-                <a href="./buyer/wishlist"><i class="bi bi-heart"></i></a>
-                <a href="./buyer/cart"><i class="bi bi-cart3"></i></a>
+                <a href="wishlist"><i class="bi bi-heart"></i></a>
+                <a href="cart"><i class="bi bi-cart3"></i></a>
 
                 <?php if (isset($_SESSION['acces-login'])) : ?>
 
-                <a href="./buyer/profile"><i class="bi bi-person-circle"></i></a>
+                <a href="profile"><i class="bi bi-person-circle"></i></a>
 
                 <?php else : ?>
-                <a href="./buyer/login"><i class="bi bi-box-arrow-in-right"></i></a>
+                <a href="login"><i class="bi bi-box-arrow-in-right"></i></a>
                 <?php endif; ?>
             </div>
 
@@ -254,7 +254,9 @@ $time = date("d M Y");
             </div>
 
         </section>
+    </form>
 
+    <form action="" method="POST">
         <section id="mobile-view" class="checkout">
             <div class="card shadow mb-3" style="margin-top: 82px;">
                 <label for="address" class="ms-3 me-3 mt-3 mb-1 fw-bold fs-4">Shipping Address</label>
@@ -308,7 +310,7 @@ $time = date("d M Y");
                     <input type="text" class="form-control me-3 ms-3" placeholder="freeshipping" name="voucher"
                         value="<?= $_POST['voucher'] ?>" autocomplete="off">
                 </div>
-                <button name="checkvoucher" class="btn btn-primary btn-sm me-3 ms-3 mb-4 pt-2 pb-2"
+                <button name="checkvouche" class="btn btn-primary btn-sm me-3 ms-3 mb-4 pt-2 pb-2"
                     style="width: 130px;">CHECK VOUCHER</button>
                 <?php else : ?>
                 <div class="input-group mb-3">

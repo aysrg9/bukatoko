@@ -42,6 +42,25 @@ if (isset($_POST['min'])) {
     header('location:cart');
 }
 
+// buynow
+if (isset($_POST['checkout'])) {
+    // cek user login
+    if (!isset($_SESSION['acces-login'])) {
+        // jika belum
+        header('Location: login');
+    }
+
+    // cek quantity dan stock
+    if ($_POST['quantity'] > $prdct['stock']) {
+        $error[] = "Sorry, not enough stock!";
+    } else {
+        // jika user sudah login & qty < stock
+        $_SESSION['id_product'] = $_GET['p'];
+        $_SESSION['quantity'] = $_POST['quantity'];
+        header('Location: order');
+    }
+}
+
 // waktu 
 date_default_timezone_set('Asia/Jakarta');
 $time = date("Y-m-d H:i:s");
