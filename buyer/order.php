@@ -39,8 +39,10 @@ if (isset($_POST['checkvoucher'])) {
     if ($inputuser == $vch['code_voucher']) {
         $totalpayment = $result + $handlingfee + $shippingfee - $diskon;
         $vchsucces[] = "";
+        $vchsuccesm[] = "";
         $message[] = "Succes, your voucher code has been installed";
         $messagem[] = "Succes, your voucher code has been installed";
+        $_POST['voucher'] = strtoupper($inputuser);
     } else {
         $failed[] = "Sorry, the voucher code you entered is invalid!";
         $failedm[] = "Sorry, the voucher code you entered is invalid!";
@@ -312,7 +314,6 @@ $time = date("d M Y");
             <div class="card shadow mb-3">
                 <label for="voucher" class="ms-3 me-3 mt-3 mb-3 fw-bold fs-4">Voucher</label>
 
-                <?php if (isset($_POST['voucher'])) : ?>
                 <!-- Alert -->
                 <!-- Alert Succes -->
                 <?php if (isset($messagem)) : ?>
@@ -335,25 +336,46 @@ $time = date("d M Y");
                 <?php endif; ?>
                 <!-- End Alert Error -->
                 <!-- End Alert -->
+
+                <?php if (isset($_POST['voucher'])) : ?>
+
                 <div class="input-group mb-3">
                     <input type="text" class="form-control me-3 ms-3" placeholder="freeshipping" name="voucher"
                         value="<?= $_POST['voucher'] ?>" autocomplete="off">
                 </div>
+
                 <button name="checkvoucher" class="btn btn-primary btn-sm me-3 ms-3 mb-4 pt-2 pb-2"
                     style="width: 130px;">CHECK VOUCHER</button>
+
                 <?php else : ?>
+
                 <div class="input-group mb-3">
                     <input type="text" class="form-control me-3 ms-3" placeholder="freeshipping" name="voucher"
                         autocomplete="off">
                 </div>
+
                 <button name="checkvoucher" class="btn btn-primary btn-sm me-3 ms-3 mb-4 pt-2 pb-2"
                     style="width: 130px;">CHECK VOUCHER</button>
+
                 <?php endif; ?>
             </div>
 
             <div class="card shadow" style="margin-bottom: 82px;">
                 <h3 class="ms-3 mt-3 mb-4 fw-bold">Total Bill</h3>
+
                 <hr class="me-3 ms-3 mt-0">
+
+                <!-- Alert Succes -->
+                <?php if (isset($vchsuccesm)) : ?>
+                <?php foreach ($vchsuccesm as $vchsuccesm) : ?>
+                <div class="alert alert-success alert-dismissible fade show me-3 ms-3" role="alert">
+                    <strong>Congratulations, You get a big discount <?= rupiah($diskon) ?> </strong>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                <?php endforeach; ?>
+                <?php endif; ?>
+                <!-- End Alert Succes -->
+
                 <div class="ms-3">
                     <p class="text-muted">Subtotals for Products : <?= rupiah($result) ?>
                     </p>
@@ -361,7 +383,9 @@ $time = date("d M Y");
                     <p class="text-muted">Handling Fee : <?= rupiah($handlingfee) ?></p>
                     <p class="text-muted">Total Payment : <span class="fs-3"><?= rupiah($totalpayment) ?></span></p>
                 </div>
+
                 <hr class="me-3 ms-3 mt-0">
+
                 <button class="btn btn-primary mb-4 ms-3 me-3" style="width: 130px;">BUY NOW</button>
             </div>
         </form>

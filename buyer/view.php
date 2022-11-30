@@ -67,6 +67,7 @@ if (isset($_POST['checkout'])) {
     // cek quantity dan stock
     if ($_POST['quantity'] > $prdct['stock']) {
         $error[] = "Sorry, not enough stock!";
+        $errorm[] = "Sorry, not enough stock!";
     } else {
         // jika user sudah login & qty < stock
         $_SESSION['p'] = $_GET['p'];
