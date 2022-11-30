@@ -15,6 +15,7 @@ $id_product = $_GET["p"];
 // query data product berdasarkan id
 $prdct = query("SELECT * FROM product WHERE id_product = $id_product")[0];
 
+// ambil id user
 $id_user = $_SESSION['id_user'];
 
 // select wishlist
@@ -68,7 +69,7 @@ if (isset($_POST['checkout'])) {
         $error[] = "Sorry, not enough stock!";
     } else {
         // jika user sudah login & qty < stock
-        $_SESSION['id_product'] = $_GET['p'];
+        $_SESSION['p'] = $_GET['p'];
         $_SESSION['quantity'] = $_POST['quantity'];
         header('Location: order');
     }

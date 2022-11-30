@@ -6,22 +6,25 @@ session_start();
 // Connect
 require '../functions.php';
 
-// query data product
-$product = query("SELECT * FROM product");
-
-// ambil data
-$id_product = $_SESSION["id_product"];
-
-//query data product berdasarkan id
-$prdct = query("SELECT * FROM product WHERE id_product = $id_product")[0];
-
 // cek user login
 if (isset($_SESSION['acces-login'])) {
     // jika sudah login ambil data dari session
     $id_user = $_SESSION['id_user'];
     $username = $_SESSION['username'];
     $fullname = $_SESSION['fullname'];
+} else {
+    // jika belum
+    header('Location: login');
 }
+
+// query data product
+$product = query("SELECT * FROM product");
+
+// ambil data
+$id_product = $_SESSION["p"];
+
+//query data product berdasarkan id
+$prdct = query("SELECT * FROM product WHERE id_product = $id_product")[0];
 
 // voucher test logic
 $handlingfee = 1000;
@@ -81,7 +84,7 @@ $time = date("d M Y");
     </script>
 </head>
 
-<body>
+<body style="overflow-x: hidden;">
     <!-- Start Navbar -->
     <section id="navbar" class="fixed-top">
 
@@ -169,15 +172,15 @@ $time = date("d M Y");
     <!-- End Navbar -->
 
     <!-- Checkout -->
-    <form action="" method="POST">
+    <form method="POST">
         <section id="dekstop-view" class="checkout container">
             <h3>Checkout</h3>
 
             <div class="card shadow mb-3">
                 <label for="address" class="ms-3 me-3 mt-3 mb-1 fw-bold fs-4">Shipping Address</label>
                 <textarea type="text" class="ms-3 me-3 mt-3 mb-4" id="address" name="address"
-                    style="border: none; outline: none; resize: none; height: 80px;"
-                    placeholder="Jl Kita Bisa No.1 RT001/04 Kel. Batu Ceper, Kec. Cibodad, 15416, Jakarta, Indonesia"
+                    style="border: none; outline: none; resize: none; height: auto;"
+                    placeholder="For Example : Jl Kita Bisa No.1 RT001/04 Kel. Batu Ceper, Kec. Cibodad, 15416, Jakarta, Indonesia"
                     autocomplete="off" autofocus="on"></textarea>
             </div>
 
@@ -256,8 +259,8 @@ $time = date("d M Y");
         </section>
     </form>
 
-    <form action="" method="POST">
-        <section id="mobile-view" class="checkout">
+    <section id="mobile-view" class="checkout">
+        <form method="POST">
             <div class="card shadow mb-3" style="margin-top: 82px;">
                 <label for="address" class="ms-3 me-3 mt-3 mb-1 fw-bold fs-4">Shipping Address</label>
                 <textarea type="text" class="ms-3 me-3 mt-3 mb-4" id="address" name="address"
@@ -310,7 +313,7 @@ $time = date("d M Y");
                     <input type="text" class="form-control me-3 ms-3" placeholder="freeshipping" name="voucher"
                         value="<?= $_POST['voucher'] ?>" autocomplete="off">
                 </div>
-                <button name="checkvouche" class="btn btn-primary btn-sm me-3 ms-3 mb-4 pt-2 pb-2"
+                <button name="checkvoucher" class="btn btn-primary btn-sm me-3 ms-3 mb-4 pt-2 pb-2"
                     style="width: 130px;">CHECK VOUCHER</button>
                 <?php else : ?>
                 <div class="input-group mb-3">
@@ -335,9 +338,9 @@ $time = date("d M Y");
                 <hr class="me-3 ms-3 mt-0">
                 <button class="btn btn-primary mb-4 ms-3 me-3" style="width: 130px;">BUY NOW</button>
             </div>
+        </form>
+    </section>
 
-        </section>
-    </form>
     <!-- End Checkout -->
 
     <!-- JS Bootstrap -->
