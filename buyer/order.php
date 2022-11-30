@@ -1,5 +1,9 @@
 <?php
 
+// waktu 
+date_default_timezone_set('Asia/Jakarta');
+$time = date("d M Y");
+
 // Session Start
 session_start();
 
@@ -37,7 +41,7 @@ if (isset($_POST['checkvoucher'])) {
     $vch = query("SELECT * FROM voucher WHERE code_voucher = '$inputuser'")[0];
     $diskon = $vch['piece'];
     if ($inputuser == $vch['code_voucher']) {
-        $totalpayment = $result + $handlingfee + $shippingfee - $diskon;
+        $_SESSION['totalpayment'] = $result + $handlingfee + $shippingfee - $diskon;
         $vchsucces[] = "";
         $vchsuccesm[] = "";
         $message[] = "Succes, your voucher code has been installed";
@@ -50,10 +54,26 @@ if (isset($_POST['checkvoucher'])) {
     }
 }
 
+if (isset($_POST['order'])) {
+    // ambil data
+    $id_order = strtoupper(uniqid());
+    $id_order .= '/';
+    $id_order .= $username;
+    $address = $_POST['addresss'];
+    $product_name = $prdct['product_name'];
+    $price = $prdct['price'];
+    $total_price = $_SESSION['totalpayment'];
+    $quantity = $_SESSION['quantity'];
+    $created = $time;
 
-// waktu 
-date_default_timezone_set('Asia/Jakarta');
-$time = date("d M Y");
+    // cek column address
+    if ($address !== 70) {
+        $error[] = "Minimum 70 characters!";
+    } else {
+        // insert to db
+        mysqli_query($db, "INSERT INTO buy (id_order, product_name, price ,total_price, quantity, address, created) VALUES('$id_order', '$product_name', '$price','$total_price', '$quantity', '$address', '$created')");
+    }
+}
 
 ?>
 <!doctype html>
@@ -181,8 +201,20 @@ $time = date("d M Y");
             <h3>Checkout</h3>
 
             <div class="card shadow mb-3">
-                <label for="address" class="ms-3 me-3 mt-3 mb-1 fw-bold fs-4">Shipping Address</label>
-                <textarea type="text" class="ms-3 me-3 mt-3 mb-4" id="address" name="address"
+                <label for="address" class="ms-3 me-3 mb-3 mt-3 mb-1 fw-bold fs-4">Shipping Address</label>
+
+                <!-- Alert Error -->
+                <?php if (isset($error)) : ?>
+                <?php foreach ($error as $error) : ?>
+                <div class="alert alert-danger alert-dismissible fade show ms-3 me-3" role="alert">
+                    <strong><?= $error ?></strong>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                <?php endforeach; ?>
+                <?php endif; ?>
+                <!-- End Alert Error -->
+
+                <textarea type="text" class="ms-3 me-3 mt-3 mb-4" id="address" name="addresss"
                     style="border: none; outline: none; resize: none; height: auto;"
                     placeholder="For Example : Jl Kita Bisa No.1 RT001/04 Kel. Batu Ceper, Kec. Cibodad, 15416, Jakarta, Indonesia"
                     autocomplete="off" autofocus="on"></textarea>
@@ -278,10 +310,22 @@ $time = date("d M Y");
                     </p>
                     <p class="text-muted">Shipping Fee : <?= rupiah($shippingfee) ?></p>
                     <p class="text-muted">Handling Fee : <?= rupiah($handlingfee) ?></p>
+
+                    <?php if (isset($_SESSION['totalpayment'])) : ?>
+
+                    <p class="text-muted">Total Payment : <span
+                            class="fs-3"><?= rupiah($_SESSION['totalpayment']) ?></span></p>
+
+                    <?php else : ?>
+
                     <p class="text-muted">Total Payment : <span class="fs-3"><?= rupiah($totalpayment) ?></span></p>
+
+                    <?php endif; ?>
+
                 </div>
                 <hr class="me-3 ms-3 mt-0">
-                <button class="btn btn-primary mb-4 ms-3 me-3" style="width: 130px;">BUY NOW</button>
+                <button type="submit" name="order" class="btn btn-primary mb-4 ms-3 me-3" style="width: 130px;">BUY
+                    NOW</button>
             </div>
 
         </section>
