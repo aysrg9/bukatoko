@@ -17,16 +17,13 @@ if (isset($_SESSION['acces-login'])) {
     header('Location: login');
 }
 
-// query data product
-$product = query("SELECT * FROM product");
-
 // ambil data
 $id_product = $_SESSION["p"];
 
 //query data product berdasarkan id
 $prdct = query("SELECT * FROM product WHERE id_product = $id_product")[0];
 
-// voucher test logic
+// bill handling
 $handlingfee = 1000;
 $shippingfee = 15000;
 $unit_price = $prdct['price'];
@@ -34,12 +31,14 @@ $quantity = $_SESSION['quantity'];
 $result = $unit_price * $quantity;
 $totalpayment = $result + $handlingfee + $shippingfee;
 
+// checkvoucher
 if (isset($_POST['checkvoucher'])) {
-    $voucheruser = strtoupper($_POST['voucher']);
-    $kodevoucher = "FREESHIPPING";
-    if ($voucheruser == $kodevoucher) {
-        $shippingfee = 0;
-        $totalpayment = $result + $handlingfee + $shippingfee;
+    $inputuser = strtoupper($_POST['voucher']);
+    $vch = query("SELECT * FROM voucher WHERE code_voucher = '$inputuser'")[0];
+    $diskon = $vch['piece'];
+    if ($inputuser == $vch['code_voucher']) {
+        $totalpayment = $result + $handlingfee + $shippingfee - $diskon;
+        $vchsucces[] = "";
         $message[] = "Succes, your voucher code has been installed";
         $messagem[] = "Succes, your voucher code has been installed";
     } else {
@@ -49,9 +48,11 @@ if (isset($_POST['checkvoucher'])) {
     }
 }
 
+
 // waktu 
 date_default_timezone_set('Asia/Jakarta');
 $time = date("d M Y");
+
 ?>
 <!doctype html>
 <html lang="en">
@@ -82,6 +83,7 @@ $time = date("d M Y");
         window.history.replaceState(null, null, window.location.href);
     }
     </script>
+
 </head>
 
 <body style="overflow-x: hidden;">
@@ -201,10 +203,11 @@ $time = date("d M Y");
             </div>
 
             <div class="card shadow mb-3">
+
                 <label for="voucher" class="ms-3 me-3 mt-3 mb-3 fw-bold fs-4">Voucher</label>
 
-                <?php if (isset($_POST['voucher'])) : ?>
                 <!-- Alert -->
+
                 <!-- Alert Succes -->
                 <?php if (isset($message)) : ?>
                 <?php foreach ($message as $message) : ?>
@@ -215,6 +218,7 @@ $time = date("d M Y");
                 <?php endforeach; ?>
                 <?php endif; ?>
                 <!-- End Alert Succes -->
+
                 <!-- Alert Error -->
                 <?php if (isset($failed)) : ?>
                 <?php foreach ($failed as $failed) : ?>
@@ -225,26 +229,48 @@ $time = date("d M Y");
                 <?php endforeach; ?>
                 <?php endif; ?>
                 <!-- End Alert Error -->
+
                 <!-- End Alert -->
+
+                <?php if (isset($_POST['voucher'])) : ?>
+
                 <div class="input-group mb-3">
                     <input type="text" class="form-control me-3 ms-3" placeholder="freeshipping" name="voucher"
                         value="<?= $_POST['voucher'] ?>" autocomplete="off">
                 </div>
+
                 <button name="checkvoucher" class="btn btn-primary btn-sm me-3 ms-3 mb-4 pt-2 pb-2"
                     style="width: 130px;">CHECK VOUCHER</button>
+
                 <?php else : ?>
+
                 <div class="input-group mb-3">
                     <input type="text" class="form-control me-3 ms-3" placeholder="freeshipping" name="voucher"
                         autocomplete="off">
                 </div>
+
                 <button name="checkvoucher" class="btn btn-primary btn-sm me-3 ms-3 mb-4 pt-2 pb-2"
                     style="width: 130px;">CHECK VOUCHER</button>
+
                 <?php endif; ?>
+
             </div>
 
             <div class="card shadow">
                 <h3 class="ms-3 mt-3 mb-4 fw-bold">Total Bill</h3>
                 <hr class="me-3 ms-3 mt-0">
+
+                <!-- Alert Succes -->
+                <?php if (isset($vchsucces)) : ?>
+                <?php foreach ($vchsucces as $vchsucces) : ?>
+                <div class="alert alert-success alert-dismissible fade show me-3 ms-3" role="alert">
+                    <strong>Congratulations, You get a big discount <?= rupiah($diskon) ?> </strong>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                <?php endforeach; ?>
+                <?php endif; ?>
+                <!-- End Alert Succes -->
+
                 <div class="ms-3">
                     <p class="text-muted">Subtotals for Products : <?= rupiah($result) ?>
                     </p>
@@ -348,5 +374,7 @@ $time = date("d M Y");
         integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous">
     </script>
 </body>
+
+</html>
 
 </html>
