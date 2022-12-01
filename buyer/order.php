@@ -30,57 +30,90 @@ $prdct = query("SELECT * FROM product WHERE id_product = $id_product")[0];
 // bill handling
 $handlingfee = 1000;
 $shippingfee = 15000;
+// from database berdasarkan id
 $unit_price = $prdct['price'];
+// from page view
 $quantity = $_SESSION['quantity'];
+// penjumlahan satuan barang di kali banyaknya quantity
 $result = $unit_price * $quantity;
+// penjumlahan satuan barang di kali banyaknya quantity + biaya tambahan lainnya
 $totalpayment = $result + $handlingfee + $shippingfee;
 
 // checkvoucher
 if (isset($_POST['checkvoucher'])) {
+    // from input html
     $inputuser = strtoupper($_POST['voucher']);
+    // query database
     $vch = query("SELECT * FROM voucher WHERE code_voucher = '$inputuser'")[0];
     $diskon = $vch['piece'];
+    // cek apakah code yang di masukan user = yang ada di database
     if ($inputuser == $vch['code_voucher']) {
-        $_SESSION['totalpayment'] = $result + $handlingfee + $shippingfee - $diskon;
+        // set session totalpayment
+        $totalbill = $totalpayment - $diskon;
+        // tampilkan alert
         $vchsucces[] = "";
         $vchsuccesm[] = "";
         $message[] = "Succes, your voucher code has been installed";
         $messagem[] = "Succes, your voucher code has been installed";
         $_POST['voucher'] = strtoupper($inputuser);
     } else {
+        // jika code user tidak sama dengan yang ada di database
         $failed[] = "Sorry, the voucher code you entered is invalid!";
         $failedm[] = "Sorry, the voucher code you entered is invalid!";
         $_POST['voucher'] = "";
     }
 }
 
+// edit qty
+if (isset($_POST['editquantity'])) {
+    $editqty = $_POST['quantity'];
+    $_SESSION['quantity'] = $editqty;
+    header('Location: order');
+}
+
 // ordernow
 if (isset($_POST['order'])) {
     // ambil data
+
+    // idorder
+    // uniqid
     $id_order = strtoupper(uniqid());
+    // pemisah
     $id_order .= '/';
+    // username user
     $id_order .= $username;
+    // alamat user
     $address = $_POST['addresss'];
+    // product yang di beli
     $product_name = $prdct['product_name'];
+    // harga
     $price = $prdct['price'];
-    $total_price = $_SESSION['totalpayment'];
+    // total price
+
+    // cek apakah user menggunakan promo
+    if (isset($_POST['totalbill'])) {
+        $total_price = $_POST['totalbill'];
+    } else {
+        $total_price = $totalpayment;
+    }
+
+    // berapa banyak qty
     $quantity = $_SESSION['quantity'];
+    // waktu pemesanan
     $created = $time;
 
-    // cek column address
-    if ($address < 20) {
-        $error[] = "Minimum 20 characters!";
+    // cek stock
+    if ($quantity > $prdct['stock']) {
+        $error[] = "Sorry, not enough stock!";
     } else {
-        // insert to db
-        mysqli_query($db, "INSERT INTO buy (id_order, product_name, price ,total_price, quantity, address, created) VALUES('$id_order', '$product_name', '$price','$total_price', '$quantity', '$address', '$created')");
+        // cek column address
+        if ($address < 20) {
+            $error[] = "Minimum 20 characters!";
+        } else {
+            // insert to db jika semua validasi berhasil
+            mysqli_query($db, "INSERT INTO buy (id_order, id_user ,product_name, price ,total_price, quantity, address, created) VALUES('$id_order', $id_user,  '$product_name', '$price','$total_price', '$quantity', '$address', '$created')");
+        }
     }
-}
-
-if (isset($_POST['editquantity'])) {
-    $quantity = $_SESSION['quantity'];
-    $edit = $_POST['quantity'];
-
-    $_SESSION['quantity'] = $quantity = $edit;
 }
 
 ?>
@@ -206,7 +239,12 @@ if (isset($_POST['editquantity'])) {
     <!-- Checkout -->
     <form method="POST">
         <section id="dekstop-view" class="checkout container">
+
             <h3>Checkout</h3>
+
+            <div class="alert alert-warning card shadow fw-bold" role="alert">
+                Make sure the voucher is installed correctly before you checkout!
+            </div>
 
             <div class="card shadow mb-3">
                 <label for="address" class="ms-3 me-3 mb-3 mt-3 mb-1 fw-bold fs-4">Shipping Address</label>
@@ -329,7 +367,7 @@ if (isset($_POST['editquantity'])) {
                         value="<?= $_POST['voucher'] ?>" autocomplete="off">
                 </div>
 
-                <button name="checkvoucher" class="btn btn-primary btn-sm me-3 ms-3 mb-4 pt-2 pb-2"
+                <button type="submit" name="checkvoucher" class="btn btn-primary btn-sm me-3 ms-3 mb-4 pt-2 pb-2"
                     style="width: 130px;">CHECK VOUCHER</button>
 
                 <?php else : ?>
@@ -339,7 +377,7 @@ if (isset($_POST['editquantity'])) {
                         autocomplete="off">
                 </div>
 
-                <button name="checkvoucher" class="btn btn-primary btn-sm me-3 ms-3 mb-4 pt-2 pb-2"
+                <button type="submit" name="checkvoucher" class="btn btn-primary btn-sm me-3 ms-3 mb-4 pt-2 pb-2"
                     style="width: 130px;">CHECK VOUCHER</button>
 
                 <?php endif; ?>
@@ -367,10 +405,10 @@ if (isset($_POST['editquantity'])) {
                     <p class="text-muted">Shipping Fee : <?= rupiah($shippingfee) ?></p>
                     <p class="text-muted">Handling Fee : <?= rupiah($handlingfee) ?></p>
 
-                    <?php if (isset($_SESSION['totalpayment'])) : ?>
+                    <?php if (isset($totalbill)) : ?>
 
-                    <p class="text-muted">Total Payment : <span
-                            class="fs-3"><?= rupiah($_SESSION['totalpayment']) ?></span></p>
+                    <p class="text-muted">Total Payment : <span class="fs-3"><?= rupiah($totalbill) ?></span></p>
+                    <input type="text" name="totalbill" value="<?= $totalbill ?>" class="d-none" readonly>
 
                     <?php else : ?>
 
