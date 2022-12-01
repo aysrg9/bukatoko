@@ -43,26 +43,32 @@ $totalpayment = $result + $handlingfee + $shippingfee;
 if (isset($_POST['checkvoucher'])) {
     // from input html
     $inputuser = strtoupper($_POST['voucher']);
-    // query database
-    $vch = query("SELECT * FROM voucher WHERE code_voucher = '$inputuser'")[0];
-    $diskon = $vch['piece'];
-    // cek apakah code yang di masukan user = yang ada di database
-    if ($inputuser == $vch['code_voucher']) {
-        // set session totalpayment
-        $totalbill = $totalpayment - $diskon;
-        // tampilkan alert
-        $vchsucces[] = "";
-        $vchsuccesm[] = "";
-        $message[] = "Succes, your voucher code has been installed";
-        $messagem[] = "Succes, your voucher code has been installed";
-        $_POST['voucher'] = strtoupper($inputuser);
-    } else {
-        // jika code user tidak sama dengan yang ada di database
+    // cek button checkvoucher
+    if ($inputuser < 0) {
         $failed[] = "Sorry, the voucher code you entered is invalid!";
-        $failedm[] = "Sorry, the voucher code you entered is invalid!";
-        $_POST['voucher'] = "";
+    } else {
+        // query database
+        $vch = query("SELECT * FROM voucher WHERE code_voucher = '$inputuser'")[0];
+        $diskon = $vch['piece'];
+        // cek apakah code yang di masukan user = yang ada di database
+        if ($inputuser == $vch['code_voucher']) {
+            // set session totalpayment
+            $totalbill = $totalpayment - $diskon;
+            // tampilkan alert
+            $vchsucces[] = "";
+            $vchsuccesm[] = "";
+            $message[] = "Succes, your voucher code has been installed";
+            $messagem[] = "Succes, your voucher code has been installed";
+            $_POST['voucher'] = strtoupper($inputuser);
+        } else {
+            // jika code user tidak sama dengan yang ada di database
+            $failed[] = "Sorry, the voucher code you entered is invalid!";
+            $failedm[] = "Sorry, the voucher code you entered is invalid!";
+            $_POST['voucher'] = "";
+        }
     }
 }
+
 
 // edit qty
 if (isset($_POST['editquantity'])) {
@@ -92,8 +98,10 @@ if (isset($_POST['order'])) {
 
     // cek apakah user menggunakan promo
     if (isset($_POST['totalbill'])) {
+        // jika user menggunakan promo
         $total_price = $_POST['totalbill'];
     } else {
+        // jika user tidak menggunakan promo
         $total_price = $totalpayment;
     }
 
@@ -106,7 +114,7 @@ if (isset($_POST['order'])) {
     if ($quantity > $prdct['stock']) {
         $error[] = "Sorry, not enough stock!";
     } else {
-        // cek column address
+        // cek column address (minimal 20 karakter)
         if ($address < 20) {
             $error[] = "Minimum 20 characters!";
         } else {
@@ -192,10 +200,33 @@ if (isset($_POST['order'])) {
                             <li><a class="dropdown-item fw-bold" href="profile">Profile</a></li>
                             <li><a class="dropdown-item fw-bold" href="cart">Cart</a></li>
                             <li><a class="dropdown-item fw-bold" href="wishlist">Wishlist</a></li>
-                            <li><a class="dropdown-item fw-bold" href="logout">Logout</a></li>
+                            <li><a class="dropdown-item fw-bold" href="" data-bs-toggle="modal"
+                                    data-bs-target="#exampleModal">Logout</a></li>
                         </ul>
                     </div>
 
+                </div>
+
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true" style="background-color: gainsboro;">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">Warning!</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                Are you sure logout?
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                <button class="btn btn-primary"><a href="logout"
+                                        class="text-light text-decoration-none">Logout</a></button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <?php else : ?>

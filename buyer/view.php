@@ -182,8 +182,31 @@ if (isset($_POST['addtocart'])) {
                             <li><a class="dropdown-item fw-bold" href="profile">Profile</a></li>
                             <li><a class="dropdown-item fw-bold" href="cart">Cart</a></li>
                             <li><a class="dropdown-item fw-bold" href="wishlist">Wishlist</a></li>
-                            <li><a class="dropdown-item fw-bold" href="logout">Logout</a></li>
+                            <li><a class="dropdown-item fw-bold" href="" data-bs-toggle="modal"
+                                    data-bs-target="#exampleModall">Logout</a></li>
                         </ul>
+                    </div>
+                </div>
+
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModall" tabindex="-1" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true" style="background-color: gainsboro;">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">Warning!</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                Are you sure logout?
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                <button class="btn btn-primary"><a href="logout"
+                                        class="text-light text-decoration-none">Logout</a></button>
+                            </div>
+                        </div>
                     </div>
                 </div>
 

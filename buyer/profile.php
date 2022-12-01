@@ -106,6 +106,28 @@ $time = date("Y-m-d H:i:s");
                     </div>
                 </div>
 
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true" style="background-color: gainsboro;">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">Warning!</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                Are you sure logout?
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                <button class="btn btn-primary"><a href="./buyer/logout"
+                                        class="text-light text-decoration-none">Logout</a></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <?php else : ?>
                 <div id="button-navbar">
                     <a href="login" class="btn btn-primary fw-bold">LOGIN</a>
@@ -235,7 +257,8 @@ $time = date("Y-m-d H:i:s");
                                 <a href="#" class="text-decoration-none mb-3">
                                     <i class="bi bi-credit-card-2-front fs-4 me-2"></i>Voucher
                                 </a>
-                                <a href="logout" class="text-decoration-none">
+                                <a href="" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                                    class="text-decoration-none">
                                     <i class="bi bi-box-arrow-in-right fs-4 me-2"></i>Logout
                                 </a>
                             </div>
