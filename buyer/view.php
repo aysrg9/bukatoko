@@ -198,7 +198,7 @@ if (isset($_POST['addtocart'])) {
         </nav>
     </section>
     <!-- Start Navbar bottom -->
-    <!-- Navbar bottom untuk mobile display -->
+    <!-- Navbar bottom -->
     <section id="nav-bottom">
         <nav class="nav-icon navbar fixed-bottom">
             <div class="container">
@@ -281,7 +281,7 @@ if (isset($_POST['addtocart'])) {
                             <a class="plus-minus text-decoration-none text-light" id="increment"
                                 onclick="stepper(this)"> + </a>
 
-                            <div class="d-block pt-3">
+                            <div class="d-block pt-4">
 
                                 <button type="submit" class="btn btn-primary btn fw-bold rounded me-2"
                                     name="addtocart">ADD

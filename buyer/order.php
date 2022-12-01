@@ -54,6 +54,7 @@ if (isset($_POST['checkvoucher'])) {
     }
 }
 
+// ordernow
 if (isset($_POST['order'])) {
     // ambil data
     $id_order = strtoupper(uniqid());
@@ -67,12 +68,19 @@ if (isset($_POST['order'])) {
     $created = $time;
 
     // cek column address
-    if ($address !== 70) {
-        $error[] = "Minimum 70 characters!";
+    if ($address < 20) {
+        $error[] = "Minimum 20 characters!";
     } else {
         // insert to db
         mysqli_query($db, "INSERT INTO buy (id_order, product_name, price ,total_price, quantity, address, created) VALUES('$id_order', '$product_name', '$price','$total_price', '$quantity', '$address', '$created')");
     }
+}
+
+if (isset($_POST['editquantity'])) {
+    $quantity = $_SESSION['quantity'];
+    $edit = $_POST['quantity'];
+
+    $_SESSION['quantity'] = $quantity = $edit;
 }
 
 ?>
@@ -229,7 +237,55 @@ if (isset($_POST['order'])) {
                     <div class="col-md-8">
                         <div class="card-body">
                             <h5 class="card-title text-truncate mb-1"><?= $prdct["product_name"] ?></h5>
-                            <p class="card-text mb-1">Quantity <?= $_SESSION['quantity'] ?></p>
+
+                            <?php if (!isset($_POST['editquantity'])) : ?>
+
+                            <p class="card-text mb-1">Quantity <?= $_SESSION['quantity'] ?> <a href=""
+                                    class="text-decoration-none" data-bs-toggle="modal"
+                                    data-bs-target="#exampleModal">Edit</a></p>
+
+                            <?php else : ?>
+
+                            <p class="card-text mb-1">Quantity <?= $_SESSION['quantity'] ?> <a href=""
+                                    class="text-decoration-none" data-bs-toggle="modal"
+                                    data-bs-target="#exampleModal">Edit</a></p>
+
+                            <?php endif; ?>
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                                aria-hidden="true" style="background-color: gainsboro;">
+                                <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Quantity</h1>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body mb-3 mt-3 text-center">
+
+                                            <a class="plus-minus text-decoration-none text-light" id="decrement"
+                                                onclick="stepper(this)"> -
+                                            </a>
+
+                                            <input type="number" min="1" max="50" step="1"
+                                                value="<?= $_SESSION['quantity'] ?>" id="quantity" name="quantity">
+
+                                            <a class="plus-minus text-decoration-none text-light" id="increment"
+                                                onclick="stepper(this)"> +
+                                            </a>
+
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary"
+                                                data-bs-dismiss="modal">Close</button>
+                                            <button type="submit" name="editquantity" class="btn btn-primary">Save
+                                                changes</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
                             <p class="card-text">Price <?= rupiah($prdct["price"]) ?></p>
                         </div>
                     </div>
@@ -436,6 +492,8 @@ if (isset($_POST['order'])) {
     </section>
 
     <!-- End Checkout -->
+
+    <script src="../assets/js/quantity.js"></script>
 
     <!-- JS Bootstrap -->
     <script src=" https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
