@@ -119,8 +119,17 @@ if (isset($_POST['order'])) {
             $error[] = "Minimum 20 characters!";
             $errorm[] = "Minimum 20 characters!";
         } else {
+            $succes[] = "Your order has been successfully created and added to the order list!";
+            $succesm[] = "Your order has been successfully created and added to the order list!";
+
             // insert to db jika semua validasi berhasil
             mysqli_query($db, "INSERT INTO buy (id_order, id_user ,product_name, price ,total_price, quantity, address, created) VALUES('$id_order', $id_user,  '$product_name', '$price','$total_price', '$quantity', '$address', '$created')");
+
+            // edit stock sesuai quantity order
+            $updtstock = $prdct['stock'] - $quantity;
+            mysqli_query($db, "UPDATE product SET stock = $updtstock WHERE id_product = $id_product");
+
+            header('Refresh: 3; URL=../home');
         }
     }
 }
@@ -270,6 +279,31 @@ if (isset($_POST['order'])) {
 
     <!-- Checkout -->
     <form method="POST">
+
+        <!-- Alert -->
+        <!-- Alert Succes -->
+        <?php if (isset($succes)) : ?>
+        <?php foreach ($succes as $succes) : ?>
+
+        <!-- Modal -->
+        <div class="modal" id="exampleModalSucces" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+            aria-labelledby="staticBackdropLabel" aria-hidden="true" style="background-color: #7B7B7B;">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-3 text-success" id="exampleModalLabel">Succes !</h1>
+                    </div>
+                    <div class="modal-body">
+                        <?= $succes ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <?php endforeach; ?>
+        <?php endif; ?>
+        <!-- End Alert Succes -->
+
         <section id="dekstop-view" class="checkout container">
 
             <h3>Checkout</h3>
@@ -460,6 +494,30 @@ if (isset($_POST['order'])) {
 
     <section id="mobile-view" class="checkout">
         <form method="POST">
+
+            <!-- Alert -->
+            <!-- Alert Succes -->
+            <?php if (isset($succesm)) : ?>
+            <?php foreach ($succesm as $succesm) : ?>
+
+            <!-- Modal -->
+            <div class="modal" id="exampleModalSucces" style="background-color: #7B7B7B;">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-3 text-success" id="exampleModalLabel">Succes !</h1>
+                        </div>
+                        <div class="modal-body">
+                            <?= $succesm ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <?php endforeach; ?>
+            <?php endif; ?>
+            <!-- End Alert Succes -->
+
             <div class="card shadow mb-3" style="margin-top: 82px;">
                 <label for="address" class="ms-3 me-3 mt-3 mb-1 fw-bold fs-4">Shipping Address</label>
 
@@ -624,12 +682,27 @@ if (isset($_POST['order'])) {
 
     <script src="../assets/js/quantity.js"></script>
 
-    <!-- JS Bootstrap -->
-    <script src=" https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+        integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"
+        integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous">
+    </script>
+
+    <!-- JS Bootstrap 4.6 -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js"
+        integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous">
+    </script>
+
+    <script>
+    $('#exampleModalSucces').modal('show')
     </script>
 </body>
-
-</html>
 
 </html>
