@@ -117,6 +117,7 @@ if (isset($_POST['order'])) {
         // cek column address (minimal 20 karakter)
         if ($address < 20) {
             $error[] = "Minimum 20 characters!";
+            $errorm[] = "Minimum 20 characters!";
         } else {
             // insert to db jika semua validasi berhasil
             mysqli_query($db, "INSERT INTO buy (id_order, id_user ,product_name, price ,total_price, quantity, address, created) VALUES('$id_order', $id_user,  '$product_name', '$price','$total_price', '$quantity', '$address', '$created')");
@@ -461,7 +462,19 @@ if (isset($_POST['order'])) {
         <form method="POST">
             <div class="card shadow mb-3" style="margin-top: 82px;">
                 <label for="address" class="ms-3 me-3 mt-3 mb-1 fw-bold fs-4">Shipping Address</label>
-                <textarea type="text" class="ms-3 me-3 mt-3 mb-4" id="address" name="address"
+
+                <!-- Alert Error -->
+                <?php if (isset($errorm)) : ?>
+                <?php foreach ($errorm as $errorm) : ?>
+                <div class="alert alert-danger alert-dismissible fade show ms-3 me-3 mt-3 mb-0" role="alert">
+                    <strong><?= $errorm ?></strong>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                <?php endforeach; ?>
+                <?php endif; ?>
+                <!-- End Alert Error -->
+
+                <textarea type="text" class="ms-3 me-3 mt-3 mb-4" id="address" name="addresss"
                     style="border: none; outline: none; resize: none; height: auto;"
                     placeholder="For Example : Jl Kita Bisa No.1 RT001/04 Kel. Batu Ceper, Kec. Cibodad, 15416, Jakarta, Indonesia"
                     autocomplete="off" autofocus="on"></textarea>
@@ -474,8 +487,45 @@ if (isset($_POST['order'])) {
                             class="">
                     </div>
                     <div class="col mt-4 mb-4">
-                        <p class="mb-0 pb-1"><?= $prdct['product_name'] ?></p>
-                        <p class="mb-0 pb-1">Quantity <?= $_SESSION['quantity'] ?></p>
+                        <p class="mb-0 pb-1 fw-bold"><?= $prdct['product_name'] ?></p>
+                        <p class="mb-0 pb-1">Quantity <?= $_SESSION['quantity'] ?> <a href=""
+                                class="text-decoration-none" data-bs-toggle="modal"
+                                data-bs-target="#exampleModalQtyy">Edit</a></p>
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="exampleModalQtyy" tabindex="-1" aria-labelledby="exampleModalLabel"
+                            aria-hidden="true" style="background-color: gainsboro;">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Quantity</h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body mb-3 mt-3 text-center">
+
+                                        <a class="plus-minus text-decoration-none text-light" id="decrementmobile"
+                                            onclick="steppermobile(this)"> -
+                                        </a>
+
+                                        <input type="number" min="1" max="50" step="1"
+                                            value="<?= $_SESSION['quantity'] ?>" id="quantitymobile" name="quantity">
+
+                                        <a class="plus-minus text-decoration-none text-light" id="incrementmobile"
+                                            onclick="steppermobile(this)"> +
+                                        </a>
+
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-bs-dismiss="modal">Close</button>
+                                        <button type="submit" name="editquantity" class="btn btn-primary">Save
+                                            changes</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                         <p class="mb-0">Price <?= rupiah($prdct['price']) ?></p>
                     </div>
                 </div>
@@ -514,7 +564,7 @@ if (isset($_POST['order'])) {
                         value="<?= $_POST['voucher'] ?>" autocomplete="off">
                 </div>
 
-                <button name="checkvoucher" class="btn btn-primary btn-sm me-3 ms-3 mb-4 pt-2 pb-2"
+                <button type="submit" name="checkvoucher" class="btn btn-primary btn-sm me-3 ms-3 mb-4 pt-2 pb-2"
                     style="width: 130px;">CHECK VOUCHER</button>
 
                 <?php else : ?>
@@ -524,7 +574,7 @@ if (isset($_POST['order'])) {
                         autocomplete="off">
                 </div>
 
-                <button name="checkvoucher" class="btn btn-primary btn-sm me-3 ms-3 mb-4 pt-2 pb-2"
+                <button type="submit" name="checkvoucher" class="btn btn-primary btn-sm me-3 ms-3 mb-4 pt-2 pb-2"
                     style="width: 130px;">CHECK VOUCHER</button>
 
                 <?php endif; ?>
@@ -551,12 +601,21 @@ if (isset($_POST['order'])) {
                     </p>
                     <p class="text-muted">Shipping Fee : <?= rupiah($shippingfee) ?></p>
                     <p class="text-muted">Handling Fee : <?= rupiah($handlingfee) ?></p>
+                    <?php if (isset($totalbill)) : ?>
+
+                    <p class="text-muted">Total Payment : <span class="fs-3"><?= rupiah($totalbill) ?></span></p>
+                    <input type="text" name="totalbill" value="<?= $totalbill ?>" class="d-none" readonly>
+
+                    <?php else : ?>
+
                     <p class="text-muted">Total Payment : <span class="fs-3"><?= rupiah($totalpayment) ?></span></p>
+
+                    <?php endif; ?>
                 </div>
 
                 <hr class="me-3 ms-3 mt-0">
 
-                <button class="btn btn-primary mb-4 ms-3 me-3" style="width: 130px;">BUY NOW</button>
+                <button name="order" class="btn btn-primary mb-4 ms-3 me-3" style="width: 130px;">BUY NOW</button>
             </div>
         </form>
     </section>

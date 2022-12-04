@@ -324,11 +324,12 @@ $time = date("Y-m-d H:i:s");
                     <div class="col" style="max-width: 275px;">
                         <p class="fw-bold mb-0 text-truncate"><?= $customer["fullname"] ?></p>
                         <a class="text-primary text-decoration-none" data-bs-toggle="modal"
-                            data-bs-target="#exampleModal" data-bs-whatever="@mdo">Other</a>
+                            data-bs-target="#exampleModalProfile" data-bs-whatever="@mdo">Other</a>
 
                         <form action="" method="POST" enctype="multipart/form-data">
-                            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                                aria-hidden="true">
+                            <div class="modal fade" id="exampleModalProfile" tabindex="-1"
+                                aria-labelledby="exampleModalLabel" aria-hidden="true"
+                                style="background-color: gainsboro;">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-header">
@@ -404,7 +405,7 @@ $time = date("Y-m-d H:i:s");
                         <a href="#" class="text-decoration-none mb-3">
                             <i class="bi bi-credit-card-2-front fs-4 me-2"></i>Voucher
                         </a>
-                        <a href="logout" class="text-decoration-none">
+                        <a href="" data-bs-toggle="modal" data-bs-target="#exampleModal" class="text-decoration-none">
                             <i class="bi bi-box-arrow-in-right fs-4 me-2"></i>Logout
                         </a>
                     </div>
