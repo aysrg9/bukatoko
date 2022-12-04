@@ -311,19 +311,20 @@ if (isset($_POST['order'])) {
 
                             <p class="card-text mb-1">Quantity <?= $_SESSION['quantity'] ?> <a href=""
                                     class="text-decoration-none" data-bs-toggle="modal"
-                                    data-bs-target="#exampleModal">Edit</a></p>
+                                    data-bs-target="#exampleModalQty">Edit</a></p>
 
                             <?php else : ?>
 
                             <p class="card-text mb-1">Quantity <?= $_SESSION['quantity'] ?> <a href=""
                                     class="text-decoration-none" data-bs-toggle="modal"
-                                    data-bs-target="#exampleModal">Edit</a></p>
+                                    data-bs-target="#exampleModalQty">Edit</a></p>
 
                             <?php endif; ?>
 
                             <!-- Modal -->
-                            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                                aria-hidden="true" style="background-color: gainsboro;">
+                            <div class="modal fade" id="exampleModalQty" tabindex="-1"
+                                aria-labelledby="exampleModalLabel" aria-hidden="true"
+                                style="background-color: gainsboro;">
                                 <div class="modal-dialog modal-dialog-centered">
                                     <div class="modal-content">
                                         <div class="modal-header">
