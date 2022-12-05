@@ -44,6 +44,11 @@ if (isset($_POST['min'])) {
 
 // buynow
 if (isset($_POST['checkout'])) {
+
+    // query
+    $id_product = $_POST['id_product'];
+    $prdct = query("SELECT * FROM product WHERE id_product = $id_product")[0];
+
     // cek user login
     if (!isset($_SESSION['acces-login'])) {
         // jika belum
@@ -53,9 +58,10 @@ if (isset($_POST['checkout'])) {
     // cek quantity dan stock
     if ($_POST['quantity'] > $prdct['stock']) {
         $error[] = "Sorry, not enough stock!";
+        $errorm[] = "Sorry, not enough stock!";
     } else {
         // jika user sudah login & qty < stock
-        $_SESSION['id_product'] = $_GET['p'];
+        $_SESSION['p'] = $id_product;
         $_SESSION['quantity'] = $_POST['quantity'];
         header('Location: order');
     }
@@ -268,6 +274,8 @@ $time_order = date("d M Y");
                         <button type="submit" name="remove" class="btn btn-primary"><i
                                 class="bi bi-trash-fill"></i></button>
                         <input type="text" class="d-none" readonly name="id_cart" value="<?= $cart_user['id_cart']; ?>">
+                        <input type="text" class="d-none" readonly name="id_product"
+                            value="<?= $cart_user['id_product']; ?>">
                         <button type="submit" name="checkout" class="btn btn-primary"><i
                                 class="bi bi-credit-card"></i></button>
                     </div>
