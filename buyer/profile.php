@@ -244,8 +244,8 @@ $time = date("Y-m-d H:i:s");
 
                             <h5 class="pt-4 pb-2">My Activity</h5>
                             <div class="list-group my-activity">
-                                <a href="#" class="text-decoration-none mb-3">
-                                    <i class="bi bi-receipt fs-4 me-2"></i>Transaction
+                                <a href="order-list" class="text-decoration-none mb-3">
+                                    <i class="bi bi-receipt fs-4 me-2"></i>Order
                                     List
                                 </a>
                                 <a href="cart" class="text-decoration-none mb-3">
@@ -392,8 +392,8 @@ $time = date("Y-m-d H:i:s");
                 <div class="pt-3 pb-3 ps-3 pe-3 d-inline-block">
                     <p class="pt-0 pb-0 mb-0 mt-0 fw-bold" style="font-size: 17px;">My Activity</p>
                     <div class="list-group my-activity mt-2">
-                        <a href="#" class="text-decoration-none mb-3">
-                            <i class="bi bi-receipt fs-4 me-2"></i>Transaction
+                        <a href="order-list" class="text-decoration-none mb-3">
+                            <i class="bi bi-receipt fs-4 me-2"></i>Order
                             List
                         </a>
                         <a href="cart" class="text-decoration-none mb-3">

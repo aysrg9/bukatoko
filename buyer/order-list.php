@@ -1,6 +1,6 @@
 <?php
 
-// Session Start
+// start session
 session_start();
 
 // Connect
@@ -8,23 +8,11 @@ require '../functions.php';
 
 // cek user login
 if (isset($_SESSION['acces-login'])) {
-    // jika sudah login ambil data dari session
+    // jika sudah
     $id_user = $_SESSION['id_user'];
     $username = $_SESSION['username'];
-    $fullname = $_SESSION['fullname'];
 } else {
-    // jika belom
-    header('Location: login');
-}
-
-// query data
-$wishlist = mysqli_query($db, "SELECT * FROM wishlist WHERE id_user = $id_user");
-
-// remove cart
-if (isset($_POST['remove'])) {
-    $remove_id = $_POST['id_wishlist'];
-    mysqli_query($db, "DELETE FROM wishlist WHERE id_wishlist = '$remove_id'");
-    header('location:wishlist');
+    header('Location: home');
 }
 
 // waktu 
@@ -66,9 +54,7 @@ $time = date("Y-m-d H:i:s");
 <body>
     <!-- Start Navbar -->
     <section id="navbar" class="fixed-top">
-
         <div style="background-color: #F3F4F5;">
-
             <div id="text-info" class="container pt-1 pb-1">
                 <!-- <a href="" class="me-3">About Bukatoko</a> -->
                 <a class="me-1">Follow us on</a>
@@ -77,16 +63,11 @@ $time = date("Y-m-d H:i:s");
                         class="bi bi-instagram"></i></a>
                 <a class="me-2" href="https://twitter.com/aysrg9/" target="_blank"><i class="bi bi-twitter"></i></a>
             </div>
-
         </div>
-
         <nav class="navbar shadow" style="background-color: #fff;">
-
             <div class="container">
-
-                <a class="navbar-brand fs-2 text-primary fw-bold" href="../home.php"
+                <a class="navbar-brand fs-2 text-primary fw-bold" href="../home"
                     style="font-family: 'Kanit', sans-serif;">Bukatoko</a>
-
                 <form method="GET" action="search" class="d-flex" role="search">
                     <input class="input-search form-control" type="search" placeholder="Search" aria-label="Search"
                         name="keyword" autocomplete="off" required>
@@ -94,10 +75,10 @@ $time = date("Y-m-d H:i:s");
                             name="search"></i></button>
                 </form>
 
+
                 <?php if (isset($_SESSION['acces-login'])) : ?>
 
                 <div id="button-navbar">
-
                     <div class="dropdown">
                         <a role="button" style="text-decoration: none;" class=" fw-bold fs-5" data-bs-toggle="dropdown"
                             aria-expanded="false">Hello,
@@ -106,12 +87,10 @@ $time = date("Y-m-d H:i:s");
                             <li><a class="dropdown-item fw-bold" href="profile">Profile</a></li>
                             <li><a class="dropdown-item fw-bold" href="cart">Cart</a></li>
                             <li><a class="dropdown-item fw-bold" href="wishlist">Wishlist</a></li>
-                            <li><a class="dropdown-item fw-bold" href="order-list">Order List</a></li>
                             <li><a class="dropdown-item fw-bold" href="" data-bs-toggle="modal"
                                     data-bs-target="#exampleModal">Logout</a></li>
                         </ul>
                     </div>
-
                 </div>
 
                 <!-- Modal -->
@@ -141,19 +120,15 @@ $time = date("Y-m-d H:i:s");
                     <a href="login" class="btn btn-primary fw-bold">LOGIN</a>
                     <a href="register" class="btn btn-primary fw-bold">REGISTER</a>
                 </div>
+
                 <?php endif; ?>
-
             </div>
-
         </nav>
-
     </section>
 
     <!-- Navbar Bottom -->
     <section id="nav-bottom">
-
         <nav class="nav-icon navbar fixed-bottom">
-
             <div class="container">
                 <a href="../home"><i class="bi bi-house"></i></a>
                 <a href="wishlist"><i class="bi bi-heart"></i></a>
@@ -165,68 +140,25 @@ $time = date("Y-m-d H:i:s");
 
                 <?php else : ?>
                 <a href="login"><i class="bi bi-box-arrow-in-right"></i></a>
+
                 <?php endif; ?>
             </div>
-
         </nav>
-
     </section>
     <!-- End Navbar Bottom -->
     <!-- End Navbar -->
 
-    <!-- Wishlist-->
-    <section id="wishlist" class="container">
+    <!-- Order List -->
+    <!-- Dekstop View -->
+    <section id="dekstop-view" class="container">
+        <h3>Order List</h3>
 
-        <div id="banner-recomend" class="card shadow" style="background-color: #ffffff;">
-            <h3 class="pt-2 pb-2 text-center text-primary fw-bold mb-0">Wishlist <?= $fullname ?></h3>
+        <div class="alert alert-warning card shadow fw-bold" role="alert">
+            If you have problems, don't hesitate to contact the admin. Thank you!
         </div>
-
-        <div class="row row-cols-2 row-cols-sm-3 row-cols-lg-5 g-2 g-sm-3 mt-3">
-
-            <?php $i = mysqli_num_rows($wishlist); ?>
-            <?php if ($i > 0) : ?>
-            <?php while ($wishlist_user = mysqli_fetch_array($wishlist)) : ?>
-
-            <a href="view?p=<?= $wishlist_user["id_product"] ?>" style="text-decoration: none;">
-
-                <div id="col-product" class="col shadow card">
-
-                    <div class="p-3 shadow-sm bg-white ps-2 pe-2 pb-0">
-
-                        <img src="../assets/images/product/<?= $wishlist_user["picture"] ?>"
-                            class="card-img-top picture-product" alt="...">
-
-                        <div class="card-body pt-3">
-                            <p class="card-title text-truncate text-dark mb-0"><?= $wishlist_user["product_name"] ?></p>
-                            <p class="card-title pt-2 mb-0 fw-bold text-truncate text-dark">
-                                <?= rupiah($wishlist_user["price"]) ?></p>
-                        </div>
-
-                        <div class="footer pe-3 ps-3">
-                            <form action="" method="POST">
-                                <button type="submit" name="remove"
-                                    class="btn btn-primary btn-sm rounded float-end mb-3"><i
-                                        class="bi bi-trash-fill"></i></button>
-
-                                <input type="text" class="d-none" readonly value="<?= $wishlist_user['id_wishlist'] ?>"
-                                    name="id_wishlist">
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </a>
-
-            <?php endwhile; ?>
-            <?php else : ?>
-            <div class="card shadow mt-3 text-center" style="background-color: #ffffff;">
-                <h3 class="text-primary text-center fw-bold mb-0 mt-0 pb-2 pt-2">No Items Added!</h3>
-            </div>
-            <?php endif; ?>
-
-        </div>
-
     </section>
-    <!-- End Product -->
+    <!-- End Dekstiop View -->
+    <!-- End Order List -->
 
     <!-- JS Bootstrap -->
     <script src=" https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"

@@ -91,6 +91,7 @@ $time = date("Y-m-d H:i:s");
                             <li><a class="dropdown-item fw-bold" href="profile">Profile</a></li>
                             <li><a class="dropdown-item fw-bold" href="cart">Cart</a></li>
                             <li><a class="dropdown-item fw-bold" href="wishlist">Wishlist</a></li>
+                            <li><a class="dropdown-item fw-bold" href="order-list">Order List</a></li>
                             <li><a class="dropdown-item fw-bold" href="" data-bs-toggle="modal"
                                     data-bs-target="#exampleModal">Logout</a></li>
                         </ul>

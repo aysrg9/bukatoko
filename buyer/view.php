@@ -182,6 +182,7 @@ if (isset($_POST['addtocart'])) {
                             <li><a class="dropdown-item fw-bold" href="profile">Profile</a></li>
                             <li><a class="dropdown-item fw-bold" href="cart">Cart</a></li>
                             <li><a class="dropdown-item fw-bold" href="wishlist">Wishlist</a></li>
+                            <li><a class="dropdown-item fw-bold" href="order-list">Order List</a></li>
                             <li><a class="dropdown-item fw-bold" href="" data-bs-toggle="modal"
                                     data-bs-target="#exampleModall">Logout</a></li>
                         </ul>
