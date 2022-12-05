@@ -112,7 +112,8 @@ if (isset($_POST['order'])) {
 
     // cek stock
     if ($quantity > $prdct['stock']) {
-        $error[] = "Sorry, not enough stock!";
+        $errorstck[] = "Sorry, not enough stock!";
+        $errorstckm[] = "Sorry, not enough stock!";
     } else {
         // cek column address (minimal 20 karakter)
         if ($address < 20) {
@@ -286,7 +287,7 @@ if (isset($_POST['order'])) {
         <?php foreach ($succes as $succes) : ?>
 
         <!-- Modal -->
-        <div class="modal" id="exampleModalSucces" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1"
             aria-labelledby="staticBackdropLabel" aria-hidden="true" style="background-color: #7B7B7B;">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
@@ -333,6 +334,18 @@ if (isset($_POST['order'])) {
             </div>
 
             <div class="card shadow mb-3">
+
+                <!-- Alert Error -->
+                <?php if (isset($errorstck)) : ?>
+                <?php foreach ($errorstck as $errorstck) : ?>
+                <div class="alert alert-danger alert-dismissible fade show mt-3 mb-0 ms-3 me-3" role="alert">
+                    <strong><?= $errorstck ?></strong>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                <?php endforeach; ?>
+                <?php endif; ?>
+                <!-- End Alert Error -->
+
                 <div class="row g-0 mb-2">
                     <div class="col" style="max-width: 100px;">
                         <img src="../assets/images/product/<?= $prdct["picture"] ?>"
@@ -501,14 +514,15 @@ if (isset($_POST['order'])) {
             <?php foreach ($succesm as $succesm) : ?>
 
             <!-- Modal -->
-            <div class="modal" id="exampleModalSucces" style="background-color: #7B7B7B;">
+            <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1"
+                aria-labelledby="staticBackdropLabel" aria-hidden="true" style="background-color: #7B7B7B;">
                 <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">
                         <div class="modal-header">
                             <h1 class="modal-title fs-3 text-success" id="exampleModalLabel">Succes !</h1>
                         </div>
                         <div class="modal-body">
-                            <?= $succesm ?>
+                            <?= $succes ?>
                         </div>
                     </div>
                 </div>
@@ -539,6 +553,18 @@ if (isset($_POST['order'])) {
             </div>
 
             <div class="card shadow mb-3">
+
+                <!-- Alert Error -->
+                <?php if (isset($errorstckm)) : ?>
+                <?php foreach ($errorstckm as $errorstckm) : ?>
+                <div class="alert alert-danger alert-dismissible fade show mt-4 mb-0 ms-3 me-3" role="alert">
+                    <strong><?= $errorstckm ?></strong>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                <?php endforeach; ?>
+                <?php endif; ?>
+                <!-- End Alert Error -->
+
                 <div class="row">
                     <div class="col ms-2 mt-4 mb-4 me-3" style="max-width: 80px;">
                         <img src="../assets/images/product/<?= $prdct['picture'] ?>" alt="" width="80px" height="80px"
@@ -701,7 +727,7 @@ if (isset($_POST['order'])) {
     </script>
 
     <script>
-    $('#exampleModalSucces').modal('show')
+    $('#staticBackdrop').modal('show')
     </script>
 </body>
 
