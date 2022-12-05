@@ -343,6 +343,9 @@ $time_order = date("d M Y");
                             <input type="number" min="1" max="50" step="1" value="<?= $cart_user['quantity']; ?>"
                                 id="quantity" name="quantity">
 
+                            <input type="text" class="d-none" readonly name="id_product"
+                                value="<?= $cart_user['id_product']; ?>">
+
                             <button type="submit" name="add"
                                 class="btn btn-primary plus-minus text-decoration-none text-light" id="increment"
                                 onclick="stepper(this)"> +

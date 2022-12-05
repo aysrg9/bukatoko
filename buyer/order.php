@@ -665,7 +665,7 @@ if (isset($_POST['order'])) {
             </div>
 
             <div class="card shadow" style="margin-bottom: 82px;">
-                <h3 class="ms-3 mt-3 mb-4 fw-bold">Total Bill</h3>
+                <h3 class="ms-3 mt-3 mb-3 fw-bold">Total Bill</h3>
 
                 <hr class="me-3 ms-3 mt-0">
 
