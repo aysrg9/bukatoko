@@ -375,6 +375,9 @@ $time_order = date("d M Y");
                             <input type="text" class="d-none" readonly name="id_cart"
                                 value="<?= $cart_user['id_cart']; ?>">
 
+                            <input type="text" class="d-none" readonly name="id_product"
+                                value="<?= $cart_user['id_product']; ?>">
+
                             <button type="submit" name="checkout" class="btn btn-primary"><i
                                     class="bi bi-credit-card"></i></button>
                         </div>
