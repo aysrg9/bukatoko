@@ -298,6 +298,7 @@ input::-webkit-inner-spin-button {
 
   .checkout {
     margin-top: 290px;
+    overflow-x: hidden;
   }
 
   #button-navbar {

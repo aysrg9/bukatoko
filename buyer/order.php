@@ -505,8 +505,8 @@ if (isset($_POST['order'])) {
         </section>
     </form>
 
-    <section id="mobile-view" class="checkout">
-        <form method="POST">
+    <section id="mobile-view" class="checkout container">
+        <form method="POST" style="overflow-x: hidden;">
 
             <!-- Alert -->
             <!-- Alert Succes -->
