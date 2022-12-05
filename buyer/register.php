@@ -1,7 +1,14 @@
 <?php
 
+session_start();
+
 // koneksi
 require '../functions.php';
+
+// cek user login
+if (isset($_SESSION['acces-login'])) {
+    header('Location: ../home');
+}
 
 // jika tombol submit ditekan
 if (isset($_POST["submit"])) {
