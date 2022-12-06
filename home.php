@@ -119,8 +119,8 @@ $time = date("Y-m-d H:i:s");
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                                <button class="btn btn-primary"><a href="./buyer/logout"
-                                        class="text-light text-decoration-none">Logout</a></button>
+                                <a href="./buyer/logout" class="text-light text-decoration-none"><button
+                                        class="btn btn-primary">Logout</button></a>
                             </div>
                         </div>
                     </div>

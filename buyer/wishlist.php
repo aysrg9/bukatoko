@@ -190,7 +190,7 @@ $time = date("Y-m-d H:i:s");
 
                 <div id="col-product" class="col shadow card">
 
-                    <div class="p-3 shadow-sm bg-white ps-2 pe-2 pb-0">
+                    <div class="p-3 shadow-sm bg-white ps-1 pe-1 pb-0">
 
                         <img src="../assets/images/product/<?= $wishlist_user["picture"] ?>"
                             class="card-img-top picture-product" alt="...">
