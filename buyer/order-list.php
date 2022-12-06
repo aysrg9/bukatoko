@@ -156,6 +156,67 @@ $time = date("Y-m-d H:i:s");
         <div class="alert alert-warning card shadow fw-bold" role="alert">
             If you have problems, don't hesitate to contact the admin. Thank you!
         </div>
+
+        <?php
+
+        $order_list = mysqli_query($db, "SELECT * FROM buy WHERE id_user = $id_user");
+        $i = mysqli_num_rows($order_list);
+
+        ?>
+
+        <?php if ($i > 0) : ?>
+        <?php while ($order_user = mysqli_fetch_array($order_list)) : ?>
+
+        <div class="card shadow mb-3">
+            <div class="ps-3 pe-3 pt-3">
+
+                <div class="row">
+                    <div class="col pe-0 me-0" style="max-width: 105px;">
+                        <p class="fw-bold"><i class="bi bi-bag-fill"></i> Shopping</p>
+                    </div>
+                    <div class="col pe-0 me-0" style="max-width: 105px;">
+                        <?= $order_user['created']; ?>
+                    </div>
+                    <div class="col" style="max-width: 75px;">
+                        <span class="bg-success bg-opacity-25 pt-1 pb-1 pe-1 ps-1 rounded">
+                            <span class="text-success fw-bold"><?= $order_user['status']; ?></span>
+                        </span>
+                    </div>
+                    <div class="col pe-0 me-0 ms-0 ps-0 text-muted">
+                        <?= $order_user['id_order']; ?>
+                    </div>
+                </div>
+
+                <div class="pt-0 mt-0">
+                    <p class="fw-bold"><i class="bi bi-patch-check-fill text-primary"></i> Bukatoko</p>
+                </div>
+
+                <div class="row mb-3" style="max-width: auto;">
+                    <div class="col" style="max-width: 75px;">
+                        <img src="../assets/images/product/<?= $order_user['picture']; ?>" alt="" width="60"
+                            height="60">
+                    </div>
+                    <div class="col">
+                        <p class="fw-bold mb-0 pb-0"><?= $order_user['product_name']; ?></p>
+                        <p class="text-muted mt-0 pt-0"><?= $order_user['quantity']; ?> Item x
+                            <?= rupiah($order_user['price']); ?></p>
+                    </div>
+                    <div class="col col-lg-2">
+                        <p class="text-muted mb-0 p-0">Total Price</p>
+                        <p class="fw-bold"><?= rupiah($order_user['total_price']); ?></p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <?php endwhile; ?>
+        <?php else : ?>
+        <div class="card shadow mt-3" style="background-color: #ffffff;">
+            <h3 class="text-primary text-center fw-bold mb-0 pt-1 pb-1">No Items</h3>
+        </div>
+        <?php endif; ?>
+
     </section>
     <!-- End Dekstiop View -->
     <!-- End Order List -->

@@ -138,7 +138,6 @@ $time_order = date("d M Y");
                             <?= $_SESSION['username']; ?></a>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item fw-bold" href="profile">Profile</a></li>
-                            <li><a class="dropdown-item fw-bold" href="cart">Cart</a></li>
                             <li><a class="dropdown-item fw-bold" href="wishlist">Wishlist</a></li>
                             <li><a class="dropdown-item fw-bold" href="order-list">Order List</a></li>
                             <li><a class="dropdown-item fw-bold" href="" data-bs-toggle="modal"

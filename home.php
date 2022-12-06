@@ -262,15 +262,19 @@ $time = date("Y-m-d H:i:s");
 
                 <div id="col-product" class="col card">
 
-                    <div class="p-3 shadow bg-white ps-2 pe-2 pb-0">
+                    <div class="p-3 shadow bg-white ps-1 pe-1 pb-0">
 
                         <img src="./assets/images/product/<?= $row["picture"] ?>" class="card-img-top picture-product"
                             alt="...">
 
                         <div class="card-body pt-3">
-                            <p class="card-title text-truncate text-dark"><?= $row["product_name"] ?></p>
-                            <p class="card-title pt-2 mb-0 fw-bold text-truncate text-dark">
+                            <p class="card-title text-truncate text-dark pb-0 mb-0"><?= $row["product_name"] ?></p>
+                            <p class="card-title pt-1 mb-0 fw-bold text-truncate text-dark">
                                 <?= rupiah($row["price"]) ?></p>
+                            <p class="card-title pt-0 mt-0 mb-0 fw-bold text-truncate"><i
+                                    class="bi bi-patch-check-fill"></i> <span class="text-muted"
+                                    style="font-size: 13px;">Served
+                                    Bukatoko</span></p>
                         </div>
 
                     </div>

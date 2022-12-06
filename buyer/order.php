@@ -92,6 +92,8 @@ if (isset($_POST['order'])) {
     $address = $_POST['addresss'];
     // product yang di beli
     $product_name = $prdct['product_name'];
+    // picture product
+    $picture = $prdct['picture'];
     // harga
     $price = $prdct['price'];
     // total price
@@ -124,13 +126,13 @@ if (isset($_POST['order'])) {
             $succesm[] = "Your order has been successfully created and added to the order list!";
 
             // insert to db jika semua validasi berhasil
-            mysqli_query($db, "INSERT INTO buy (id_order, id_user ,product_name, price ,total_price, quantity, address, created) VALUES('$id_order', $id_user,  '$product_name', '$price','$total_price', '$quantity', '$address', '$created')");
+            mysqli_query($db, "INSERT INTO buy (id_order, id_user , picture ,product_name, price ,total_price, quantity, address, created) VALUES('$id_order', $id_user, '$picture' ,'$product_name', '$price','$total_price', '$quantity', '$address', '$created')");
 
             // edit stock sesuai quantity order
             $updtstock = $prdct['stock'] - $quantity;
             mysqli_query($db, "UPDATE product SET stock = $updtstock WHERE id_product = $id_product");
 
-            header('Refresh: 3; URL=../home');
+            header('Refresh: 3; URL=order-list');
         }
     }
 }
