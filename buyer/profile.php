@@ -108,7 +108,7 @@ $time = date("Y-m-d H:i:s");
 
                 <!-- Modal -->
                 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                    aria-hidden="true" style="background-color: gainsboro;">
+                    aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -276,7 +276,7 @@ $time = date("Y-m-d H:i:s");
         <?php foreach ($messagem as $messagem) : ?>
 
         <!-- Modal -->
-        <div class="modal" id="exampleModalAlert" style="background-color: #7B7B7B;">
+        <div class="modal" id="exampleModalAlert">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -297,7 +297,7 @@ $time = date("Y-m-d H:i:s");
         <?php foreach ($errorm as $errorm) : ?>
 
         <!-- Modal -->
-        <div class="modal" id="exampleModalAlert" style="background-color: #7B7B7B;">
+        <div class="modal" id="exampleModalAlert">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -328,8 +328,7 @@ $time = date("Y-m-d H:i:s");
 
                         <form action="" method="POST" enctype="multipart/form-data">
                             <div class="modal fade" id="exampleModalProfile" tabindex="-1"
-                                aria-labelledby="exampleModalLabel" aria-hidden="true"
-                                style="background-color: gainsboro;">
+                                aria-labelledby="exampleModalLabel" aria-hidden="true" style="margin-top: 64px;">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-header">
@@ -375,7 +374,7 @@ $time = date("Y-m-d H:i:s");
                                                     value="<?= $customer["created"] ?>" readonly>
                                             </div>
                                         </div>
-                                        <div class="modal-footer">
+                                        <div class="modal-footer" style="margin-bottom: 64px;">
                                             <button type="button" class="btn btn-secondary"
                                                 data-bs-dismiss="modal">Close</button>
                                             <button type="submit" class="btn btn-primary" name="save">Save</button>
