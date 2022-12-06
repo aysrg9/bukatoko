@@ -147,7 +147,8 @@ if (isset($_POST['order'])) {
     <title>Bukatoko</title>
 
     <!-- CSS Bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
 
     <!-- Icon Bootstrap -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
@@ -162,9 +163,9 @@ if (isset($_POST['order'])) {
 
     <!-- Fix Confirm Form Resubmission -->
     <script>
-        if (window.history.replaceState) {
-            window.history.replaceState(null, null, window.location.href);
-        }
+    if (window.history.replaceState) {
+        window.history.replaceState(null, null, window.location.href);
+    }
     </script>
 
 </head>
@@ -179,7 +180,8 @@ if (isset($_POST['order'])) {
                 <!-- <a href="" class="me-3">About Bukatoko</a> -->
                 <a class="me-1">Follow us on</a>
                 <a class="me-2" href="https://github.com/aysrg9/" target="_blank"><i class="bi bi-github"></i></a>
-                <a class="me-2" href="https://instagram.com/egydityaa/" target="_blank"><i class="bi bi-instagram"></i></a>
+                <a class="me-2" href="https://instagram.com/egydityaa/" target="_blank"><i
+                        class="bi bi-instagram"></i></a>
                 <a class="me-2" href="https://twitter.com/aysrg9/" target="_blank"><i class="bi bi-twitter"></i></a>
             </div>
 
@@ -189,54 +191,62 @@ if (isset($_POST['order'])) {
 
             <div class="container">
 
-                <a class="navbar-brand fs-2 text-primary fw-bold" href="../home" style="font-family: 'Kanit', sans-serif;">Bukatoko</a>
+                <a class="navbar-brand fs-2 text-primary fw-bold" href="../home"
+                    style="font-family: 'Kanit', sans-serif;">Bukatoko</a>
 
                 <form method="GET" action="search" class="d-flex" role="search">
-                    <input class="input-search form-control" type="search" placeholder="Search" aria-label="Search" name="keyword" autocomplete="off" required>
-                    <button class="btn btn-outline-primary d-none" type="submit"><i class="bi bi-search" name="search"></i></button>
+                    <input class="input-search form-control" type="search" placeholder="Search" aria-label="Search"
+                        name="keyword" autocomplete="off" required>
+                    <button class="btn btn-outline-primary d-none" type="submit"><i class="bi bi-search"
+                            name="search"></i></button>
                 </form>
 
                 <?php if (isset($_SESSION['acces-login'])) : ?>
 
-                    <div id="button-navbar">
+                <div id="button-navbar">
 
-                        <div class="dropdown">
-                            <a role="button" style="text-decoration: none;" class=" fw-bold fs-5" data-bs-toggle="dropdown" aria-expanded="false">Hello,
-                                <?= $_SESSION['username']; ?></a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item fw-bold" href="profile">Profile</a></li>
-                                <li><a class="dropdown-item fw-bold" href="cart">Cart</a></li>
-                                <li><a class="dropdown-item fw-bold" href="wishlist">Wishlist</a></li>
-                                <li><a class="dropdown-item fw-bold" href="" data-bs-toggle="modal" data-bs-target="#exampleModal">Logout</a></li>
-                            </ul>
-                        </div>
-
+                    <div class="dropdown">
+                        <a role="button" style="text-decoration: none;" class=" fw-bold fs-5" data-bs-toggle="dropdown"
+                            aria-expanded="false">Hello,
+                            <?= $_SESSION['username']; ?></a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item fw-bold" href="profile">Profile</a></li>
+                            <li><a class="dropdown-item fw-bold" href="cart">Cart</a></li>
+                            <li><a class="dropdown-item fw-bold" href="wishlist">Wishlist</a></li>
+                            <li><a class="dropdown-item fw-bold" href="" data-bs-toggle="modal"
+                                    data-bs-target="#exampleModal">Logout</a></li>
+                        </ul>
                     </div>
 
-                    <!-- Modal -->
-                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Warning!</h1>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                    Are you sure logout?
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                                    <a href="logout" class="text-light text-decoration-none"><button class="btn btn-primary">Logout</button></a>
-                                </div>
+                </div>
+
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">Warning!</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                Are you sure logout?
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                <a href="logout" class="text-light text-decoration-none"><button
+                                        class="btn btn-primary">Logout</button></a>
                             </div>
                         </div>
                     </div>
+                </div>
 
                 <?php else : ?>
-                    <div id="button-navbar">
-                        <a href="login" class="btn btn-primary fw-bold">LOGIN</a>
-                        <a href="register" class="btn btn-primary fw-bold">REGISTER</a>
-                    </div>
+                <div id="button-navbar">
+                    <a href="login" class="btn btn-primary fw-bold">LOGIN</a>
+                    <a href="register" class="btn btn-primary fw-bold">REGISTER</a>
+                </div>
                 <?php endif; ?>
 
             </div>
@@ -257,10 +267,10 @@ if (isset($_POST['order'])) {
 
                 <?php if (isset($_SESSION['acces-login'])) : ?>
 
-                    <a href="profile"><i class="bi bi-person-circle"></i></a>
+                <a href="profile"><i class="bi bi-person-circle"></i></a>
 
                 <?php else : ?>
-                    <a href="login"><i class="bi bi-box-arrow-in-right"></i></a>
+                <a href="login"><i class="bi bi-box-arrow-in-right"></i></a>
                 <?php endif; ?>
             </div>
 
@@ -276,23 +286,24 @@ if (isset($_POST['order'])) {
         <!-- Alert -->
         <!-- Alert Succes -->
         <?php if (isset($succes)) : ?>
-            <?php foreach ($succes as $succes) : ?>
+        <?php foreach ($succes as $succes) : ?>
 
-                <!-- Modal -->
-                <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" style="background-color: #7B7B7B;">
-                    <div class="modal-dialog modal-dialog-centered">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h1 class="modal-title fs-3 text-success" id="exampleModalLabel">Succes !</h1>
-                            </div>
-                            <div class="modal-body">
-                                <?= $succes ?>
-                            </div>
-                        </div>
+        <!-- Modal -->
+        <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1"
+            aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-3 text-success" id="exampleModalLabel">Succes !</h1>
+                    </div>
+                    <div class="modal-body">
+                        <?= $succes ?>
                     </div>
                 </div>
+            </div>
+        </div>
 
-            <?php endforeach; ?>
+        <?php endforeach; ?>
         <?php endif; ?>
         <!-- End Alert Succes -->
 
@@ -309,34 +320,38 @@ if (isset($_POST['order'])) {
 
                 <!-- Alert Error -->
                 <?php if (isset($error)) : ?>
-                    <?php foreach ($error as $error) : ?>
-                        <div class="alert alert-danger alert-dismissible fade show ms-3 me-3" role="alert">
-                            <strong><?= $error ?></strong>
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                        </div>
-                    <?php endforeach; ?>
+                <?php foreach ($error as $error) : ?>
+                <div class="alert alert-danger alert-dismissible fade show ms-3 me-3" role="alert">
+                    <strong><?= $error ?></strong>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                <?php endforeach; ?>
                 <?php endif; ?>
                 <!-- End Alert Error -->
 
-                <textarea type="text" class="ms-3 me-3 mt-3 mb-4" id="address" name="addresss" style="border: none; outline: none; resize: none; height: auto;" placeholder="For Example : Jl Kita Bisa No.1 RT001/04 Kel. Batu Ceper, Kec. Cibodad, 15416, Jakarta, Indonesia" autocomplete="off" autofocus="on"></textarea>
+                <textarea type="text" class="ms-3 me-3 mt-3 mb-4" id="address" name="addresss"
+                    style="border: none; outline: none; resize: none; height: auto;"
+                    placeholder="For Example : Jl Kita Bisa No.1 RT001/04 Kel. Batu Ceper, Kec. Cibodad, 15416, Jakarta, Indonesia"
+                    autocomplete="off" autofocus="on"></textarea>
             </div>
 
             <div class="card shadow mb-3">
 
                 <!-- Alert Error -->
                 <?php if (isset($errorstck)) : ?>
-                    <?php foreach ($errorstck as $errorstck) : ?>
-                        <div class="alert alert-danger alert-dismissible fade show mt-3 mb-0 ms-3 me-3" role="alert">
-                            <strong><?= $errorstck ?></strong>
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                        </div>
-                    <?php endforeach; ?>
+                <?php foreach ($errorstck as $errorstck) : ?>
+                <div class="alert alert-danger alert-dismissible fade show mt-3 mb-0 ms-3 me-3" role="alert">
+                    <strong><?= $errorstck ?></strong>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                <?php endforeach; ?>
                 <?php endif; ?>
                 <!-- End Alert Error -->
 
                 <div class="row g-0 mb-2">
                     <div class="col" style="max-width: 100px;">
-                        <img src="../assets/images/product/<?= $prdct["picture"] ?>" class="img-fluid rounded-start mt-3 ms-3" alt="..." width="90px" height="90px">
+                        <img src="../assets/images/product/<?= $prdct["picture"] ?>"
+                            class="img-fluid rounded-start mt-3 ms-3" alt="..." width="90px" height="90px">
                     </div>
                     <div class="col-md-8">
                         <div class="card-body">
@@ -344,35 +359,46 @@ if (isset($_POST['order'])) {
 
                             <?php if (!isset($_POST['editquantity'])) : ?>
 
-                                <p class="card-text mb-1">Quantity <?= $_SESSION['quantity'] ?> <a href="" class="text-decoration-none" data-bs-toggle="modal" data-bs-target="#exampleModalQty">Edit</a></p>
+                            <p class="card-text mb-1">Quantity <?= $_SESSION['quantity'] ?> <a href=""
+                                    class="text-decoration-none" data-bs-toggle="modal"
+                                    data-bs-target="#exampleModalQty">Edit</a></p>
 
                             <?php else : ?>
 
-                                <p class="card-text mb-1">Quantity <?= $_SESSION['quantity'] ?> <a href="" class="text-decoration-none" data-bs-toggle="modal" data-bs-target="#exampleModalQty">Edit</a></p>
+                            <p class="card-text mb-1">Quantity <?= $_SESSION['quantity'] ?> <a href=""
+                                    class="text-decoration-none" data-bs-toggle="modal"
+                                    data-bs-target="#exampleModalQty">Edit</a></p>
 
                             <?php endif; ?>
 
                             <!-- Modal -->
-                            <div class="modal fade" id="exampleModalQty" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="background-color: gainsboro;">
+                            <div class="modal fade" id="exampleModalQty" tabindex="-1"
+                                aria-labelledby="exampleModalLabel" aria-hidden="true"
+                                style="background-color: gainsboro;">
                                 <div class="modal-dialog modal-dialog-centered">
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Quantity</h1>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body mb-3 mt-3 text-center">
 
-                                            <a class="plus-minus text-decoration-none text-light" id="decrement" onclick="stepper(this)"> -
+                                            <a class="plus-minus text-decoration-none text-light" id="decrement"
+                                                onclick="stepper(this)"> -
                                             </a>
 
-                                            <input type="number" min="1" max="50" step="1" value="<?= $_SESSION['quantity'] ?>" id="quantity" name="quantity">
+                                            <input type="number" min="1" max="50" step="1"
+                                                value="<?= $_SESSION['quantity'] ?>" id="quantity" name="quantity">
 
-                                            <a class="plus-minus text-decoration-none text-light" id="increment" onclick="stepper(this)"> +
+                                            <a class="plus-minus text-decoration-none text-light" id="increment"
+                                                onclick="stepper(this)"> +
                                             </a>
 
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                            <button type="button" class="btn btn-secondary"
+                                                data-bs-dismiss="modal">Close</button>
                                             <button type="submit" name="editquantity" class="btn btn-primary">Save
                                                 changes</button>
                                         </div>
@@ -394,23 +420,23 @@ if (isset($_POST['order'])) {
 
                 <!-- Alert Succes -->
                 <?php if (isset($message)) : ?>
-                    <?php foreach ($message as $message) : ?>
-                        <div class="alert alert-success alert-dismissible fade show me-3 ms-3" role="alert">
-                            <strong><?= $message ?></strong>
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                        </div>
-                    <?php endforeach; ?>
+                <?php foreach ($message as $message) : ?>
+                <div class="alert alert-success alert-dismissible fade show me-3 ms-3" role="alert">
+                    <strong><?= $message ?></strong>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                <?php endforeach; ?>
                 <?php endif; ?>
                 <!-- End Alert Succes -->
 
                 <!-- Alert Error -->
                 <?php if (isset($failed)) : ?>
-                    <?php foreach ($failed as $failed) : ?>
-                        <div class="alert alert-danger alert-dismissible fade show ms-3 me-3" role="alert">
-                            <strong><?= $failed ?></strong>
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                        </div>
-                    <?php endforeach; ?>
+                <?php foreach ($failed as $failed) : ?>
+                <div class="alert alert-danger alert-dismissible fade show ms-3 me-3" role="alert">
+                    <strong><?= $failed ?></strong>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                <?php endforeach; ?>
                 <?php endif; ?>
                 <!-- End Alert Error -->
 
@@ -418,19 +444,23 @@ if (isset($_POST['order'])) {
 
                 <?php if (isset($_POST['voucher'])) : ?>
 
-                    <div class="input-group mb-3">
-                        <input type="text" class="form-control me-3 ms-3" placeholder="freeshipping" name="voucher" value="<?= $_POST['voucher'] ?>" autocomplete="off">
-                    </div>
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control me-3 ms-3" placeholder="freeshipping" name="voucher"
+                        value="<?= $_POST['voucher'] ?>" autocomplete="off">
+                </div>
 
-                    <button type="submit" name="checkvoucher" class="btn btn-primary btn-sm me-3 ms-3 mb-4 pt-2 pb-2" style="width: 130px;">CHECK VOUCHER</button>
+                <button type="submit" name="checkvoucher" class="btn btn-primary btn-sm me-3 ms-3 mb-4 pt-2 pb-2"
+                    style="width: 130px;">CHECK VOUCHER</button>
 
                 <?php else : ?>
 
-                    <div class="input-group mb-3">
-                        <input type="text" class="form-control me-3 ms-3" placeholder="freeshipping" name="voucher" autocomplete="off">
-                    </div>
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control me-3 ms-3" placeholder="freeshipping" name="voucher"
+                        autocomplete="off">
+                </div>
 
-                    <button type="submit" name="checkvoucher" class="btn btn-primary btn-sm me-3 ms-3 mb-4 pt-2 pb-2" style="width: 130px;">CHECK VOUCHER</button>
+                <button type="submit" name="checkvoucher" class="btn btn-primary btn-sm me-3 ms-3 mb-4 pt-2 pb-2"
+                    style="width: 130px;">CHECK VOUCHER</button>
 
                 <?php endif; ?>
 
@@ -442,12 +472,12 @@ if (isset($_POST['order'])) {
 
                 <!-- Alert Succes -->
                 <?php if (isset($vchsucces)) : ?>
-                    <?php foreach ($vchsucces as $vchsucces) : ?>
-                        <div class="alert alert-success alert-dismissible fade show me-3 ms-3" role="alert">
-                            <strong>Congratulations, You get a big discount <?= rupiah($diskon) ?> </strong>
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                        </div>
-                    <?php endforeach; ?>
+                <?php foreach ($vchsucces as $vchsucces) : ?>
+                <div class="alert alert-success alert-dismissible fade show me-3 ms-3" role="alert">
+                    <strong>Congratulations, You get a big discount <?= rupiah($diskon) ?> </strong>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                <?php endforeach; ?>
                 <?php endif; ?>
                 <!-- End Alert Succes -->
 
@@ -459,12 +489,12 @@ if (isset($_POST['order'])) {
 
                     <?php if (isset($totalbill)) : ?>
 
-                        <p class="text-muted">Total Payment : <span class="fs-3"><?= rupiah($totalbill) ?></span></p>
-                        <input type="text" name="totalbill" value="<?= $totalbill ?>" class="d-none" readonly>
+                    <p class="text-muted">Total Payment : <span class="fs-3"><?= rupiah($totalbill) ?></span></p>
+                    <input type="text" name="totalbill" value="<?= $totalbill ?>" class="d-none" readonly>
 
                     <?php else : ?>
 
-                        <p class="text-muted">Total Payment : <span class="fs-3"><?= rupiah($totalpayment) ?></span></p>
+                    <p class="text-muted">Total Payment : <span class="fs-3"><?= rupiah($totalpayment) ?></span></p>
 
                     <?php endif; ?>
 
@@ -483,23 +513,24 @@ if (isset($_POST['order'])) {
             <!-- Alert -->
             <!-- Alert Succes -->
             <?php if (isset($succesm)) : ?>
-                <?php foreach ($succesm as $succesm) : ?>
+            <?php foreach ($succesm as $succesm) : ?>
 
-                    <!-- Modal -->
-                    <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" style="background-color: #7B7B7B;">
-                        <div class="modal-dialog modal-dialog-centered">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h1 class="modal-title fs-3 text-success" id="exampleModalLabel">Succes !</h1>
-                                </div>
-                                <div class="modal-body">
-                                    <?= $succes ?>
-                                </div>
-                            </div>
+            <!-- Modal -->
+            <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1"
+                aria-labelledby="staticBackdropLabel" aria-hidden="true" style="background-color: #7B7B7B;">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-3 text-success" id="exampleModalLabel">Succes !</h1>
+                        </div>
+                        <div class="modal-body">
+                            <?= $succes ?>
                         </div>
                     </div>
+                </div>
+            </div>
 
-                <?php endforeach; ?>
+            <?php endforeach; ?>
             <?php endif; ?>
             <!-- End Alert Succes -->
 
@@ -508,60 +539,72 @@ if (isset($_POST['order'])) {
 
                 <!-- Alert Error -->
                 <?php if (isset($errorm)) : ?>
-                    <?php foreach ($errorm as $errorm) : ?>
-                        <div class="alert alert-danger alert-dismissible fade show ms-3 me-3 mt-3 mb-0" role="alert">
-                            <strong><?= $errorm ?></strong>
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                        </div>
-                    <?php endforeach; ?>
+                <?php foreach ($errorm as $errorm) : ?>
+                <div class="alert alert-danger alert-dismissible fade show ms-3 me-3 mt-3 mb-0" role="alert">
+                    <strong><?= $errorm ?></strong>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                <?php endforeach; ?>
                 <?php endif; ?>
                 <!-- End Alert Error -->
 
-                <textarea type="text" class="ms-3 me-3 mt-3 mb-4" id="address" name="addresss" style="border: none; outline: none; resize: none; height: auto;" placeholder="For Example : Jl Kita Bisa No.1 RT001/04 Kel. Batu Ceper, Kec. Cibodad, 15416, Jakarta, Indonesia" autocomplete="off" autofocus="on"></textarea>
+                <textarea type="text" class="ms-3 me-3 mt-3 mb-4" id="address" name="addresss"
+                    style="border: none; outline: none; resize: none; height: auto;"
+                    placeholder="For Example : Jl Kita Bisa No.1 RT001/04 Kel. Batu Ceper, Kec. Cibodad, 15416, Jakarta, Indonesia"
+                    autocomplete="off" autofocus="on"></textarea>
             </div>
 
             <div class="card shadow mb-3">
 
                 <!-- Alert Error -->
                 <?php if (isset($errorstckm)) : ?>
-                    <?php foreach ($errorstckm as $errorstckm) : ?>
-                        <div class="alert alert-danger alert-dismissible fade show mt-4 mb-0 ms-3 me-3" role="alert">
-                            <strong><?= $errorstckm ?></strong>
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                        </div>
-                    <?php endforeach; ?>
+                <?php foreach ($errorstckm as $errorstckm) : ?>
+                <div class="alert alert-danger alert-dismissible fade show mt-4 mb-0 ms-3 me-3" role="alert">
+                    <strong><?= $errorstckm ?></strong>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                <?php endforeach; ?>
                 <?php endif; ?>
                 <!-- End Alert Error -->
 
                 <div class="row">
                     <div class="col ms-2 mt-4 mb-4 me-3" style="max-width: 80px;">
-                        <img src="../assets/images/product/<?= $prdct['picture'] ?>" alt="" width="80px" height="80px" class="">
+                        <img src="../assets/images/product/<?= $prdct['picture'] ?>" alt="" width="80px" height="80px"
+                            class="">
                     </div>
                     <div class="col mt-4 mb-4">
                         <p class="mb-0 pb-1 fw-bold"><?= $prdct['product_name'] ?></p>
-                        <p class="mb-0 pb-1">Quantity <?= $_SESSION['quantity'] ?> <a href="" class="text-decoration-none" data-bs-toggle="modal" data-bs-target="#exampleModalQtyy">Edit</a></p>
+                        <p class="mb-0 pb-1">Quantity <?= $_SESSION['quantity'] ?> <a href=""
+                                class="text-decoration-none" data-bs-toggle="modal"
+                                data-bs-target="#exampleModalQtyy">Edit</a></p>
 
                         <!-- Modal -->
-                        <div class="modal fade" id="exampleModalQtyy" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="background-color: gainsboro;">
+                        <div class="modal fade" id="exampleModalQtyy" tabindex="-1" aria-labelledby="exampleModalLabel"
+                            aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered">
                                 <div class="modal-content">
                                     <div class="modal-header">
                                         <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Quantity</h1>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body mb-3 mt-3 text-center">
 
-                                        <a class="plus-minus text-decoration-none text-light" id="decrementmobile" onclick="steppermobile(this)"> -
+                                        <a class="plus-minus text-decoration-none text-light" id="decrementmobile"
+                                            onclick="steppermobile(this)"> -
                                         </a>
 
-                                        <input type="number" min="1" max="50" step="1" value="<?= $_SESSION['quantity'] ?>" id="quantitymobile" name="quantity">
+                                        <input type="number" min="1" max="50" step="1"
+                                            value="<?= $_SESSION['quantity'] ?>" id="quantitymobile" name="quantity">
 
-                                        <a class="plus-minus text-decoration-none text-light" id="incrementmobile" onclick="steppermobile(this)"> +
+                                        <a class="plus-minus text-decoration-none text-light" id="incrementmobile"
+                                            onclick="steppermobile(this)"> +
                                         </a>
 
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-secondary"
+                                            data-bs-dismiss="modal">Close</button>
                                         <button type="submit" name="editquantity" class="btn btn-primary">Save
                                             changes</button>
                                     </div>
@@ -580,41 +623,45 @@ if (isset($_POST['order'])) {
                 <!-- Alert -->
                 <!-- Alert Succes -->
                 <?php if (isset($messagem)) : ?>
-                    <?php foreach ($messagem as $messagem) : ?>
-                        <div class="alert alert-success alert-dismissible fade show me-3 ms-3" role="alert">
-                            <strong><?= $messagem ?></strong>
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                        </div>
-                    <?php endforeach; ?>
+                <?php foreach ($messagem as $messagem) : ?>
+                <div class="alert alert-success alert-dismissible fade show me-3 ms-3" role="alert">
+                    <strong><?= $messagem ?></strong>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                <?php endforeach; ?>
                 <?php endif; ?>
                 <!-- End Alert Succes -->
                 <!-- Alert Error -->
                 <?php if (isset($failedm)) : ?>
-                    <?php foreach ($failedm as $failedm) : ?>
-                        <div class="alert alert-danger alert-dismissible fade show ms-3 me-3" role="alert">
-                            <strong><?= $failedm ?></strong>
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                        </div>
-                    <?php endforeach; ?>
+                <?php foreach ($failedm as $failedm) : ?>
+                <div class="alert alert-danger alert-dismissible fade show ms-3 me-3" role="alert">
+                    <strong><?= $failedm ?></strong>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                <?php endforeach; ?>
                 <?php endif; ?>
                 <!-- End Alert Error -->
                 <!-- End Alert -->
 
                 <?php if (isset($_POST['voucher'])) : ?>
 
-                    <div class="input-group mb-3">
-                        <input type="text" class="form-control me-3 ms-3" placeholder="freeshipping" name="voucher" value="<?= $_POST['voucher'] ?>" autocomplete="off">
-                    </div>
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control me-3 ms-3" placeholder="freeshipping" name="voucher"
+                        value="<?= $_POST['voucher'] ?>" autocomplete="off">
+                </div>
 
-                    <button type="submit" name="checkvoucher" class="btn btn-primary btn-sm me-3 ms-3 mb-4 pt-2 pb-2" style="width: 130px;">CHECK VOUCHER</button>
+                <button type="submit" name="checkvoucher" class="btn btn-primary btn-sm me-3 ms-3 mb-4 pt-2 pb-2"
+                    style="width: 130px;">CHECK VOUCHER</button>
 
                 <?php else : ?>
 
-                    <div class="input-group mb-3">
-                        <input type="text" class="form-control me-3 ms-3" placeholder="freeshipping" name="voucher" autocomplete="off">
-                    </div>
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control me-3 ms-3" placeholder="freeshipping" name="voucher"
+                        autocomplete="off">
+                </div>
 
-                    <button type="submit" name="checkvoucher" class="btn btn-primary btn-sm me-3 ms-3 mb-4 pt-2 pb-2" style="width: 130px;">CHECK VOUCHER</button>
+                <button type="submit" name="checkvoucher" class="btn btn-primary btn-sm me-3 ms-3 mb-4 pt-2 pb-2"
+                    style="width: 130px;">CHECK VOUCHER</button>
 
                 <?php endif; ?>
             </div>
@@ -626,12 +673,12 @@ if (isset($_POST['order'])) {
 
                 <!-- Alert Succes -->
                 <?php if (isset($vchsuccesm)) : ?>
-                    <?php foreach ($vchsuccesm as $vchsuccesm) : ?>
-                        <div class="alert alert-success alert-dismissible fade show me-3 ms-3" role="alert">
-                            <strong>Congratulations, You get a big discount <?= rupiah($diskon) ?> </strong>
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                        </div>
-                    <?php endforeach; ?>
+                <?php foreach ($vchsuccesm as $vchsuccesm) : ?>
+                <div class="alert alert-success alert-dismissible fade show me-3 ms-3" role="alert">
+                    <strong>Congratulations, You get a big discount <?= rupiah($diskon) ?> </strong>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                <?php endforeach; ?>
                 <?php endif; ?>
                 <!-- End Alert Succes -->
 
@@ -642,12 +689,12 @@ if (isset($_POST['order'])) {
                     <p class="text-muted">Handling Fee : <?= rupiah($handlingfee) ?></p>
                     <?php if (isset($totalbill)) : ?>
 
-                        <p class="text-muted">Total Payment : <span class="fs-3"><?= rupiah($totalbill) ?></span></p>
-                        <input type="text" name="totalbill" value="<?= $totalbill ?>" class="d-none" readonly>
+                    <p class="text-muted">Total Payment : <span class="fs-3"><?= rupiah($totalbill) ?></span></p>
+                    <input type="text" name="totalbill" value="<?= $totalbill ?>" class="d-none" readonly>
 
                     <?php else : ?>
 
-                        <p class="text-muted">Total Payment : <span class="fs-3"><?= rupiah($totalpayment) ?></span></p>
+                    <p class="text-muted">Total Payment : <span class="fs-3"><?= rupiah($totalpayment) ?></span></p>
 
                     <?php endif; ?>
                 </div>
@@ -663,21 +710,26 @@ if (isset($_POST['order'])) {
 
     <script src="../assets/js/quantity.js"></script>
 
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+        integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"
+        integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous">
     </script>
 
     <!-- JS Bootstrap 4.6 -->
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous">
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js" integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js"
+        integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous">
     </script>
 
     <script>
-        $('#staticBackdrop').modal('show')
+    $('#staticBackdrop').modal('show')
     </script>
 </body>
 
