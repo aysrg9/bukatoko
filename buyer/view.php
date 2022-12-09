@@ -195,7 +195,7 @@ if (isset($_POST['addtocart'])) {
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h1 class="modal-title fs-5" id="exampleModalLabel">Warning!</h1>
+                                <h1 class="modal-title fs-5 text-danger" id="exampleModalLabel">Warning!</h1>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                     aria-label="Close"></button>
                             </div>
@@ -249,28 +249,52 @@ if (isset($_POST['addtocart'])) {
         <!-- Detail Product -->
         <!-- Dekstop View -->
         <section class="container" id="dekstop-view">
+
             <!-- Alert -->
             <!-- Alert Succes -->
             <?php if (isset($message)) : ?>
             <?php foreach ($message as $message) : ?>
-            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                <strong><?= $message ?></strong>
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+
+            <!-- Modal -->
+            <div class="modal modalAlert fade">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-3 text-success" id="exampleModalLabel">Succes !</h1>
+                        </div>
+                        <div class="modal-body">
+                            <?= $message ?>
+                        </div>
+                    </div>
+                </div>
             </div>
+
             <?php endforeach; ?>
             <?php endif; ?>
             <!-- End Alert Succes -->
             <!-- Alert Error -->
             <?php if (isset($error)) : ?>
             <?php foreach ($error as $error) : ?>
-            <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                <strong><?= $error ?></strong>
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+
+            <!-- Modal -->
+            <div class="modal modalAlert fade">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-3 text-danger" id="exampleModalLabel">Warning !</h1>
+                        </div>
+                        <div class="modal-body">
+                            <?= $error ?>
+                        </div>
+                    </div>
+                </div>
             </div>
+
             <?php endforeach; ?>
             <?php endif; ?>
             <!-- End Alert Error -->
             <!-- End Alert -->
+
             <div class="mb-3 bg-white card shadow" style="max-width: auto;">
                 <div class="row g-0 mt-3 mb-3">
                     <div class="col-md-4" style="height: 300px; width: 300px;">
@@ -465,6 +489,10 @@ if (isset($_POST['addtocart'])) {
 
     <script>
     $('#exampleModal').modal('show')
+    </script>
+
+    <script>
+    $('.modalAlert').modal('show')
     </script>
 </body>
 
