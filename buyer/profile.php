@@ -187,14 +187,28 @@ $time = date("Y-m-d H:i:s");
                         </div>
                         <div class="col ms-5" style="max-width: 821px;">
                             <!-- Alert -->
+                            <!-- Alert -->
                             <!-- Alert Succes -->
                             <?php if (isset($message)) : ?>
                             <?php foreach ($message as $message) : ?>
-                            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                <strong><?= $message ?></strong>
-                                <button type="button" class="btn-close" data-bs-dismiss="alert"
-                                    aria-label="Close"></button>
+
+                            <!-- Modal -->
+                            <div class="modal fade modalAlert" id="staticBackdrop" data-backdrop="static"
+                                data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
+                                aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h1 class="modal-title fs-3 text-success" id="exampleModalLabel">Succes !
+                                            </h1>
+                                        </div>
+                                        <div class="modal-body">
+                                            <?= $message ?>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
+
                             <?php endforeach; ?>
                             <?php endif; ?>
                             <!-- End Alert Succes -->
@@ -431,6 +445,10 @@ $time = date("Y-m-d H:i:s");
 
     <script>
     $('#exampleModalAlert').modal('show')
+    </script>
+
+    <script>
+    $('.modalAlert').modal('show')
     </script>
 </body>
 
