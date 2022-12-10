@@ -99,6 +99,7 @@ body {
 
 #banner-search {
   margin-top: 156px;
+  margin-bottom: 33px;
 }
 
 /* View Product */
@@ -186,11 +187,6 @@ input::-webkit-inner-spin-button {
 
 /* End View Product */
 /* End Product */
-
-/* Cart */
-.text-cart-mobile-view {
-  margin-top: 88px;
-}
 
 /* End Cart */
 
@@ -345,7 +341,8 @@ input::-webkit-inner-spin-button {
   }
 
   #banner-search {
-    margin-top: 94px;
+    margin-top: 93px;
+    margin-bottom: 21px;
   }
 }
 

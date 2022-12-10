@@ -286,9 +286,9 @@ $time_order = date("d M Y");
 
         <?php endwhile; ?>
         <?php else : ?>
-        <div class="card shadow mt-3" style="background-color: #ffffff;">
-            <h3 class="text-primary text-center fw-bold mb-0 pt-1 pb-1">No Items Added!</h3>
-        </div>
+
+        <h2 class="text-center container mt-4 w-auto fw-bold">No Items Added!</h2>
+
         <?php endif; ?>
 
     </section>
@@ -322,10 +322,8 @@ $time_order = date("d M Y");
 
         <section class="container" id="mobile-view">
 
-            <div class="card shadow text-cart-mobile-view" style="background-color: #ffffff;">
-                <div class="pt-2 pb-2 ps-3 pe-3">
-                    <h3 class="text-primary fw-bold pb-0 mb-0 mt-0">Cart</h3>
-                </div>
+            <div class="alert alert-warning card shadow" role="alert" style="margin-top:86px;">
+                Use the voucher before checkout to get a discount!
             </div>
 
             <?php
@@ -340,7 +338,7 @@ $time_order = date("d M Y");
 
             <form method="POST">
 
-                <div class="card shadow mt-3 ">
+                <div class="card shadow mt-4">
                     <h5 class="ps-2 pt-3 pb-2">Bukatoko <i class="bi bi-patch-check-fill text-primary"></i>
                     </h5>
                     <hr class="mb-0 mt-0">
@@ -412,9 +410,9 @@ $time_order = date("d M Y");
 
             <?php endwhile; ?>
             <?php else : ?>
-            <div class="card shadow mt-3" style="background-color: #ffffff;">
-                <h3 class="text-primary text-center fw-bold pt-2">No Items Added!</h3>
-            </div>
+
+            <h2 class="text-center container mt-4 w-auto fw-bold">No Items Added!</h2>
+
             <?php endif; ?>
 
         </section>

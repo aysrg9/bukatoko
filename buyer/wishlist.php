@@ -174,56 +174,66 @@ $time = date("Y-m-d H:i:s");
     <!-- End Navbar -->
 
     <!-- Wishlist-->
-    <section id="wishlist" class="container">
+    <section id="wishlist">
 
-        <div id="banner-recomend" class="card shadow" style="background-color: #ffffff;">
-            <h3 class="pt-2 pb-2 text-center text-primary fw-bold mb-0">Wishlist <?= $fullname ?></h3>
-        </div>
+        <section class="container">
+            <div id="banner-recomend" class="card shadow" style="background-color: #ffffff;">
+                <h3 class="pt-2 pb-2 text-center text-primary fw-bold mb-0">Wishlist <?= $fullname ?></h3>
+            </div>
 
-        <div class="row row-cols-2 row-cols-sm-3 row-cols-lg-5 g-2 g-sm-3 mt-3">
+            <div class="row row-cols-2 row-cols-sm-3 row-cols-lg-5 g-2 g-sm-3 mt-3">
 
-            <?php $i = mysqli_num_rows($wishlist); ?>
-            <?php if ($i > 0) : ?>
-            <?php while ($wishlist_user = mysqli_fetch_array($wishlist)) : ?>
+                <?php $i = mysqli_num_rows($wishlist); ?>
+                <?php if ($i > 0) : ?>
+                <?php while ($wishlist_user = mysqli_fetch_array($wishlist)) : ?>
 
-            <a href="view?p=<?= $wishlist_user["id_product"] ?>" style="text-decoration: none;">
+                <a href="view?p=<?= $wishlist_user["id_product"] ?>" style="text-decoration: none;">
 
-                <div id="col-product" class="col shadow card">
+                    <div id="col-product" class="col card">
 
-                    <div class="p-3 shadow-sm bg-white ps-1 pe-1 pb-0">
+                        <div class="p-3 shadow bg-white ps-1 pe-1 pb-0">
 
-                        <img src="../assets/images/product/<?= $wishlist_user["picture"] ?>"
-                            class="card-img-top picture-product" alt="...">
+                            <img src="../assets/images/product/<?= $wishlist_user["picture"] ?>"
+                                class="card-img-top picture-product" alt="...">
 
-                        <div class="card-body pt-3">
-                            <p class="card-title text-truncate text-dark mb-0"><?= $wishlist_user["product_name"] ?></p>
-                            <p class="card-title pt-2 mb-0 fw-bold text-truncate text-dark">
-                                <?= rupiah($wishlist_user["price"]) ?></p>
+                            <div class="card-body pt-3">
+                                <p class="card-title text-truncate text-dark pb-0 mb-0">
+                                    <?= $wishlist_user["product_name"] ?></p>
+                                <p class="card-title pt-1 mb-0 fw-bold text-truncate text-dark">
+                                    <?= rupiah($wishlist_user["price"]) ?></p>
+                                <p class="card-title pt-0 mt-0 mb-0 fw-bold text-truncate"><i
+                                        class="bi bi-patch-check-fill"></i> <span class="text-muted"
+                                        style="font-size: 13px;">Served
+                                        Bukatoko</span></p>
+                            </div>
+
+                            <div class="footer pe-3 ps-3 mt-0">
+                                <form action="" method="POST">
+                                    <button type="submit" name="remove"
+                                        class="btn btn-primary btn-sm rounded float-end mb-3"><i
+                                            class="bi bi-trash-fill"></i></button>
+
+                                    <input type="text" class="d-none" readonly
+                                        value="<?= $wishlist_user['id_wishlist'] ?>" name="id_wishlist">
+                                </form>
+                            </div>
+
                         </div>
 
-                        <div class="footer pe-3 ps-3">
-                            <form action="" method="POST">
-                                <button type="submit" name="remove"
-                                    class="btn btn-primary btn-sm rounded float-end mb-3"><i
-                                        class="bi bi-trash-fill"></i></button>
-
-                                <input type="text" class="d-none" readonly value="<?= $wishlist_user['id_wishlist'] ?>"
-                                    name="id_wishlist">
-                            </form>
-                        </div>
                     </div>
-                </div>
-            </a>
+
+                </a>
+
+            </div>
 
             <?php endwhile; ?>
             <?php else : ?>
-            <div class="card shadow mt-3 text-center" style="background-color: #ffffff;">
-                <h3 class="text-primary text-center fw-bold mb-0 mt-0 pb-2 pt-2">No Items Added!</h3>
-            </div>
+
+            <h2 class="text-center container mt-3 w-auto fw-bold">No Items Added!</h2>
+
             <?php endif; ?>
 
-        </div>
-
+        </section>
     </section>
     <!-- End Product -->
 

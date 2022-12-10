@@ -151,7 +151,6 @@ $time = date("Y-m-d H:i:s");
     <!-- Order List -->
     <!-- Dekstop View -->
     <section id="dekstop-view" class="container" style="margin-bottom: -160px;">
-        <h3>Order List</h3>
 
         <div class="alert alert-warning card shadow fw-bold" role="alert">
             If you have problems, don't hesitate to contact the admin. Thank you!
@@ -188,7 +187,7 @@ $time = date("Y-m-d H:i:s");
                 </div>
 
                 <div class="pt-0 mt-0">
-                    <p class="fw-bold"><i class="bi bi-patch-check-fill text-primary"></i> Bukatoko</p>
+                    <p class="fw-bold">Bukatoko <i class="bi bi-patch-check-fill text-primary"></i></p>
                 </div>
 
                 <div class="row mb-3" style="max-width: auto;">
@@ -257,7 +256,7 @@ $time = date("Y-m-d H:i:s");
                     <hr>
 
                     <div class="pt-0 mt-0">
-                        <p class="fw-bold"><i class="bi bi-patch-check-fill text-primary"></i> Bukatoko</p>
+                        <p class="fw-bold">Bukatoko <i class="bi bi-patch-check-fill text-primary"></i> </p>
                     </div>
 
                     <div class="row mb-3" style="max-width: auto;">

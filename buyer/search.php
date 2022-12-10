@@ -157,7 +157,7 @@ $time = date("Y-m-d H:i:s");
     <section id="product" class="container">
 
         <div id="banner-search" class="shadow card" style="background-color: #ffffff;">
-            <h3 class="pt-2 pb-2 text-center text-primary fw-bold mb-0">Based on what you are looking for</h3>
+            <h3 class="pt-2 pb-2 text-center text-primary fw-bold mb-0">Based on what you are looking</h3>
         </div>
 
         <div class="row row-cols-2 row-cols-sm-3 row-cols-lg-5 g-2 g-sm-3 mt-3">
@@ -172,21 +172,23 @@ $time = date("Y-m-d H:i:s");
             <?php if ($i > 0) : ?>
             <?php while ($p = mysqli_fetch_array($query)) : ?>
 
-
-
             <a href="view?p=<?= $p["id_product"] ?>" style="text-decoration: none;">
 
-                <div id="col-product" class="col shadow card">
+                <div id="col-product" class="col card">
 
-                    <div class="p-3 shadow-sm bg-white ps-1 pe-1 pb-0">
+                    <div class="p-3 shadow bg-white ps-1 pe-1 pb-0">
 
                         <img src="../assets/images/product/<?= $p["picture"] ?>" class="card-img-top picture-product"
                             alt="...">
 
                         <div class="card-body pt-3">
-                            <p class="card-title text-truncate text-dark"><?= $p["product_name"] ?></p>
-                            <p class="card-title pt-2 fw-bold text-dark mb-0 text-truncate"><?= rupiah($p["price"]) ?>
-                            </p>
+                            <p class="card-title text-truncate text-dark pb-0 mb-0"><?= $p["product_name"] ?></p>
+                            <p class="card-title pt-1 mb-0 fw-bold text-truncate text-dark">
+                                <?= rupiah($p["price"]) ?></p>
+                            <p class="card-title pt-0 mt-0 mb-0 fw-bold text-truncate"><i
+                                    class="bi bi-patch-check-fill"></i> <span class="text-muted"
+                                    style="font-size: 13px;">Served
+                                    Bukatoko</span></p>
                         </div>
 
                     </div>
@@ -197,9 +199,11 @@ $time = date("Y-m-d H:i:s");
 
             <?php endwhile; ?>
             <?php else : ?>
+
             <div class="alert alert-dismissible fade show text-center" role="alert" style="width: 100%;">
                 <strong class="fs-1">The product you are looking for was not found!</strong>
             </div>
+
             <?php endif; ?>
 
         </div>

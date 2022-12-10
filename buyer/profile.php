@@ -121,8 +121,8 @@ $time = date("Y-m-d H:i:s");
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                                <button class="btn btn-primary"><a href="./buyer/logout"
-                                        class="text-light text-decoration-none">Logout</a></button>
+                                <a href="./buyer/logout" class="text-light text-decoration-none"><button
+                                        class="btn btn-primary">Logout</button></a>
                             </div>
                         </div>
                     </div>
@@ -186,7 +186,6 @@ $time = date("Y-m-d H:i:s");
                             </p>
                         </div>
                         <div class="col ms-5" style="max-width: 821px;">
-                            <!-- Alert -->
                             <!-- Alert -->
                             <!-- Alert Succes -->
                             <?php if (isset($message)) : ?>
@@ -290,11 +289,13 @@ $time = date("Y-m-d H:i:s");
         <?php foreach ($messagem as $messagem) : ?>
 
         <!-- Modal -->
-        <div class="modal" id="exampleModalAlert">
+        <div class="modal fade modalAlert" id="staticBackdrop" data-backdrop="static" data-keyboard="false"
+            tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h1 class="modal-title fs-3 text-success" id="exampleModalLabel">Succes !</h1>
+                        <h1 class="modal-title fs-3 text-success" id="exampleModalLabel">Succes !
+                        </h1>
                     </div>
                     <div class="modal-body">
                         <?= $messagem ?>
@@ -326,9 +327,9 @@ $time = date("Y-m-d H:i:s");
 
         <?php endforeach; ?>
         <?php endif; ?>
-
         <!-- End Alert Error -->
-        <div class="text-cart-mobile-view">
+
+        <div style="margin-top: 88px;">
             <div class="pt-2 pb-2 ps-3 pe-3 card shadow" style="background-color: #ffffff;">
                 <div class="row">
                     <div class="col" style="max-width: 65px;">

@@ -205,6 +205,7 @@ $time = date("Y-m-d H:i:s");
     <!-- Info -->
     <?php if (isset($_SESSION['acces-login'])) : ?>
     <section id="info-customer" class="container">
+
         <div class="shadow card" style="background-color: #ffffff;">
             <div class="pt-3 pb-4 ps-3 pe-3">
                 <h3 class="text-primary fw-bold">For <?= $fullname ?></h3>
@@ -222,7 +223,9 @@ $time = date("Y-m-d H:i:s");
                 </div>
             </div>
         </div>
+
     </section>
+
     <?php else : ?>
     <section id="info-customer" class="container">
         <div class="shadow card" style="background-color: #ffffff;">
