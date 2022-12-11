@@ -212,7 +212,9 @@ $time = date("Y-m-d H:i:s");
         <?php endwhile; ?>
         <?php else : ?>
         <div class="card shadow mt-3" style="background-color: #ffffff;">
+
             <h3 class="text-primary text-center fw-bold mb-0 pt-1 pb-1">No Items</h3>
+
         </div>
         <?php endif; ?>
 
@@ -294,9 +296,9 @@ $time = date("Y-m-d H:i:s");
 
             <?php endwhile; ?>
             <?php else : ?>
-            <div class="card shadow mt-3" style="background-color: #ffffff;">
-                <h3 class="text-primary text-center fw-bold mb-0 pt-1 pb-1">No Items</h3>
-            </div>
+
+            <h2 class="text-center container mt-4 w-auto fw-bold">No Items Added!</h2>
+
             <?php endif; ?>
 
         </section>

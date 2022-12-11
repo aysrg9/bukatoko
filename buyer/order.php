@@ -27,6 +27,7 @@ $id_product = $_SESSION["p"];
 //query data product berdasarkan id
 $prdct = query("SELECT * FROM product WHERE id_product = $id_product")[0];
 
+
 // bill handling
 $handlingfee = 1000;
 $shippingfee = 15000;
@@ -38,6 +39,7 @@ $quantity = $_SESSION['quantity'];
 $result = $unit_price * $quantity;
 // penjumlahan satuan barang di kali banyaknya quantity + biaya tambahan lainnya
 $totalpayment = $result + $handlingfee + $shippingfee;
+// query voucher
 
 // checkvoucher
 if (isset($_POST['checkvoucher'])) {
@@ -47,10 +49,11 @@ if (isset($_POST['checkvoucher'])) {
     if ($inputuser < 0) {
         $failed[] = "Sorry, the voucher code you entered is invalid!";
     } else {
-        // query database
+        // cek apakah code yang di masukan user = yang ada di database
         $vch = query("SELECT * FROM voucher WHERE code_voucher = '$inputuser'")[0];
         $diskon = $vch['piece'];
-        // cek apakah code yang di masukan user = yang ada di database
+        $_SESSION['qtyvch'] = $vch['quantity'];
+        $_SESSION['idvch'] = $vch['id_voucher'];
         if ($inputuser == $vch['code_voucher']) {
             // set session totalpayment
             $totalbill = $totalpayment - $diskon;
@@ -68,7 +71,6 @@ if (isset($_POST['checkvoucher'])) {
         }
     }
 }
-
 
 // edit qty
 if (isset($_POST['editquantity'])) {
@@ -131,6 +133,11 @@ if (isset($_POST['order'])) {
             // edit stock sesuai quantity order
             $updtstock = $prdct['stock'] - $quantity;
             mysqli_query($db, "UPDATE product SET stock = $updtstock WHERE id_product = $id_product");
+
+            // edit quantity voucher jika user menggunakan nya
+            $idvch = $_SESSION['idvch'];
+            $updatequantity = $_SESSION['qtyvch'] - 1;
+            mysqli_query($db, "UPDATE voucher SET quantity = $updatequantity WHERE id_voucher = $idvch");
 
             header('Refresh: 3; URL=order-list');
         }

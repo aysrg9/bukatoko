@@ -229,7 +229,7 @@ $time_order = date("d M Y");
             <input type="number" name="price" class="d-none" readonly value="<?= $cart_user['price']; ?>">
             <input type="number" name="quantity" class="d-none" readonly value="<?= $cart_user['quantity']; ?>">
             <div class="card shadow mt-3">
-                <h5 class="pt-4 ps-2 ">Bukatoko <i class="bi bi-patch-check-fill text-primary"></i></h5>
+                <h5 class="pt-4 ps-2 fw-bold">Bukatoko <i class="bi bi-patch-check-fill text-primary"></i></h5>
                 <hr>
                 <div class="row g-0 ps-2 pe-2 pb-3">
                     <div class="col" style="max-width: 594px;">
