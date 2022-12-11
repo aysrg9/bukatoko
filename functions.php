@@ -1,7 +1,7 @@
 <?php
 
 // hide error in production
-error_reporting(0);
+// error_reporting(0);
 
 // Connect DB
 $db = mysqli_connect("localhost", "root", "", "bukatoko");

@@ -15,6 +15,12 @@ if (isset($_SESSION['acces-login'])) {
     header('Location: home');
 }
 
+if (isset($_POST['order-completed'])) {
+    $idbuy = $_POST['idbuy'];
+    $setstatusorder = "Done";
+    mysqli_query($db, "UPDATE buy SET status_order = '$setstatusorder' WHERE id_buy = $idbuy");
+}
+
 // waktu 
 date_default_timezone_set('Asia/Jakarta');
 $time = date("Y-m-d H:i:s");
@@ -166,6 +172,14 @@ $time = date("Y-m-d H:i:s");
         <?php if ($i > 0) : ?>
         <?php while ($order_user = mysqli_fetch_array($order_list)) : ?>
 
+        <?php
+
+                $orderstatus = $order_user['status_order'];
+                $statusp = "On Process";
+                $statusd = "Done";
+
+                ?>
+
         <div class="card shadow mb-3">
             <div class="ps-3 pe-3 pt-3">
 
@@ -176,11 +190,21 @@ $time = date("Y-m-d H:i:s");
                     <div class="col pe-0 me-0" style="max-width: 105px;">
                         <?= $order_user['created']; ?>
                     </div>
-                    <div class="col" style="max-width: 75px;">
-                        <span class="bg-success bg-opacity-25 pt-1 pb-1 pe-1 ps-1 rounded">
-                            <span class="text-success fw-bold"><?= $order_user['status']; ?></span>
+
+                    <?php if ($orderstatus == $statusp) : ?>
+                    <div class="col" style="max-width: 115px;">
+                        <span class="bg-warning bg-opacity-50 pt-1 pb-1 pe-1 ps-1 rounded">
+                            <span class="fw-bold"><?= $order_user['status_order']; ?></span>
                         </span>
                     </div>
+                    <?php else : ?>
+                    <div class="col" style="max-width: 75px;">
+                        <span class="bg-success bg-opacity-25 pt-1 pb-1 pe-1 ps-1 rounded">
+                            <span class="text-success fw-bold"><?= $order_user['status_order']; ?></span>
+                        </span>
+                    </div>
+                    <?php endif; ?>
+
                     <div class="col pe-0 me-0 ms-0 ps-0 text-muted">
                         <?= $order_user['id_order']; ?>
                     </div>
@@ -203,19 +227,30 @@ $time = date("Y-m-d H:i:s");
                     <div class="col col-lg-2">
                         <p class="text-muted mb-0 p-0">Total Price</p>
                         <p class="fw-bold"><?= rupiah($order_user['total_price']); ?></p>
+
+                        <form method="POST">
+                            <input type="text" name="idbuy" readonly class="d-none"
+                                value="<?= $order_user['id_buy']; ?>">
+
+                            <?php if ($orderstatus == $statusp) :  ?>
+                            <button type="submit" name="order-completed"
+                                class="btn btn-primary btn-sm mb-1 fw-bold">Order
+                                Completed</button>
+                            <?php endif; ?>
+
+                        </form>
                     </div>
                 </div>
 
             </div>
+
         </div>
 
         <?php endwhile; ?>
         <?php else : ?>
-        <div class="card shadow mt-3" style="background-color: #ffffff;">
 
-            <h3 class="text-primary text-center fw-bold mb-0 pt-1 pb-1">No Items</h3>
+        <h2 class="text-center container mt-4 w-auto fw-bold">No Items Added!</h2>
 
-        </div>
         <?php endif; ?>
 
     </section>
@@ -251,6 +286,20 @@ $time = date("Y-m-d H:i:s");
 
                         <div class="col pe-0 me-0 ms-0 ps-0 text-muted">
                             <?= $order_user['id_order']; ?>
+
+                            <?php if ($orderstatus == $statusp) : ?>
+
+                            <span class="bg-warning me-3 mt-2 pb-1 pe-2 ps-2 rounded float-end">
+                                <span class="fw-bold"><?= $order_user['status_order']; ?></span>
+                            </span>
+
+                            <?php else : ?>
+
+                            <span class="bg-success me-3 mt-2 bg-opacity-25 pb-1 pe-2 ps-2 rounded float-end">
+                                <span class="text-success fw-bold"><?= $order_user['status_order']; ?></span>
+                            </span>
+
+                            <?php endif; ?>
                         </div>
 
                     </div>
@@ -284,9 +333,16 @@ $time = date("Y-m-d H:i:s");
                         </div>
 
                         <div class="float-end">
-                            <span class="bg-success bg-opacity-25 pb-1 pe-1 ps-1 rounded">
-                                <span class="text-success fw-bold"><?= $order_user['status']; ?></span>
-                            </span>
+                            <form method="POST">
+                                <input type="text" name="idbuy" readonly class="d-none"
+                                    value="<?= $order_user['id_buy']; ?>">
+
+                                <?php if ($orderstatus == $statusp) :  ?>
+                                <button type="submit" name="order-completed"
+                                    class="btn btn-primary btn-sm mb-1 fw-bold">Order
+                                    Completed</button>
+                                <?php endif; ?>
+                            </form>
                         </div>
 
                     </div>
