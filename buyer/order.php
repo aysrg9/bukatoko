@@ -316,14 +316,13 @@ if (isset($_POST['order'])) {
 
         <section id="dekstop-view" class="checkout container">
 
-            <h3>Checkout</h3>
-
             <div class="alert alert-warning card shadow fw-bold" role="alert">
                 Make sure the voucher is installed correctly before you checkout!
             </div>
 
             <div class="card shadow mb-3">
-                <label for="address" class="ms-3 me-3 mb-3 mt-3 mb-1 fw-bold fs-4">Shipping Address</label>
+                <label for="address" class="ms-3 me-3 mb-3 mt-3 mb-1 fw-bold fs-4"><i class="bi bi-geo-alt-fill"></i>
+                    Shipping Address</label>
 
                 <!-- Alert Error -->
                 <?php if (isset($error)) : ?>
@@ -413,7 +412,7 @@ if (isset($_POST['order'])) {
                                 </div>
                             </div>
 
-                            <p class="card-text">Price <?= rupiah($prdct["price"]) ?></p>
+                            <p class="card-text">Unit Price <?= rupiah($prdct["price"]) ?></p>
                         </div>
                     </div>
                 </div>
@@ -421,7 +420,8 @@ if (isset($_POST['order'])) {
 
             <div class="card shadow mb-3">
 
-                <label for="voucher" class="ms-3 me-3 mt-3 mb-3 fw-bold fs-4">Voucher</label>
+                <label for="voucher" class="ms-3 me-3 mt-3 mb-3 fw-bold fs-4"><i class="bi bi-credit-card-2-front"></i>
+                    Voucher</label>
 
                 <!-- Alert -->
 
@@ -474,7 +474,7 @@ if (isset($_POST['order'])) {
             </div>
 
             <div class="card shadow">
-                <h3 class="ms-3 mt-3 mb-3 fw-bold">Total Bill</h3>
+                <h3 class="ms-3 mt-3 mb-3 fw-bold"><i class="bi bi-receipt"></i> Total Bill</h3>
                 <hr class="me-3 ms-3 mt-0">
 
                 <!-- Alert Succes -->

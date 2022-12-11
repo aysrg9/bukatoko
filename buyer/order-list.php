@@ -187,8 +187,8 @@ $time = date("Y-m-d H:i:s");
                     <div class="col pe-0 me-0" style="max-width: 105px;">
                         <p class="fw-bold"><i class="bi bi-bag-fill"></i> Shopping</p>
                     </div>
-                    <div class="col pe-0 me-0" style="max-width: 105px;">
-                        <?= $order_user['created']; ?>
+                    <div class="col pe-0 me-0" style="max-width: 120px;">
+                        <i class="bi bi-calendar-event fw-bold"></i> <?= $order_user['created']; ?>
                     </div>
 
                     <?php if ($orderstatus == $statusp) : ?>
@@ -273,6 +273,14 @@ $time = date("Y-m-d H:i:s");
 
             <?php if ($i > 0) : ?>
             <?php while ($order_user = mysqli_fetch_array($order_list)) : ?>
+
+            <?php
+
+                    $orderstatus = $order_user['status_order'];
+                    $statusp = "On Process";
+                    $statusd = "Done";
+
+                    ?>
 
             <div class="card shadow mb-3">
                 <div class="ps-3 pe-3 pt-3">

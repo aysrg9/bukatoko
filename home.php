@@ -274,10 +274,9 @@ $time = date("Y-m-d H:i:s");
                             <p class="card-title text-truncate text-dark pb-0 mb-0"><?= $row["product_name"] ?></p>
                             <p class="card-title pt-1 mb-0 fw-bold text-truncate text-dark">
                                 <?= rupiah($row["price"]) ?></p>
-                            <p class="card-title pt-0 mt-0 mb-0 fw-bold text-truncate"><i
-                                    class="bi bi-patch-check-fill"></i> <span class="text-muted"
+                            <p class="card-title pt-0 mt-0 mb-0 fw-bold text-truncate"><span class="text-muted"
                                     style="font-size: 13px;">Served
-                                    Bukatoko</span></p>
+                                    Bukatoko</span> <i class="bi bi-patch-check-fill"></i> </p>
                         </div>
 
                     </div>

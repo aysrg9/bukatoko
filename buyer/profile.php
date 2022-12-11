@@ -121,7 +121,7 @@ $time = date("Y-m-d H:i:s");
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                                <a href="./buyer/logout" class="text-light text-decoration-none"><button
+                                <a href="logout" class="text-light text-decoration-none"><button
                                         class="btn btn-primary">Logout</button></a>
                             </div>
                         </div>
@@ -165,7 +165,7 @@ $time = date("Y-m-d H:i:s");
     <section id="dekstop-view" class="container">
         <div class="card shadow">
             <div class="head ps-3 pt-3 pe-3">
-                <h3 class="mb-0 mt- 0">Profile</h3>
+                <h3 class="mb-0 mt- 0"><i class="bi bi-person-circle"></i> Profile</h3>
                 <hr>
             </div>
             <form action="" method="POST" enctype="multipart/form-data">
