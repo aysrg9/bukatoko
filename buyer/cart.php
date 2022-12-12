@@ -110,7 +110,7 @@ $time_order = date("d M Y");
         <div style="background-color: #F3F4F5;">
             <div id="text-info" class="container pt-1 pb-1">
                 <!-- <a href="" class="me-3">About Bukatoko</a> -->
-                <a class="me-1">Follow us on</a>
+                <a class="me-1" style="cursor: pointer;">Follow us on</a>
                 <a class="me-2" href="https://github.com/aysrg9/" target="_blank"><i class="bi bi-github"></i></a>
                 <a class="me-2" href="https://instagram.com/egydityaa/" target="_blank"><i
                         class="bi bi-instagram"></i></a>

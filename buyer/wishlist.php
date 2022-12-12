@@ -71,7 +71,7 @@ $time = date("Y-m-d H:i:s");
 
             <div id="text-info" class="container pt-1 pb-1">
                 <!-- <a href="" class="me-3">About Bukatoko</a> -->
-                <a class="me-1">Follow us on</a>
+                <a class="me-1" style="cursor: pointer;">Follow us on</a>
                 <a class="me-2" href="https://github.com/aysrg9/" target="_blank"><i class="bi bi-github"></i></a>
                 <a class="me-2" href="https://instagram.com/egydityaa/" target="_blank"><i
                         class="bi bi-instagram"></i></a>
@@ -201,10 +201,9 @@ $time = date("Y-m-d H:i:s");
                                     <?= $wishlist_user["product_name"] ?></p>
                                 <p class="card-title pt-1 mb-0 fw-bold text-truncate text-dark">
                                     <?= rupiah($wishlist_user["price"]) ?></p>
-                                <p class="card-title pt-0 mt-0 mb-0 fw-bold text-truncate"><i
-                                        class="bi bi-patch-check-fill"></i> <span class="text-muted"
+                                <p class="card-title pt-0 mt-0 mb-0 fw-bold text-truncate"><span class="text-muted"
                                         style="font-size: 13px;">Served
-                                        Bukatoko</span></p>
+                                        Bukatoko</span> <i class="bi bi-patch-check-fill"></i></p>
                             </div>
 
                             <div class="footer pe-3 ps-3 mt-0">
@@ -224,10 +223,10 @@ $time = date("Y-m-d H:i:s");
 
                 </a>
 
-            </div>
+                <?php endwhile; ?>
+                <?php else : ?>
 
-            <?php endwhile; ?>
-            <?php else : ?>
+            </div>
 
             <h2 class="text-center container mt-3 w-auto fw-bold">No Items Added!</h2>
 

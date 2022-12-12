@@ -53,6 +53,7 @@ if (isset($_POST['wishlist'])) {
         mysqli_query($db, "INSERT INTO wishlist (id_user, id_product, picture ,product_name, price) VALUES($id_user, $id_product, '$picture','$product_name', '$price')");
         $message[] = 'Product added to wishlist!';
         $messagem[] = 'Product added to wishlist!';
+        header('Refresh: 3; URL=wishlist');
     }
 }
 
@@ -111,6 +112,7 @@ if (isset($_POST['addtocart'])) {
             mysqli_query($db, "INSERT INTO cart (id_user, id_product, picture ,product_name, price,quantity) VALUES($id_user, $id_product, '$picture','$product_name', '$price', '$quantity')");
             $message[] = 'Product added to cart!';
             $messagem[] = 'Product added to cart!';
+            header('Refresh: 3; URL=cart');
         }
     }
 }
@@ -152,7 +154,7 @@ if (isset($_POST['addtocart'])) {
         <div style="background-color: #F3F4F5;">
             <div id="text-info" class="container pt-1 pb-1">
                 <!-- <a href="" class="me-3">About Bukatoko</a> -->
-                <a class="me-1">Follow us on</a>
+                <a class="me-1" style="cursor: pointer;">Follow us on</a>
                 <a class="me-2" href="https://github.com/aysrg9/" target="_blank"><i class="bi bi-github"></i></a>
                 <a class="me-2" href="https://instagram.com/egydityaa/" target="_blank"><i
                         class="bi bi-instagram"></i></a>
@@ -256,7 +258,9 @@ if (isset($_POST['addtocart'])) {
             <?php foreach ($message as $message) : ?>
 
             <!-- Modal -->
-            <div class="modal modalAlert fade">
+
+            <div class="modal fade modalAlert" id="staticBackdrop" data-backdrop="static" data-keyboard="false"
+                tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -410,8 +414,8 @@ if (isset($_POST['addtocart'])) {
             <?php if (isset($messagem)) : ?>
             <?php foreach ($messagem as $messagem) : ?>
 
-            <!-- Modal -->
-            <div class="modal" id="exampleModal">
+            <div class="modal fade modalAlert" id="staticBackdrop" data-backdrop="static" data-keyboard="false"
+                tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">
                         <div class="modal-header">
