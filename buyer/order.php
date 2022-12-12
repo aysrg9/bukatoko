@@ -134,10 +134,13 @@ if (isset($_POST['order'])) {
             $updtstock = $prdct['stock'] - $quantity;
             mysqli_query($db, "UPDATE product SET stock = $updtstock WHERE id_product = $id_product");
 
-            // edit quantity voucher jika user menggunakan nya
-            $idvch = $_SESSION['idvch'];
-            $updatequantity = $_SESSION['qtyvch'] - 1;
-            mysqli_query($db, "UPDATE voucher SET quantity = $updatequantity WHERE id_voucher = $idvch");
+
+            if ($_POST['voucher'] > 0) {
+                // edit quantity voucher jika user menggunakan nya
+                $idvch = $_SESSION['idvch'];
+                $updatequantity = $_SESSION['qtyvch'] - 1;
+                mysqli_query($db, "UPDATE voucher SET quantity = $updatequantity WHERE id_voucher = $idvch");
+            }
 
             header('Refresh: 3; URL=order-list');
         }
@@ -542,7 +545,8 @@ if (isset($_POST['order'])) {
             <!-- End Alert Succes -->
 
             <div class="card shadow mb-3" style="margin-top: 82px;">
-                <label for="address" class="ms-3 me-3 mt-3 mb-1 fw-bold fs-4">Shipping Address</label>
+                <label for="address" class="ms-3 me-3 mt-3 mb-1 fw-bold fs-4"><i class="bi bi-geo-alt-fill"></i>
+                    Shipping Address</label>
 
                 <!-- Alert Error -->
                 <?php if (isset($errorm)) : ?>
@@ -625,7 +629,8 @@ if (isset($_POST['order'])) {
             </div>
 
             <div class="card shadow mb-3">
-                <label for="voucher" class="ms-3 me-3 mt-3 mb-3 fw-bold fs-4">Voucher</label>
+                <label for="voucher" class="ms-3 me-3 mt-3 mb-3 fw-bold fs-4"><i class="bi bi-credit-card-2-front"></i>
+                    Voucher</label>
 
                 <!-- Alert -->
                 <!-- Alert Succes -->
@@ -674,7 +679,7 @@ if (isset($_POST['order'])) {
             </div>
 
             <div class="card shadow" style="margin-bottom: 82px;">
-                <h3 class="ms-3 mt-3 mb-3 fw-bold">Total Bill</h3>
+                <h3 class="ms-3 mt-3 mb-3 fw-bold"><i class="bi bi-receipt"></i> Total Bill</h3>
 
                 <hr class="me-3 ms-3 mt-0">
 

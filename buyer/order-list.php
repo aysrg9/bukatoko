@@ -289,21 +289,21 @@ $time = date("Y-m-d H:i:s");
 
                         <div class="col pe-0 me-0 mb-0">
                             <p class="fw-bold mb-0 pb-0"><i class="bi bi-bag-fill"></i> Shopping</p>
-                            <span><?= $order_user['created']; ?></span>
+                            <span><i class="bi bi-calendar-event fw-bold"></i> <?= $order_user['created']; ?></span>
                         </div>
 
-                        <div class="col pe-0 me-0 ms-0 ps-0 text-muted">
+                        <div class="col pe-0 me-3 ms-0 ps-0 text-muted">
                             <?= $order_user['id_order']; ?>
 
                             <?php if ($orderstatus == $statusp) : ?>
 
-                            <span class="bg-warning me-3 mt-2 pb-1 pe-2 ps-2 rounded float-end">
+                            <span class="bg-warning mt-2 pb-1 pe-2 ps-2 rounded float-end">
                                 <span class="fw-bold"><?= $order_user['status_order']; ?></span>
                             </span>
 
                             <?php else : ?>
 
-                            <span class="bg-success me-3 mt-2 bg-opacity-25 pb-1 pe-2 ps-2 rounded float-end">
+                            <span class="bg-success mt-2 bg-opacity-25 pb-1 pe-2 ps-2 rounded float-end">
                                 <span class="text-success fw-bold"><?= $order_user['status_order']; ?></span>
                             </span>
 
